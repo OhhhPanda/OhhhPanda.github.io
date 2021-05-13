@@ -216,7 +216,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-13 11:10:27" itemprop="dateModified" datetime="2021-05-13T11:10:27+08:00">2021-05-13</time>
+        <time title="修改时间：2021-05-13 11:23:06" itemprop="dateModified" datetime="2021-05-13T11:23:06+08:00">2021-05-13</time>
       </span>
 
   
@@ -235,8 +235,18 @@
 <p>例如对于深红和浅红，在色域空间内应该是某通道的细微变化，中间不应间隔一个绿色。</p>
 </blockquote>
 <p>而能够做到这一点的，便是 Lab 色域空间。Lab 的 L 表示亮度通道，a 表示红绿通道，b 表示黄蓝通道。</p>
-<p>在 Lab 色域空间中，颜色的程度是具备线性变化的，即具备符合感知的距离差异。那么如果深入研究 Lab 这种更具距离特性的，更符合人类感知的色域空间，将是非常具有前景的。<br><img src="./_image/2021-05-12/789815b48f3246a0a46e85ff725208c5.jpg?c=1" alt="Lab空间"></p>
-<h2 id="2-研究历程"><a href="#2-研究历程" class="headerlink" title="2 研究历程"></a>2 研究历程</h2><h3 id="2-1-初识色域——确立-Lab-空间"><a href="#2-1-初识色域——确立-Lab-空间" class="headerlink" title="2.1 初识色域——确立 Lab 空间"></a>2.1 初识色域——确立 Lab 空间</h3><p><img src="./_image/2021-05-12/be46f90ac0fb472859e9b0dce60a2ee1.jpg?c=1" alt="色域区间"><br>从中不难看出，，Lab 具有最为广域的颜色空间，可以表示更多的颜色（甚至有的人眼无法感知）！<br>而 Lab 的距离特性意味着，以水下图像为例，我们是不是只需通过大量数据集求出水下图像的 a、b 值，就可以通过近似的方式去加工图片成水下效果呢？而通过对像素的逆向处理，是不是就能还原过滤水下图像的蓝绿色干扰呢？（当然逆向处理要难得多！）<br>但毫无疑问，这是条非常令人激动的探索方向！</p>
+<p>在 Lab 色域空间中，颜色的程度是具备线性变化的，即具备符合感知的距离差异。那么如果深入研究 Lab 这种更具距离特性的，更符合人类感知的色域空间，将是非常具有前景的。</p>
+<div align=center>
+<img src="https://img-blog.csdnimg.cn/20210513111822314.JPG"  />
+</div>
+
+<h2 id="2-研究历程"><a href="#2-研究历程" class="headerlink" title="2 研究历程"></a>2 研究历程</h2><h3 id="2-1-初识色域——确立-Lab-空间"><a href="#2-1-初识色域——确立-Lab-空间" class="headerlink" title="2.1 初识色域——确立 Lab 空间"></a>2.1 初识色域——确立 Lab 空间</h3><div align=center>
+<img src="https://img-blog.csdnimg.cn/20210513111822314.JPG"  />
+</div>
+从中不难看出，，Lab 具有最为广域的颜色空间，可以表示更多的颜色（甚至有的人眼无法感知）！
+而 Lab 的距离特性意味着，以水下图像为例，我们是不是只需通过大量数据集求出水下图像的 a、b 值，就可以通过近似的方式去加工图片成水下效果呢？而通过对像素的逆向处理，是不是就能还原过滤水下图像的蓝绿色干扰呢？（当然逆向处理要难得多！）
+但毫无疑问，这是条非常令人激动的探索方向！
+
 <h3 id="2-2-陷入困境——越界无错之因"><a href="#2-2-陷入困境——越界无错之因" class="headerlink" title="2.2 陷入困境——越界无错之因"></a>2.2 陷入困境——越界无错之因</h3><p>我们知道，L（0～100）表示明度，a（-128～+127）表示红绿通道，b（-128～+127）表示蓝绿通道。<br>当我们训练完大量的水下图像数据集后，出现的一个根本性的问题。<br> <strong>探索的疑问便在此刻出现：为什么当我们操作 a、b 色彩通道的数值，即使越界了也未有报错呢？</strong> </p>
 <blockquote>
 <p>要知道，之所以我们研究 Lab 色域，正是在于其距离可控，如果 Lab 是一个循环的话，那我们求水下色域 a、b均值将变得毫无意义。</p>
@@ -244,8 +254,19 @@
 <p><strong>想到这儿，我们的研究进展不由得陷入困境。</strong><br><br></p>
 <h3 id="2-3-越山前行——计算机实现-Lab-的本质"><a href="#2-3-越山前行——计算机实现-Lab-的本质" class="headerlink" title="2.3 越山前行——计算机实现 Lab 的本质"></a>2.3 越山前行——计算机实现 Lab 的本质</h3><p>打开 opencv 的底层源码和 Lab 实现库，查阅了大量的论文，甚至去外国的色域空间原理的官网去查询 Lab 的色域表示，我们最终找到了答案。</p>
 <p>与其说我们是在计算机上显示 Lab 色域，不如说我们是将 Lab 转换成计算机可以显示的 RGB 颜色进行显示。（之前说到，很多 Lab 是无法表示的）</p>
-<p>计算机视觉显示 Lab 是采用 RGB 转换的方式实现的。即把 Lab 的色域一一映射到 RGB 空间中，从而在计算机中进行显示。<br>也就是说，-128～127 是 Lab 的理论空间，但在计算机上的实际空间是转换为 RGB 所能在计算机上显示的值。那么我们的阶段性目标出现了：<br><strong>找出 Lab 的限定区间！</strong><br><br><br><img src="./_image/2021-05-12/d90474adb0b4c10ff640a5cf03262d2e.jpg?c=1" alt="Lab和RGB的转化"></p>
-<p><img src="./_image/2021-05-12/cd60a83b5e531b4e786536a2ff12cdba.jpg?c=1" alt="Lab的实际空间"><br>** 毫无疑问，当我们最后计算出的这个值域空间后，是无比欣喜的！**<br><strong>这意味着，我们只需要预先限定 Lab 通道的范围在这个范围内，便不会出现越界报错、越界颜色变化不再规律的问题了！</strong></p>
+<p>计算机视觉显示 Lab 是采用 RGB 转换的方式实现的。即把 Lab 的色域一一映射到 RGB 空间中，从而在计算机中进行显示。<br>也就是说，-128～127 是 Lab 的理论空间，但在计算机上的实际空间是转换为 RGB 所能在计算机上显示的值。那么我们的阶段性目标出现了：<br><strong>找出 Lab 的限定区间！</strong><br><br></p>
+<div align=center>
+<img src="https://img-blog.csdnimg.cn/2021051311202029.PNG"  />
+</div>
+
+
+
+<div align=center>
+<img src="https://img-blog.csdnimg.cn/20210513111923795.PNG"  />
+</div>
+** 毫无疑问，当我们最后计算出的这个值域空间后，是无比欣喜的！**
+**这意味着，我们只需要预先限定 Lab 通道的范围在这个范围内，便不会出现越界报错、越界颜色变化不再规律的问题了！**
+
 <p>2.4 Lab 的 Matlab 仿真——穷举法<br>既然 Lab 色域在计算机上是通过 RGB 转化而成的，那么我便来通过 Matlab 来揭开 Lab 转 RGB 的面纱吧！</p>
 <p>【可视化观察】<br><img src="https://media.giphy.com/media/gUS17BvzPUtP0DeyUK/giphy.gif"></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% srgb色域</span></span><br><span class="line">clc</span><br><span class="line">clear</span><br><span class="line">[r,g,b] = <span class="built_in">meshgrid</span>(<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">50</span>));</span><br><span class="line">rgb = [r(:), g(:), b(:)];</span><br><span class="line">lab = rgb2lab(rgb);</span><br><span class="line">a = lab(:,<span class="number">2</span>);</span><br><span class="line">b = lab(:,<span class="number">3</span>);</span><br><span class="line">L = lab(:,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">k = boundary(a,b,L);</span><br><span class="line">trisurf(k,a,b,L,<span class="string">&#x27;FaceColor&#x27;</span>,<span class="string">&#x27;interp&#x27;</span>,...</span><br><span class="line">    <span class="string">&#x27;FaceVertexCData&#x27;</span>,rgb,<span class="string">&#x27;EdgeColor&#x27;</span>,<span class="string">&#x27;none&#x27;</span>)</span><br><span class="line">xlabel(<span class="string">&#x27;a*&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;b*&#x27;</span>)</span><br><span class="line">zlabel(<span class="string">&#x27;L*&#x27;</span>)</span><br><span class="line">axis([<span class="number">-110</span> <span class="number">110</span> <span class="number">-110</span> <span class="number">110</span> <span class="number">0</span> <span class="number">100</span>])</span><br><span class="line">view(<span class="number">-10</span>,<span class="number">35</span>)</span><br><span class="line">axis equal</span><br><span class="line">title(<span class="string">&#x27;sRGB gamut surface in L*a*b* space&#x27;</span>)</span><br></pre></td></tr></table></figure>
