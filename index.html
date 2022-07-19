@@ -142,7 +142,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -239,10 +239,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-06-21 20:35:00 / 修改时间：13:55:48" itemprop="dateCreated datePublished" datetime="2022-06-21T20:35:00+08:00">2022-06-21</time>
+      <time title="创建时间：2022-06-21 20:35:00" itemprop="dateCreated datePublished" datetime="2022-06-21T20:35:00+08:00">2022-06-21</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-07-19 18:34:28" itemprop="dateModified" datetime="2022-07-19T18:34:28+08:00">2022-07-19</time>
+      </span>
 
   
 </div>
@@ -254,52 +260,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="「入职面试」华讯网工面试整理"><a href="#「入职面试」华讯网工面试整理" class="headerlink" title="「入职面试」华讯网工面试整理"></a>「入职面试」华讯网工面试整理</h1><p>关键字：图像特征提取、Pytorch 框架、目标检测及定位、数据结构、Python</p>
-<h2 id="一-岗位要求"><a href="#一-岗位要求" class="headerlink" title="一 岗位要求"></a>一 岗位要求</h2><p>首先我们分析网工岗位的要求和技术能力：</p>
-<img src="/Users/xiaoyao/Library/Application Support/typora-user-images/image-20220621134517880.png" alt="image-20220621134517880" style="zoom:25%;" />
+          <center>
+**"一段有趣的旅程即将开始，倒计时开始>>>"**
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h0lb7ljz0yj21400qljws.jpg" style="zoom: 50%;" />
 
-<p>以下为网工面试的基本内容：</p>
-<img src="/Users/xiaoyao/Library/Application Support/typora-user-images/image-20220621130105898.png" alt="image-20220621130105898" style="zoom:33%;" />
-
-<h2 id="一-TCP-IP五层模型"><a href="#一-TCP-IP五层模型" class="headerlink" title="一 TCP/IP五层模型"></a>一 TCP/IP五层模型</h2><p>包含了物理层、链路层、网络层、传输层、应用层（包含OSI7层的应用层、表示层、会话层）。</p>
-<img src="/Users/xiaoyao/Downloads/IMG_4410(20220621-133212).PNG" alt="IMG_4410(20220621-133212)" style="zoom: 33%;" />
-
-
-
-
-
-<h2 id="二-DNS"><a href="#二-DNS" class="headerlink" title="二 DNS"></a>二 DNS</h2><p>DNS即域名解析服务，用来把网址域名解析转换为实际ip地址的功能。</p>
-<h2 id="三-IP地址"><a href="#三-IP地址" class="headerlink" title="三 IP地址"></a>三 IP地址</h2><p>IP地址是唯一的，</p>
-<p>内网外网IP：一个公司共用一个外网IP地址，内网划分多个内网IP（类似员工工牌），内网外网通过路由器进行连接。</p>
-<h2 id="四-TCP-IP"><a href="#四-TCP-IP" class="headerlink" title="四 TCP/IP"></a>四 TCP/IP</h2><h4 id="1、定义"><a href="#1、定义" class="headerlink" title="1、定义"></a>1、定义</h4><p>TCP通过三次握手、传输确认、四次挥手实现。</p>
-<img src="/Users/xiaoyao/Downloads/IMG_4407(20220621-131608).PNG" alt="IMG_4407(20220621-131608)" style="zoom:25%;" />
-
-<h4 id="2、为什么进行三次握手"><a href="#2、为什么进行三次握手" class="headerlink" title="2、为什么进行三次握手"></a>2、为什么进行三次握手</h4><p>如果仅进行两次握手，若之前已发送过滞留的SYN请求就会进行干扰，让服务器误以为进行了两次连接。</p>
-<p>一言以蔽之，相较于两次握手，三次握手是为了解决网络信道不可靠的问题，从而在不可靠的信道中建立可靠的连接。</p>
-<h4 id="3、传输确认："><a href="#3、传输确认：" class="headerlink" title="3、传输确认："></a>3、传输确认：</h4><p>通过ACK防止丢包问题。</p>
-<h4 id="4、四次挥手："><a href="#4、四次挥手：" class="headerlink" title="4、四次挥手："></a>4、四次挥手：</h4><p>完成数据传输后需要通过四次挥手进行连接关闭。</p>
-<img src="/Users/xiaoyao/Downloads/IMG_4408(20220621-132527).PNG" alt="IMG_4408(20220621-132527)" style="zoom:25%;" />
-
-<p>1次、客户端发送FIN包，表示要关闭连接，进入等待状态1</p>
-<p>2次、服务端收到FIN包后发送ACK包，进入结束等待状态1</p>
-<p>3次、服务端发送完剩余数据后发送FIN包，表示进入最后确认状态</p>
-<p>4次、客户端发送ACK包，客户端进入超时等待状态，服务端则直接关闭</p>
-<p>（为什么超时等待不直接关闭？）</p>
-<p>（若服务端没有收到最后发送的ACK包，服务端会重新发送FIN包，客户端重新发送回馈的ACK包保证关闭成功）</p>
-<img src="/Users/xiaoyao/Downloads/IMG_4409(20220621-132758).PNG" alt="IMG_4409(20220621-132758)" style="zoom:25%;" />
-
-
-
-<h4 id="5、TCP和UDP区别："><a href="#5、TCP和UDP区别：" class="headerlink" title="5、TCP和UDP区别："></a>5、TCP和UDP区别：</h4><p>两者都工作在传输层，作用都是在程序之间传输数据</p>
-<p>最大区别在于TCP基于连接视线，UDP基于非连接连接</p>
-<img src="/Users/xiaoyao/Downloads/IMG_4406(20220621-131207).PNG" alt="IMG_4406(20220621-131207)" style="zoom:25%;" />
-
-
-
-
-
-
-
+<hr/>
+<hr style="border: 5px solid red;"/>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/86459b7c.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -356,7 +330,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-29 09:52:19" itemprop="dateModified" datetime="2022-03-29T09:52:19+08:00">2022-03-29</time>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
       </span>
 
   
@@ -434,7 +408,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-29 01:09:33" itemprop="dateModified" datetime="2022-03-29T01:09:33+08:00">2022-03-29</time>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
       </span>
 
   
@@ -504,10 +478,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-03-03 10:00:00 / 修改时间：10:28:37" itemprop="dateCreated datePublished" datetime="2022-03-03T10:00:00+08:00">2022-03-03</time>
+      <time title="创建时间：2022-03-03 10:00:00" itemprop="dateCreated datePublished" datetime="2022-03-03T10:00:00+08:00">2022-03-03</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -593,7 +573,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-13 15:31:25" itemprop="dateModified" datetime="2022-03-13T15:31:25+08:00">2022-03-13</time>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -680,7 +660,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-03 10:53:53" itemprop="dateModified" datetime="2022-03-03T10:53:53+08:00">2022-03-03</time>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -769,7 +749,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-29 16:21:42" itemprop="dateModified" datetime="2021-12-29T16:21:42+08:00">2021-12-29</time>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -856,7 +836,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-29 01:22:04" itemprop="dateModified" datetime="2021-12-29T01:22:04+08:00">2021-12-29</time>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
       </span>
 
   
@@ -926,10 +906,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-07-31 21:35:00 / 修改时间：21:52:58" itemprop="dateCreated datePublished" datetime="2021-07-31T21:35:00+08:00">2021-07-31</time>
+      <time title="创建时间：2021-07-31 21:35:00" itemprop="dateCreated datePublished" datetime="2021-07-31T21:35:00+08:00">2021-07-31</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -984,7 +970,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/374b3a70.html">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/29da8689.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
@@ -997,7 +983,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/374b3a70.html" class="post-title-link" itemprop="url">「生活小记」一路前行的故事</a>
+          <a href="/posts/29da8689.html" class="post-title-link" itemprop="url">「机器学习」 V2神经网络学习和Pytorch框架入手</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1008,14 +994,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-06-15 15:06:28" itemprop="dateCreated datePublished" datetime="2021-06-15T15:06:28+08:00">2021-06-15</time>
+      <time title="创建时间：2021-07-31 21:35:00" itemprop="dateCreated datePublished" datetime="2021-07-31T21:35:00+08:00">2021-07-31</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-12-29 01:19:56" itemprop="dateModified" datetime="2021-12-29T01:19:56+08:00">2021-12-29</time>
+        <time title="修改时间：2022-07-15 15:13:16" itemprop="dateModified" datetime="2022-07-15T15:13:16+08:00">2022-07-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1023,7 +1009,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%94%9F%E6%B4%BB%E5%B0%8F%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">生活小记</span></a>
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
         </span>
     </span>
 
@@ -1037,10 +1023,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          页面已被加密，请输入密码。
+          <p>关键字：Torch、神经网络<br>摘要： 关于本周工具/环境配置、基础理论学习、神经网络训练的初步入门总结</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/374b3a70.html#more" rel="contents">
+              <a class="btn" href="/posts/29da8689.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
