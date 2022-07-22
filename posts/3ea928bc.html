@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
-<meta name="description" content="CCNA-1 何为网络？关键字：图像特征提取、Pytorch 框架、目标检测及定位、数据结构、Python 摘要：">
+<meta name="description" content="关键字：图像特征提取、Pytorch 框架、目标检测及定位、数据结构、Python 摘要：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="「思科NA培训」CCNA-1 何为网络？">
 <meta property="og:url" content="http://ohxiaoyao.life/posts/3ea928bc.html">
 <meta property="og:site_name" content="ohxiaoyao.life">
-<meta property="og:description" content="CCNA-1 何为网络？关键字：图像特征提取、Pytorch 框架、目标检测及定位、数据结构、Python 摘要：">
+<meta property="og:description" content="关键字：图像特征提取、Pytorch 框架、目标检测及定位、数据结构、Python 摘要：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4fk4awurkj213e0sqwgt.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4fk49pwuwj21bv0u0n08.jpg">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4fk4bys1ij21e70u0jv2.jpg">
 <meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220719203736239.png">
 <meta property="article:published_time" content="2022-07-19T18:50:00.000Z">
-<meta property="article:modified_time" content="2022-07-22T03:45:45.565Z">
+<meta property="article:modified_time" content="2022-07-22T03:48:21.242Z">
 <meta property="article:author" content="Xiao Yao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4fk4awurkj213e0sqwgt.jpg">
@@ -135,7 +135,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CCNA-1-%E4%BD%95%E4%B8%BA%E7%BD%91%E7%BB%9C%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">CCNA-1 何为网络？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%B1%80%E5%9F%9F%E7%BD%91-LAN-%E5%92%8C%E5%B9%BF%E5%9F%9F%E7%BD%91-WAN"><span class="nav-number">1.1.</span> <span class="nav-text">一 局域网(LAN)和广域网(WAN)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%86%85%E9%83%A8%E7%BD%91%E5%92%8C%E5%A4%96%E8%81%94%E7%BD%91"><span class="nav-number">1.2.</span> <span class="nav-text">二 内部网和外联网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%8F%AF%E9%9D%A0%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9B%9B%E8%A6%81%E7%B4%A0"><span class="nav-number">1.3.</span> <span class="nav-text">三 可靠网络的四要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E9%9B%86%E7%BA%BF%E5%99%A8%E7%9A%84%E6%95%85%E4%BA%8B"><span class="nav-number">1.4.</span> <span class="nav-text">四 集线器的故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%B0%8F%E8%AE%B0"><span class="nav-number">1.5.</span> <span class="nav-text">五 网络安全小记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-WISP%E5%92%8CISP"><span class="nav-number">1.6.</span> <span class="nav-text">六 WISP和ISP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">1.7.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%96%87%E7%8C%AE"><span class="nav-number">1.8.</span> <span class="nav-text">引用文献</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%B1%80%E5%9F%9F%E7%BD%91-LAN-%E5%92%8C%E5%B9%BF%E5%9F%9F%E7%BD%91-WAN"><span class="nav-number">1.</span> <span class="nav-text">一 局域网(LAN)和广域网(WAN)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%86%85%E9%83%A8%E7%BD%91%E5%92%8C%E5%A4%96%E8%81%94%E7%BD%91"><span class="nav-number">2.</span> <span class="nav-text">二 内部网和外联网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%8F%AF%E9%9D%A0%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9B%9B%E8%A6%81%E7%B4%A0"><span class="nav-number">3.</span> <span class="nav-text">三 可靠网络的四要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E9%9B%86%E7%BA%BF%E5%99%A8%E7%9A%84%E6%95%85%E4%BA%8B"><span class="nav-number">4.</span> <span class="nav-text">四 集线器的故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%B0%8F%E8%AE%B0"><span class="nav-number">5.</span> <span class="nav-text">五 网络安全小记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-WISP%E5%92%8CISP"><span class="nav-number">6.</span> <span class="nav-text">六 WISP和ISP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">7.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%96%87%E7%8C%AE"><span class="nav-number">8.</span> <span class="nav-text">引用文献</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -257,7 +257,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-07-22 11:45:45" itemprop="dateModified" datetime="2022-07-22T11:45:45+08:00">2022-07-22</time>
+        <time title="修改时间：2022-07-22 11:48:21" itemprop="dateModified" datetime="2022-07-22T11:48:21+08:00">2022-07-22</time>
       </span>
 
   
@@ -270,7 +270,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="CCNA-1-何为网络？"><a href="#CCNA-1-何为网络？" class="headerlink" title="CCNA-1 何为网络？"></a>CCNA-1 何为网络？</h1><p>关键字：图像特征提取、Pytorch 框架、目标检测及定位、数据结构、Python</p>
+        <p>关键字：图像特征提取、Pytorch 框架、目标检测及定位、数据结构、Python</p>
 <p>摘要：</p>
 <span id="more"></span>
 
@@ -385,8 +385,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/3ea928bc.html" rel="next" title="「思科NA培训」CCNA-1 何为网络？">
-                  「思科NA培训」CCNA-1 何为网络？ <i class="fa fa-chevron-right"></i>
+                <a href="/posts/3ea928bc.html" rel="next" title="「思科NA培训」CCNA-2 基本配置">
+                  「思科NA培训」CCNA-2 基本配置 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
