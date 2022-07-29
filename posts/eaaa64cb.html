@@ -28,7 +28,7 @@
 <meta property="og:description" content="关键字：思科OS升级、灾难恢复 摘要：思科设备OS升级及降级方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg">
-<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/8d8250e1-b92f-4c05-b748-6cc5fcff8f65.png">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9snv78j20z10hs3zv.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2ieymwj21bm0ppmzn.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2jwgbqj21680b4gm7.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2jgg5nj21jp0thmz3.jpg">
@@ -50,8 +50,17 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pz1cnj20b804sq2w.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2nbvtuj22420u0diu.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2lpt6nj20q403mt8z.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9wmlj9j21ix0u0acn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9w39dwj217t0bfaam.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9voeeuj214g0oh75e.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9v8abzj214o0s8wgo.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9su9x0j20z10hs3zv.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9tu4y7j21im0u0acf.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-96fecf5492983ac746cd412495583edc_1440w.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9u8j6lj212q0o2dgl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9ut4y5j21fc0u0799.jpg">
 <meta property="article:published_time" content="2022-07-27T08:49:00.000Z">
-<meta property="article:modified_time" content="2022-07-28T01:02:24.071Z">
+<meta property="article:modified_time" content="2022-07-29T07:06:55.928Z">
 <meta property="article:author" content="Xiao Yao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg">
@@ -153,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-Vlan%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">一 Vlan基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81Vlan%E5%88%92%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">1、Vlan划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%9D%99%E6%80%81Vlan%E5%92%8C%E5%8A%A8%E6%80%81Vlan"><span class="nav-number">1.2.</span> <span class="nav-text">2、静态Vlan和动态Vlan</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%B9%BF%E6%92%AD%E5%9F%9F%E5%92%8C%E5%86%B2%E7%AA%81%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">二 广播域和冲突域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%B9%BF%E6%92%AD%E9%A3%8E%E6%9A%B4"><span class="nav-number">3.</span> <span class="nav-text">三 广播风暴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-MAC%E5%9C%B0%E5%9D%80%E7%BB%84%E6%88%90-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">四 MAC地址组成&#x2F;以太网帧结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81MAC%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">1、MAC地址结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.</span> <span class="nav-text">2、以太网帧结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-VLAN%E7%9A%84%E5%88%92%E5%88%86%E5%92%8CTRUNK%E5%8F%A3%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">五 VLAN的划分和TRUNK口配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%86%E7%B1%BB"><span class="nav-number">5.1.</span> <span class="nav-text">1、分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81TRUNK%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">5.1.1.</span> <span class="nav-text">2、TRUNK配置方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="nav-number">5.1.2.</span> <span class="nav-text">实验要求：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">5.1.3.</span> <span class="nav-text">实验步骤：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-Vlan%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">一 Vlan基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81Vlan%E5%88%92%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">1、Vlan划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%9D%99%E6%80%81Vlan%E5%92%8C%E5%8A%A8%E6%80%81Vlan"><span class="nav-number">1.2.</span> <span class="nav-text">2、静态Vlan和动态Vlan</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E5%B9%BF%E6%92%AD%E5%9F%9F%E5%92%8C%E5%86%B2%E7%AA%81%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">二 广播域和冲突域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%B9%BF%E6%92%AD%E9%A3%8E%E6%9A%B4"><span class="nav-number">3.</span> <span class="nav-text">三 广播风暴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-MAC%E5%9C%B0%E5%9D%80%E7%BB%84%E6%88%90-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">四 MAC地址组成&#x2F;以太网帧结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81MAC%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">1、MAC地址结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="nav-number">4.2.</span> <span class="nav-text">2、以太网帧结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-VLAN%E7%9A%84%E5%88%92%E5%88%86%E5%92%8CTRUNK%E5%8F%A3%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">五 VLAN的划分和TRUNK口配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%86%E7%B1%BB"><span class="nav-number">5.1.</span> <span class="nav-text">1、分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81TRUNK%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">5.2.</span> <span class="nav-text">2、TRUNK配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="nav-number">5.2.1.</span> <span class="nav-text">实验要求：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">5.2.2.</span> <span class="nav-text">实验步骤：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-access-trunk%E5%AF%B9%E5%B8%A7%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">六 access&#x2F;trunk对帧的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83-Voice-Vlan"><span class="nav-number">7.</span> <span class="nav-text">七 Voice Vlan</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E5%9F%BA%E4%BA%8EMAC%E5%9C%B0%E5%9D%80%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">### 1、基于MAC地址的方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E5%9F%BA%E4%BA%8EVLAN%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">7.0.0.2.</span> <span class="nav-text">### 2、基于VLAN的方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">7.0.0.3.</span> <span class="nav-text">区别：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB-PVlan"><span class="nav-number"></span> <span class="nav-text">八 PVlan</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D-VLAN%E9%80%9A%E4%BF%A1"><span class="nav-number">1.</span> <span class="nav-text">九 VLAN通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81VLAN%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="nav-number">1.1.</span> <span class="nav-text">1、VLAN间通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81VLAN%E5%86%85%E9%83%A8%E9%80%9A%E4%BF%A1"><span class="nav-number">1.2.</span> <span class="nav-text">2、VLAN内部通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81-%E6%8A%A5%E6%96%87%E5%B0%81%E8%A3%85%E5%92%8C%E8%A7%A3%E5%B0%81%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">十 报文封装和解封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80-VTP"><span class="nav-number">3.</span> <span class="nav-text">十一 VTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">三种模式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C-%E5%8D%8E%E4%B8%BAhybrid%E7%AB%AF%E5%8F%A3%E6%A8%A1%E5%BC%8F%E5%AF%B9%E5%B8%A7%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">十二 华为hybrid端口模式对帧的处理方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">1、接口配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%A4%84%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">2、数据帧处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%8D%8E%E4%B8%BAhybrid%EF%BC%88%E4%BB%8D%E6%9C%89%E4%B8%8D%E8%B6%B3%F0%9F%94%A5%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">3、华为hybrid（仍有不足🔥）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81PVID%E5%92%8Ctag%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">4.4.</span> <span class="nav-text">4、PVID和tag的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%89-%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%9C%A8%E6%8E%A5%E6%97%A0%E7%BA%BFAP%E6%97%B6%E9%85%8D%E7%BD%AEtrunk%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%88%E4%BB%8D%E5%BE%85%E5%AD%A6%E4%B9%A0%F0%9F%94%A5%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">十三 交换机在接无线AP时配置trunk模式的作用（仍待学习🔥）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -275,7 +284,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-07-28 09:02:24" itemprop="dateModified" datetime="2022-07-28T09:02:24+08:00">2022-07-28</time>
+        <time title="修改时间：2022-07-29 15:06:55" itemprop="dateModified" datetime="2022-07-29T15:06:55+08:00">2022-07-29</time>
       </span>
 
   
@@ -289,24 +298,23 @@
     
     <div class="post-body" itemprop="articleBody">
         <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" />
-
-<p>关键字：思科OS升级、灾难恢复</p>
-<p>摘要：思科设备OS升级及降级方法。</p>
+关键字：思科OS升级、灾难恢复
+摘要：思科设备OS升级及降级方法。
 <span id="more"></span>
-
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1090113&auto=1&height=66"></iframe>
+>   **为什么需要Vlan？**
+>
+>   在没有vlan的年代，所有PC都是一个域。
+>
+>   当一台PC进行广播时，所有的PC都听到了广播，好似一场广播风暴！
+>
+>   当一个黑客攻破了一台设备，便可对所有PC发动ARP攻击！
 
-<blockquote>
-<p>  <strong>为什么需要Vlan？</strong></p>
-<p>  在没有vlan的年代，所有PC都是一个域。</p>
-<p>  当一台PC进行广播时，所有的PC都听到了广播，好似一场广播风暴！</p>
-<p>  当一个黑客攻破了一台设备，便可对所有PC发动ARP攻击！</p>
-</blockquote>
 <h2 id="一-Vlan基础"><a href="#一-Vlan基础" class="headerlink" title="一 Vlan基础"></a>一 Vlan基础</h2><hr/>
 
 <h3 id="1、Vlan划分"><a href="#1、Vlan划分" class="headerlink" title="1、Vlan划分"></a>1、Vlan划分</h3><p>一个Vlan中所有设备处于同一个广播域内，不同的VLan为不同的广播域。</p>
 <p>一个VLan一般是一个IP网段，不同的Vlan规划到不同的IP网段。</p>
-<img src="/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/8d8250e1-b92f-4c05-b748-6cc5fcff8f65.png" alt="8d8250e1-b92f-4c05-b748-6cc5fcff8f65" style="zoom: 50%;" />
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9snv78j20z10hs3zv.jpg" alt="8d8250e1-b92f-4c05-b748-6cc5fcff8f65" style="zoom: 50%;" />
 
 <blockquote>
 <p>​        <strong>如何避免广播风暴等问题？</strong></p>
@@ -380,8 +388,6 @@
 
 
 
-
-
 <h2 id="五-VLAN的划分和TRUNK口配置"><a href="#五-VLAN的划分和TRUNK口配置" class="headerlink" title="五 VLAN的划分和TRUNK口配置"></a>五 VLAN的划分和TRUNK口配置</h2><hr/>
 
 <h3 id="1、分类"><a href="#1、分类" class="headerlink" title="1、分类"></a>1、分类</h3><ul>
@@ -392,19 +398,17 @@
 <li><p>Hybrid接口：混合</p>
 </li>
 </ul>
-<h4 id="2、TRUNK配置方法"><a href="#2、TRUNK配置方法" class="headerlink" title="2、TRUNK配置方法"></a>2、TRUNK配置方法</h4><h4 id="实验要求："><a href="#实验要求：" class="headerlink" title="实验要求："></a><strong>实验要求：</strong></h4><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2mqai5j20ka074aaq.jpg" alt="image-20220727162651379"  />
-
-
+<h3 id="2、TRUNK配置方法"><a href="#2、TRUNK配置方法" class="headerlink" title="2、TRUNK配置方法"></a>2、TRUNK配置方法</h3><h4 id="实验要求："><a href="#实验要求：" class="headerlink" title="实验要求："></a><strong>实验要求：</strong></h4><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2mqai5j20ka074aaq.jpg" alt="image-20220727162651379"  />
 
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2l0qw1j211m0gkmya.jpg" alt="image-20220727162724468" style="zoom:50%;" />
 
 
 
-<h4 id="实验步骤："><a href="#实验步骤：" class="headerlink" title="实验步骤："></a><strong>实验步骤：</strong></h4><p>1、PC的IP配置和交换机配置*2</p>
+<h4 id="实验步骤："><a href="#实验步骤：" class="headerlink" title="实验步骤："></a><strong>实验步骤：</strong></h4><p>(1)PC的IP配置和交换机配置*2</p>
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2rdd6qj20r605i74u.jpg" alt="image-20220727161855734" style="zoom:50%;" />
 
 <p><strong>至此，要求1完成✅</strong></p>
-<p>2、创建VLAN*2</p>
+<p>(2)创建VLAN*2</p>
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2uolgkj20r805i3z5.jpg" alt="image-20220727162315335" style="zoom:50%;" />
 
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2m8s5lj20r806i751.jpg" alt="image-20220727162242818" style="zoom:50%;" />
@@ -413,7 +417,7 @@
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2svy1wj21c20g0dic.jpg" alt="image-20220727162616016" style="zoom:50%;" />
 
 <p><strong>至此，实验2完成✅</strong></p>
-<p>3、交换机接口划入VLAN</p>
+<p>(3)交换机接口划入VLAN</p>
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2ir93sj21bm0ppmzn.jpg" alt="image-20220727163252998" style="zoom: 33%;" />
 
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2lcodyj20yw0dedi2.jpg" alt="image-20220727164034461" style="zoom: 33%;" />
@@ -425,13 +429,13 @@
 
 <p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2nxx9wj21ai0u0429.jpg" alt="image-20220727172144000" style="zoom: 33%;" />s</p>
 <p><strong>至此，实验3完成✅</strong></p>
-<p>4、交换机间的Trunk配置</p>
+<p>(4)交换机间的Trunk配置</p>
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2kfqo1j213o0diq4f.jpg" alt="image-20220727172341415" style="zoom: 33%;" />
 
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2ttt4pj216g0jggoj.jpg" alt="image-20220727165259058" style="zoom:33%;" />
 
 <p><strong>至此，实验4完成✅</strong></p>
-<p>5、测试PC之间的网络连通性</p>
+<p>(5)测试PC之间的网络连通性</p>
 <p>首先通过disable从特权退回到用户模式，然后用VLAN1的PC1去ping</p>
 <ul>
 <li>VLAN1的PC3——理应成功</li>
@@ -449,15 +453,121 @@
 <p><strong>🌟完成实验pkt文件链接：🌟</strong></p>
 <p> <a href="../../VLAN%E5%88%92%E5%88%86%E5%8F%8ATrunk%E9%85%8D%E7%BD%AE%EF%BC%88%E5%AE%8C%E6%88%90%E5%AE%9E%E9%AA%8C%EF%BC%89.pkt">VLAN划分及Trunk配置（完成实验）.pkt</a> </p>
 </blockquote>
-<blockquote>
+<p>补充Tips：</p>
 <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2lpt6nj20q403mt8z.jpg" alt="image-20220727165730546" style="zoom:50%;" />
 
 <p><strong>卡死解决：control +shift+6</strong></p>
+<h2 id="六-access-trunk对帧的处理"><a href="#六-access-trunk对帧的处理" class="headerlink" title="六 access/trunk对帧的处理"></a>六 access/trunk对帧的处理</h2><hr>
+<blockquote>
+<p>1 <a target="_blank" rel="noopener" href="https://b23.tv/EWLKkbN">https://b23.tv/EWLKkbN</a></p>
+<p>2 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qwe502763576/article/details/122424064">https://blog.csdn.net/qwe502763576/article/details/122424064</a></p>
+<p>3 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_60797416/article/details/125742370">https://blog.csdn.net/m0_60797416/article/details/125742370</a></p>
+</blockquote>
+<h2 id="七-Voice-Vlan"><a href="#七-Voice-Vlan" class="headerlink" title="七 Voice Vlan"></a>七 Voice Vlan</h2><hr>
+<p><em><strong>“在网络中，各种各样的流量同时传输，而类似语音、视频等实时流量对网络延迟有较高的要求，同时对带宽也比较明显，所以我们需要提高流量的优先级，保证实时同步。”</strong></em></p>
+<p>如何对数据进行识别区分？</p>
+<h5 id="1、基于MAC地址的方式"><a href="#1、基于MAC地址的方式" class="headerlink" title="### 1、基于MAC地址的方式"></a>### 1、基于MAC地址的方式</h5><p>通过配置设备的OUI和匹配源MAC地址的OUI（组织唯一标识符），匹配为语音设备的则被认为是语音信息流。</p>
+<h5 id="2、基于VLAN的方式"><a href="#2、基于VLAN的方式" class="headerlink" title="### 2、基于VLAN的方式"></a>### 2、基于VLAN的方式</h5><p>当信息流过多时，配置OUI就会十分繁琐。故可在交换机上配置基于VLAN来提高语音报文的优先级。通过VLAN ID来判断该数据报文是否为语音报文。</p>
+<h5 id="区别："><a href="#区别：" class="headerlink" title="区别："></a><strong>区别：</strong></h5><p>IP电话上送的是untagged语音报文时，必须配置OUI，才能把语音报文和数据报文区分开来；如果IP电话上送的是带Tag语音报文，则可配置基于VLAN的Voice VLAN，这样在大量IP电话接入的情况下，就不用配置繁琐的OUI，简化配置。</p>
+<blockquote>
+<p> 【Voice VLAN】<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/370423035">https://zhuanlan.zhihu.com/p/370423035</a></p>
+</blockquote>
+<h1 id="八-PVlan"><a href="#八-PVlan" class="headerlink" title="八 PVlan"></a>八 PVlan</h1><hr>
+<blockquote>
+<p>  【私有VLAN的理解】<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/268282375/answer/336378845?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=1410331519022379009&amp;utm_content=group1_Answer&amp;utm_campaign=shareopn">https://www.zhihu.com/question/268282375/answer/336378845?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=1410331519022379009&amp;utm_content=group1_Answer&amp;utm_campaign=shareopn</a></p>
+</blockquote>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9wmlj9j21ix0u0acn.jpg" alt="image-20220728113330648" style="zoom: 67%;" />
+
+
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9w39dwj217t0bfaam.jpg" alt="WechatIMG145"></p>
+<h2 id="九-VLAN通信"><a href="#九-VLAN通信" class="headerlink" title="九 VLAN通信"></a>九 VLAN通信</h2><hr>
+<h3 id="1、VLAN间通信"><a href="#1、VLAN间通信" class="headerlink" title="1、VLAN间通信"></a>1、VLAN间通信</h3><p><strong>划分VLAN10和VLAN20下的两个PC设备，如何实现不同VLAN的通信呢？</strong></p>
+<p>（1）需要一个<strong>网关设备</strong>，</p>
+<p>​        为这个网关分别创建两个VLAN接口对应VLAN10和VLAN20，并配上接口的网关IP。（这个网关往往采用路由器、三层交换机实现。）</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9voeeuj214g0oh75e.jpg" alt="WechatIMG146" style="zoom:67%;" />
+
+<p> （2）需要配置PC的网关地址</p>
+<p>​    除了配置号PC的IP和子网掩码，还需要配置网关地址</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9v8abzj214o0s8wgo.jpg" alt="WechatIMG148" style="zoom: 67%;" />
+
+
+
+<h3 id="2、VLAN内部通信"><a href="#2、VLAN内部通信" class="headerlink" title="2、VLAN内部通信"></a>2、VLAN内部通信</h3><h2 id="十-报文封装和解封装"><a href="#十-报文封装和解封装" class="headerlink" title="十 报文封装和解封装"></a>十 报文封装和解封装</h2><hr>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9su9x0j20z10hs3zv.jpg" alt="WechatIMG148" style="zoom:80%;" />
+
+<blockquote>
+<p>  【报文封装和解封装B站】<a target="_blank" rel="noopener" href="https://b23.tv/aHjwVdJ">https://b23.tv/aHjwVdJ</a></p>
+</blockquote>
+<h2 id="十一-VTP"><a href="#十一-VTP" class="headerlink" title="十一 VTP"></a>十一 VTP</h2><hr>
+<p>在一个三层模型拥有多台交换设备的网络环境中，为了使得在每台交换设备上VLAN信息一致，必须得在每台设备上单独配置相同的VLAN。如果设备太多那么这样的效率是很低的。</p>
+<p>并且如果经常需要临时的创建和删除某些VLAN在这样的大型网络中效率更低，<strong>VTP允许在一台交换机上添加、删除、修改VLAN信息然后同步到其他的交换机。</strong></p>
+<h3 id="三种模式："><a href="#三种模式：" class="headerlink" title="三种模式："></a><strong>三种模式：</strong></h3><p>在VTP协议中我们把设备大体分为两类：Server、Client、（Transparent）。</p>
+<ul>
+<li><p>Server模式：能够添加、删除、修改vlan信息并同步给其他子Client</p>
+</li>
+<li><p>Client模式：只能向Server同步vlan信息并且vlan信息无法保存，每次重启都要向Server同步</p>
+</li>
+<li><p>Transparent模式：为了丰富VTP的功能除了Server和Client模式之外，还设置了一个独立的模式，Transparent会传递vlan信息，但自己本身不同步Server的vlan信息，且对vlan的操作只在本交换机上有效；</p>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9tu4y7j21im0u0acf.jpg" alt="image-20220728142204896" style="zoom: 67%;" />
+
+<img src="https://pic1.zhimg.com/80/v2-96fecf5492983ac746cd412495583edc_1440w.jpg" alt="eee" style="zoom:67%;" />
+
+
+
+<h2 id="十二-华为hybrid端口模式对帧的处理方式"><a href="#十二-华为hybrid端口模式对帧的处理方式" class="headerlink" title="十二 华为hybrid端口模式对帧的处理方式"></a>十二 华为hybrid端口模式对帧的处理方式</h2><hr>
+<h3 id="1、接口配置"><a href="#1、接口配置" class="headerlink" title="1、接口配置"></a>1、接口配置</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//给端口打上PVID标签</span></span><br><span class="line">prot hybrid pvid vlan <span class="number">2</span>  </span><br><span class="line"><span class="comment">//1.VLAN2 和VLAN100在允许的列表中</span></span><br><span class="line"><span class="comment">//2.在发送数据帧时，VLAN2和VLAN100时untagged形式发送</span></span><br><span class="line">port hybrid untagged vlan <span class="number">2</span> <span class="number">100.</span> </span><br><span class="line">  </span><br><span class="line"><span class="comment">//1、vlan3、vlan4、vlan200在允许的列表中</span></span><br><span class="line"><span class="comment">//2.vlan3、vlan4、vlan200以tagged形式发送</span></span><br><span class="line">port hybrid tagged vlan <span class="number">3</span> to <span class="number">4</span> <span class="number">200</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、数据帧处理"><a href="#2、数据帧处理" class="headerlink" title="2、数据帧处理"></a>2、数据帧处理</h3><ul>
+<li><p>hybrid接收到untag数据帧时</p>
+<p>hybrid会打开自己的PVID（即命令port hybrid pvid vlan 2)</p>
+</li>
+<li><p>hybrid接收到tag数据帧时</p>
+<p>hybrid会进行判断，若tag在允许的vlan列表中则接收，若不在则拒绝</p>
+</li>
+<li><p>hybrid发送数据帧时</p>
+<p>hybrid可以指定发送的vlan帧是否携带tag和untag数据</p>
+</li>
+</ul>
+<h3 id="3、华为hybrid（仍有不足🔥）"><a href="#3、华为hybrid（仍有不足🔥）" class="headerlink" title="3、华为hybrid（仍有不足🔥）"></a>3、华为hybrid（仍有不足🔥）</h3><p>（1）<strong>【test】简述PC1的数据帧传输到PC2的hybrid传输过程</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9u8j6lj212q0o2dgl.jpg" alt="1501658991646_.pic"></p>
+<ul>
+<li><p>从PC1 —- PC2（发送）</p>
+<p>默认情况下，接口类型都是hybird型，默认为PVID 1 ，VLAN1。</p>
+<p>PC1的untagged帧数据通过S1的g0/0/1时，打上PVID为1的帧，然后从g0/0/2发送至S2。</p>
+<p><u>（终端、路由是无法识别tag的！）</u></p>
+</li>
+<li><p>从PC2 —- PC1（接收）</p>
+</li>
+</ul>
+<p>（2）<strong>华为hybrid两个默认：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/2</span><br><span class="line">port link-type hybrid</span><br><span class="line">dis this</span><br><span class="line"></span><br><span class="line">port hybrid pvid vlan 1</span><br><span class="line">dis this</span><br><span class="line"></span><br><span class="line">port hybrid untagged vlan 1</span><br><span class="line">dis this </span><br></pre></td></tr></table></figure>
+
+<p><strong>三者的输出结果都是：</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9ut4y5j21fc0u0799.jpg" alt="WechatIMG151"  />结论：华为设备hybrid有两个默认，PVID和untagged为1</p>
+<blockquote>
+<p>【华为认证-hybrid接口原理讲解和实验演示-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/mGLDugR">https://b23.tv/mGLDugR</a></p>
+<p>【VLAN的工作原理——hybrid接口收发帧的处理方式-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/tW8Kgx9">https://b23.tv/tW8Kgx9</a></p>
+</blockquote>
+<h3 id="4、PVID和tag的关系"><a href="#4、PVID和tag的关系" class="headerlink" title="4、PVID和tag的关系"></a>4、PVID和tag的关系</h3><p>在trunk、access和hybrid我们接触到了这两个名词，但两者作用为何？关系为何？这里做了一个简要阐述。</p>
+<blockquote>
+<p>  【PVID和tag的关系】<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/3e4242447fd5360cbb1adb1c.html">https://wenku.baidu.com/view/3e4242447fd5360cbb1adb1c.html</a></p>
+</blockquote>
+<h2 id="十三-交换机在接无线AP时配置trunk模式的作用（仍待学习🔥）"><a href="#十三-交换机在接无线AP时配置trunk模式的作用（仍待学习🔥）" class="headerlink" title="十三 交换机在接无线AP时配置trunk模式的作用（仍待学习🔥）"></a>十三 交换机在接无线AP时配置trunk模式的作用（仍待学习🔥）</h2><hr>
+<blockquote>
+<p>【参考1】<a target="_blank" rel="noopener" href="http://www.win7999.com/wenda/1373911550.html">http://www.win7999.com/wenda/1373911550.html</a></p>
 </blockquote>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>​    [1]  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1N34y1S7oi?share_source=copy_web&vd_source=f93b7f971786bb01adb4d7606dd361b4">B站视频-VLAN划分和Trunk</a> </p>
 <p>​    [2]  <a target="_blank" rel="noopener" href="https://b23.tv/HvjpOko">B站视频-以太帧格式</a> </p>
 <hr>
-<center><b>Keep going，and keep trying...</b></center>
+<center><b>There is no royal way
+   to learning...</b></center>
+
+<center><b>求知无坦途...</b></center>
 
     </div>
 
