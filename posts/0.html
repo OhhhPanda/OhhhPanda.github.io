@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="title: 「思科NA培训」CCNA-4 思科OS升降级及灾难恢复date: ‘2022-07-29 10:19’   关键字：服务器基础、存储技术基础、计算机网络基础、数据库基础、虚拟化技术基础 摘要：IT&amp;网络基础性入门。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ohxiaoyao.life">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/0.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="title: 「思科NA培训」CCNA-4 思科OS升降级及灾难恢复date: ‘2022-07-29 10:19’   关键字：服务器基础、存储技术基础、计算机网络基础、数据库基础、虚拟化技术基础 摘要：IT&amp;网络基础性入门。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfz4i8vj214i0mcwg0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfuh2nlj21iz0p240q.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg2e83yj213y0jwwfw.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfxt6umj217e0n1go3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfv94g4j21920oo780.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg0ctrcj216q0c675q.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfwdudbj215c0h8my2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg19aatj20my0860t9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg361xwj21500emt9h.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhftibonj215s0pkn3c.jpg">
+<meta property="article:published_time" content="2022-07-19T05:26:01.172Z">
+<meta property="article:modified_time" content="2022-07-31T14:34:22.589Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/0.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;0.html&quot;,&quot;path&quot;:&quot;posts&#x2F;0.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title> | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">服务器基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">一 服务器概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.3.</span> <span class="nav-text">功能分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E8%A7%82%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.4.</span> <span class="nav-text">外观分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="nav-number">1.1.5.</span> <span class="nav-text">内核分类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="nav-number">1.1.6.</span> <span class="nav-text">功能分类：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">存储技术基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">一 存储系统概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.1.</span> <span class="nav-text">存储器分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-number">2.1.2.</span> <span class="nav-text">Cache高速缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%86%B2%E5%92%8C%E7%BC%93%E5%AD%98%E5%8C%BA%E5%88%AB"><span class="nav-number">2.1.3.</span> <span class="nav-text">缓冲和缓存区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-RAID%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97"><span class="nav-number">2.2.</span> <span class="nav-text">二 RAID磁盘阵列</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80"><span class="nav-number">3.</span> <span class="nav-text">数据库基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-ACID%E5%8E%9F%E5%88%99"><span class="nav-number">3.1.</span> <span class="nav-text">一 ACID原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%B1%BB"><span class="nav-number">3.2.</span> <span class="nav-text">二 数据库分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-NoSQL%E5%AD%A6%E4%B9%A0%E6%96%B9%E5%90%91"><span class="nav-number">3.2.1.</span> <span class="nav-text">三 NoSQL学习方向</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80-%E4%BB%85%E5%85%A5%E9%97%A8"><span class="nav-number">4.</span> <span class="nav-text">虚拟化技术基础(仅入门)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">一 服务器虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%BD%91%E7%BB%9C%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="nav-number">4.2.</span> <span class="nav-text">二 网络虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AD%98%E5%82%A8%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="nav-number">4.3.</span> <span class="nav-text">三 存储虚拟化</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-19 13:26:01" itemprop="dateCreated datePublished" datetime="2022-07-19T13:26:01+08:00">2022-07-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-07-31 22:34:22" itemprop="dateModified" datetime="2022-07-31T22:34:22+08:00">2022-07-31</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>title: 「思科NA培训」CCNA-4 思科OS升降级及灾难恢复<br>date: ‘2022-07-29 10:19’</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" />
+
+<p>关键字：服务器基础、存储技术基础、计算机网络基础、数据库基础、虚拟化技术基础</p>
+<p>摘要：IT&amp;网络基础性入门。</p>
+<span id="more"></span>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1090113&auto=1&height=66"></iframe>
+
+
+
+<h1 id="服务器基础"><a href="#服务器基础" class="headerlink" title="服务器基础"></a>服务器基础</h1><hr>
+<p>学习目标：【服务器全套基础知识-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/dI5nvCY">https://b23.tv/dI5nvCY</a></p>
+<p>【为什么它被称为互联网之魂？服务器硬件知识科普-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/etKFjIf">https://b23.tv/etKFjIf</a></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfz4i8vj214i0mcwg0.jpg" alt="image-20220728162342749"  />
+
+<h2 id="一-服务器概念"><a href="#一-服务器概念" class="headerlink" title="一 服务器概念"></a>一 服务器概念</h2><h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>本质就是一台无键盘鼠标，对性能的要求更高的电脑</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>1、联网的媒介：电脑是无法直接连接到互联网的，需要通过服务器做中介提供联网服务</p>
+<p>2、存储：服务器存储量很大，类似云存储、云图图床等服务都属于此类</p>
+<h3 id="功能分类"><a href="#功能分类" class="headerlink" title="功能分类"></a>功能分类</h3><ul>
+<li>独立服务器：放在机房里的铁皮箱子。</li>
+<li>云服务器：阿里称ECS服务器，由于用户可根据需求选择主机容量、CPU能力、带宽、内存大小及购买时长，因此也称弹性计算服务器。</li>
+<li>VPS服务器：虚拟专用服务器（Virtual Private Server），近似等于云服务器</li>
+<li>虚拟主机：相当于多人合租一台服务器，只能使用，不能安装操作系统和操作软件等操作。（图床等）</li>
+</ul>
+<h3 id="外观分类"><a href="#外观分类" class="headerlink" title="外观分类"></a>外观分类</h3><ul>
+<li><p>塔式服务器：像主机机箱</p>
+</li>
+<li><p>机架式服务器：销量最大，应用最广泛</p>
+<p>U（unit）是表示机架式服务器高度尺寸单位，一个机架单位叫1U，高1.75英寸，宽19英寸</p>
+<ul>
+<li>1U</li>
+<li>2U</li>
+<li>4U</li>
+</ul>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfuh2nlj21iz0p240q.jpg" alt="WechatIMG158" style="zoom:50%;" />
+
+<ul>
+<li>刀片服务器：为高密度计算环境和特殊应用行业而生</li>
+</ul>
+<blockquote>
+<p> 1U、2U、4U区别：【我们常说1U、2U、4U服务器，你知道U代表什么含义吗？-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/3oFwHt2">https://b23.tv/3oFwHt2</a></p>
+</blockquote>
+<h3 id="内核分类："><a href="#内核分类：" class="headerlink" title="内核分类："></a>内核分类：</h3><ul>
+<li>IA架构服务器</li>
+<li>RISC架构服务器</li>
+<li>ARM架构通用服务器（新）</li>
+</ul>
+<h3 id="功能分类："><a href="#功能分类：" class="headerlink" title="功能分类："></a>功能分类：</h3><p>按功能有Web服务器、邮件服务器、数据库服务器等等诸多类型，它可以单台服务器提供多个功能，也可以多个服务器提供单一功能。</p>
+<h1 id="存储技术基础"><a href="#存储技术基础" class="headerlink" title="存储技术基础"></a>存储技术基础</h1><p>学习目标：<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg2e83yj213y0jwwfw.jpg" alt="截屏2022-07-31 17.02.04"  /></p>
+<h2 id="一-存储系统概念"><a href="#一-存储系统概念" class="headerlink" title="一 存储系统概念"></a>一 存储系统概念</h2><h3 id="存储器分类"><a href="#存储器分类" class="headerlink" title="存储器分类"></a>存储器分类</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfxt6umj217e0n1go3.jpg" alt="截屏2022-07-31 20.37.52" style="zoom:50%;" />
+
+
+
+<h3 id="Cache高速缓存"><a href="#Cache高速缓存" class="headerlink" title="Cache高速缓存"></a>Cache高速缓存</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfv94g4j21920oo780.jpg" alt="截屏2022-07-31 20.39.04" style="zoom:50%;" />
+
+
+
+<h3 id="缓冲和缓存区别"><a href="#缓冲和缓存区别" class="headerlink" title="缓冲和缓存区别"></a>缓冲和缓存区别</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg0ctrcj216q0c675q.jpg" alt="截屏2022-07-31 20.40.28" style="zoom:50%;" />
+
+<blockquote>
+<p>【信息技术：计算机存储系统，了解存储系统的概念（第三节【五】）-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/EhaUOwO">https://b23.tv/EhaUOwO</a></p>
+</blockquote>
+<h2 id="二-RAID磁盘阵列"><a href="#二-RAID磁盘阵列" class="headerlink" title="二 RAID磁盘阵列"></a>二 RAID磁盘阵列</h2><blockquote>
+<p>【RAID磁盘阵列是什么意思？RAID 0、1、5都有什么不同？-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/pXxstUG">https://b23.tv/pXxstUG</a></p>
+</blockquote>
+<h1 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h1><p>学习目标：</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfwdudbj215c0h8my2.jpg" alt="image-20220731205037765"></p>
+<h2 id="一-ACID原则"><a href="#一-ACID原则" class="headerlink" title="一 ACID原则"></a>一 ACID原则</h2><p>ACID原则：原子性、一致性、隔离性、持久性</p>
+<p>1、原子性：事务操作要么都发生，要么都不发生。</p>
+<p>（例如银行转账，A钱转出，B钱必须同时转入。）</p>
+<p>2、一致性：事务前后数据完整性必须保持一致</p>
+<p>（A转出10元，B不能多出20元。）</p>
+<p>3、隔离性：数据库为每一个用户开启事务，不受其他事务操作数据的干扰，即多个并发事务相互隔离。</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg19aatj20my0860t9.jpg" alt="image-20220731205938147"></p>
+<p>4、持久性：操作一旦完成，永久不变，即使数据库发生故障。</p>
+<blockquote>
+<p>【数据库的分类有哪些？各自的优缺点？_上-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/n7VdqTI">https://b23.tv/n7VdqTI</a></p>
+<p>【数据库的分类有哪些？各自的优缺点？_下-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/mm5VVzs">https://b23.tv/mm5VVzs</a></p>
+</blockquote>
+<h2 id="二-数据库分类"><a href="#二-数据库分类" class="headerlink" title="二 数据库分类"></a>二 数据库分类</h2><p>1、 关系型数据库：遵循ACID原则,以存在关系的<strong>表的形式</strong>体现</p>
+<p>2、非关系型数据库：不遵循ACID原则，以<strong>键值对</strong>的形式体现</p>
+<blockquote>
+<p>【关系型数据库（数据表）&amp;非关系型数据库-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/xLcUAms">https://b23.tv/xLcUAms</a></p>
+</blockquote>
+<h3 id="三-NoSQL学习方向"><a href="#三-NoSQL学习方向" class="headerlink" title="三 NoSQL学习方向"></a>三 NoSQL学习方向</h3><p>1、MongoDB</p>
+<p>2、Redis</p>
+<h1 id="虚拟化技术基础-仅入门"><a href="#虚拟化技术基础-仅入门" class="headerlink" title="虚拟化技术基础(仅入门)"></a>虚拟化技术基础(仅入门)</h1><p>学习目标：</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhg361xwj21500emt9h.jpg" alt="image-20220731213402624"></p>
+<h2 id="一-服务器虚拟化"><a href="#一-服务器虚拟化" class="headerlink" title="一 服务器虚拟化"></a>一 服务器虚拟化</h2><p>随着学习的不断深入，发现虚拟化技术的知识非常广阔，本次仅完成了入门基础概念和基础术语的学习，后续继续推进。</p>
+<p>1、虚拟化分类</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhftibonj215s0pkn3c.jpg" alt="image-20220731220011677"></p>
+<ul>
+<li><p>寄居虚拟化（个人最多）：类似VMware Workstation、VXbox软件，通过软件实现，更适合个人使用而不适合企业</p>
+</li>
+<li><p>裸金属虚拟化（企业最多）：WMware ESXServer、华为FusionSphere</p>
+</li>
+<li><p>操作系统虚拟化（火）：</p>
+</li>
+<li><p>混合虚拟化：Redhat KVM</p>
+</li>
+</ul>
+<blockquote>
+<p>【不同的虚拟化技术是如何按架构分类的？-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/d8P46Bj">https://b23.tv/d8P46Bj</a></p>
+<p>【简单科普：服务器虚拟化技术基础-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/c7Tr8WB">https://b23.tv/c7Tr8WB</a></p>
+</blockquote>
+<h2 id="二-网络虚拟化"><a href="#二-网络虚拟化" class="headerlink" title="二 网络虚拟化"></a>二 网络虚拟化</h2><blockquote>
+<p>【【vSphere 7.0深度解析-1】计算虚拟化、存储虚拟化、网络虚拟化-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/unTLdow">https://b23.tv/unTLdow</a></p>
+</blockquote>
+<h2 id="三-存储虚拟化"><a href="#三-存储虚拟化" class="headerlink" title="三 存储虚拟化"></a>三 存储虚拟化</h2><blockquote>
+<p>【【vSphere 7.0深度解析-1】计算虚拟化、存储虚拟化、网络虚拟化-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/rAPX6r9">https://b23.tv/rAPX6r9</a></p>
+</blockquote>
+<hr>
+<center><b>Keep going，and keep trying...</b></center>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/e860cc2d.html" rel="prev" title="个人简历">
+                  <i class="fa fa-chevron-left"></i> 个人简历
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/3ea928bc.html" rel="next" title="「思科NA培训」CCNA-1 何为网络？">
+                  「思科NA培训」CCNA-1 何为网络？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
