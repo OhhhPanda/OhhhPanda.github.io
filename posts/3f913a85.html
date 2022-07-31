@@ -20,33 +20,35 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
-<meta name="description" content="关键字：思科设备、密码恢复重置、CCNA学习 摘要：思科设备密码重置&#x2F;密码恢复的步骤及方法。">
+<meta name="description" content="关键字：思科OS升级、灾难恢复 摘要：思科设备OS升级及降级方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「思科NA培训」CCNA-4 思科OS升级及灾难恢复">
-<meta property="og:url" content="http://ohxiaoyao.life/posts/d0b4ac94.html">
+<meta property="og:title" content="「思科NA培训」CCNA-4 思科OS升降级及灾难恢复">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/3f913a85.html">
 <meta property="og:site_name" content="ohxiaoyao.life">
-<meta property="og:description" content="关键字：思科设备、密码恢复重置、CCNA学习 摘要：思科设备密码重置&#x2F;密码恢复的步骤及方法。">
+<meta property="og:description" content="关键字：思科OS升级、灾难恢复 摘要：思科设备OS升级及降级方法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfci2wm4j20qw0iwabk.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfcg8liaj20nw05egm3.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfciwphxj20hw030dg1.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfcjgih8j20fo04k0sp.jpg">
-<meta property="article:published_time" content="2022-07-26T08:49:00.000Z">
-<meta property="article:modified_time" content="2022-07-28T01:01:36.260Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhj295c2j21hc0gojtx.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727103601388.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727112641037.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727111457705.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727111817124.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727112154478.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727112524638.png">
+<meta property="article:published_time" content="2022-07-27T02:19:00.000Z">
+<meta property="article:modified_time" content="2022-07-31T14:37:16.201Z">
 <meta property="article:author" content="Xiao Yao">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhj295c2j21hc0gojtx.jpg">
 
 
-<link rel="canonical" href="http://ohxiaoyao.life/posts/d0b4ac94.html">
+<link rel="canonical" href="http://ohxiaoyao.life/posts/3f913a85.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;d0b4ac94.html&quot;,&quot;path&quot;:&quot;posts&#x2F;d0b4ac94.html&quot;,&quot;title&quot;:&quot;「思科NA培训」CCNA-4 思科OS升级及灾难恢复&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;3f913a85.html&quot;,&quot;path&quot;:&quot;posts&#x2F;3f913a85.html&quot;,&quot;title&quot;:&quot;「思科NA培训」CCNA-4 思科OS升降级及灾难恢复&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>「思科NA培训」CCNA-4 思科OS升级及灾难恢复 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+<title>「思科NA培训」CCNA-4 思科OS升降级及灾难恢复 | ohxiaoyao.life</title><script src="/js/config.js"></script>
   
 
 
@@ -135,7 +137,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E9%85%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E5%B9%B6%E5%8A%A0%E5%AF%86"><span class="nav-number">1.</span> <span class="nav-text">一 配置密码并加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">二 重置密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E8%BF%9B%E5%85%A5rommon%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">1、进入rommon模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%B8%A4%E6%9D%A1%E5%91%BD%E4%BB%A4%E9%87%8D%E7%BD%AE%EF%BC%81"><span class="nav-number">2.2.</span> <span class="nav-text">2、两条命令重置！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%81%A2%E5%A4%8D%E5%A6%82%E5%88%9D"><span class="nav-number">2.3.</span> <span class="nav-text">3、恢复如初</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%81%A2%E5%A4%8D%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">三 恢复配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%96%87%E7%8C%AE"><span class="nav-number">4.</span> <span class="nav-text">引用文献</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-IOS%E5%A4%87%E4%BB%BD%EF%BC%88TFTP%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">一 IOS备份（TFTP方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%82%A8%E5%A4%87%E6%96%87%E7%8C%AE"><span class="nav-number">2.</span> <span class="nav-text">储备文献</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -226,7 +228,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/d0b4ac94.html">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/3f913a85.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
@@ -239,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          「思科NA培训」CCNA-4 思科OS升级及灾难恢复
+          「思科NA培训」CCNA-4 思科OS升降级及灾难恢复
         </h1>
 
         <div class="post-meta-container">
@@ -250,14 +252,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-26 16:49:00" itemprop="dateCreated datePublished" datetime="2022-07-26T16:49:00+08:00">2022-07-26</time>
+      <time title="创建时间：2022-07-27 10:19:00" itemprop="dateCreated datePublished" datetime="2022-07-27T10:19:00+08:00">2022-07-27</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-07-28 09:01:36" itemprop="dateModified" datetime="2022-07-28T09:01:36+08:00">2022-07-28</time>
+        <time title="修改时间：2022-07-31 22:37:16" itemprop="dateModified" datetime="2022-07-31T22:37:16+08:00">2022-07-31</time>
       </span>
 
   
@@ -270,10 +272,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" />
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhj295c2j21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" />
 
-<p>关键字：思科设备、密码恢复重置、CCNA学习</p>
-<p>摘要：思科设备密码重置/密码恢复的步骤及方法。</p>
+<p>关键字：思科OS升级、灾难恢复</p>
+<p>摘要：思科设备OS升级及降级方法。</p>
 <span id="more"></span>
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1090113&auto=1&height=66"></iframe>
@@ -282,53 +284,41 @@
 <p>  安装完路由器、交换机等设备后，忘记密码了怎么办？</p>
 <p>  密码恢复/重置方法，如下所示….</p>
 </blockquote>
-<h2 id="一-配置密码并加密"><a href="#一-配置密码并加密" class="headerlink" title="一 配置密码并加密"></a>一 配置密码并加密</h2><hr/>
+<h2 id="一-IOS备份（TFTP方法"><a href="#一-IOS备份（TFTP方法" class="headerlink" title="一 IOS备份（TFTP方法"></a>一 IOS备份（TFTP方法</h2><hr/>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;enable //进入特权模式</span><br><span class="line">Router#configure terminal //进入全局模式</span><br><span class="line">Router(config)#hostname R-A //给路由器命名的命令</span><br><span class="line">R-A(config)#enable password 123456789 //设置密码的命令</span><br><span class="line">R-A(config)#login</span><br><span class="line">R-A(config)#end</span><br><span class="line"></span><br><span class="line">R-A#configure terminal//重新返回全局配置</span><br><span class="line">R-A(config)#line console 0 //进入子配置（线路0配置）</span><br><span class="line">R-A(config-line)#service password-encryption //对密码进行加密</span><br><span class="line">R-A(config)#end//退出</span><br><span class="line">R-A#show running-config//查看加密server是否开启</span><br><span class="line"></span><br><span class="line">//至此，完成了密码配置，密码加密的步骤</span><br></pre></td></tr></table></figure>
+<p>1、查看当前IOS版本</p>
+<img src="/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727103601388.png" alt="image-20220727103601388" style="zoom:50%;" />
 
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfci2wm4j20qw0iwabk.jpg" alt="image-20220726150835579" style="zoom:50%;" />
 
-<h2 id="二-重置密码"><a href="#二-重置密码" class="headerlink" title="二 重置密码"></a>二 重置密码</h2><hr>
-<p>假如我们忘记了进入特权模式的密码，那么就把路由器关机并重启!</p>
-<p>重启中赶快按下<strong>【 Ctrl+Break/control+c 】</strong>键中断启动过程，进入 rommon 模式! </p>
-<p>**输入命令改变配置寄存器的值为 <u>0x2142</u>**，这会使路由器开机时不读取 NVRAM 中的配置文件 。然后重新启动路由器!</p>
+
+<p>2、配置路由器ip，测试PC和路由器ping通情况，并关闭防火墙</p>
+<img src="/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727112641037.png" alt="image-20220727112641037" style="zoom: 50%;" />
+
+
+
+<p>3、先查看flash活动的文件，在镜像备份到tftp服务器上，再输入tftp服务器ip</p>
+<img src="/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727111457705.png" alt="image-20220727111457705"  />
+
+
+
+<p>4、在服务器tftp服务中便可以看到备份的名为R1的文件</p>
+<img src="/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727111817124.png" alt="image-20220727111817124"  />
+
+<p>5、 删除R1路由器上的文件</p>
+<img src="/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727112154478.png" alt="image-20220727112154478" style="zoom: 67%;" />
+
+
+
+<p>6、从服务器上下载镜像后即可</p>
+<img src="/Users/xiaoyao/Desktop/MD小记/「思科CCNA」系列学习/assets/image-20220727112524638.png" alt="image-20220727112524638" style="zoom: 50%;" />
+
 <blockquote>
-<p>​    Mac电脑中，control + c  ==  Ctrl+Break键</p>
+<p>​    **参考文献</p>
+<p>[1] <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43704651/article/details/109144876">https://blog.csdn.net/qq_43704651/article/details/109144876</a></p>
 </blockquote>
-<h3 id="1、进入rommon模式"><a href="#1、进入rommon模式" class="headerlink" title="1、进入rommon模式"></a>1、进入rommon模式</h3><p>重启时通过control+c暂停，进入rommon模式</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfcg8liaj20nw05egm3.jpg" alt="image-20220726152320893" style="zoom:50%;" />
-
-
-
-<h3 id="2、两条命令重置！"><a href="#2、两条命令重置！" class="headerlink" title="2、两条命令重置！"></a>2、两条命令重置！</h3><p>输入命令改变配置寄存器的值为 0x2142，这会使得路由器开机时不读取 NVRAM 中的配置文件 。然后重新启动路由器!</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfciwphxj20hw030dg1.jpg" alt="image-20220726152549759" style="zoom:50%;" />
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rommon <span class="number">1</span> &gt; confreg <span class="number">0x2142</span> <span class="comment">//改变配置寄存器的值为 0x2142</span></span><br><span class="line">rommon <span class="number">3</span> &gt; reset <span class="comment">//重新启动路由器</span></span><br></pre></td></tr></table></figure>
-
-<p>这时路由器重启后会直接进入到 setup 配置模式，用【Ctrl+C】或者回答“n” ，退出 setup模式!</p>
-<p>然后进入全局模式重新设置特权模式的密码!如果还有其它的密码地样都是忘记了，在这里我们可以一起重新设置一下!</p>
-<h3 id="3、恢复如初"><a href="#3、恢复如初" class="headerlink" title="3、恢复如初"></a>3、恢复如初</h3><p>恢复如初的路由器再次从重新按步骤1，进行密码配置即可</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4kfcjgih8j20fo04k0sp.jpg" alt="image-20220726160834159" style="zoom: 33%;" />
-
-<p>　命令如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Router&gt;enable <span class="comment">//进入特权模式</span></span><br><span class="line">Router<span class="meta">#configure terminal <span class="comment">//进入全局模式</span></span></span><br><span class="line">Router(config)<span class="meta">#enable password 1234 <span class="comment">//重新设置密码的命令</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="三-恢复配置"><a href="#三-恢复配置" class="headerlink" title="三 恢复配置"></a>三 恢复配置</h2><p><strong>最后再把寄存器的值恢复为正常值 <u>0x2102</u> !</strong></p>
-<p>然后并保存已经更改过的路由器配置!</p>
-<p>再重新启动我们的路由器就大功告成了!</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Router(config)<span class="meta">#config-register 0x2102 <span class="comment">//寄存器的值恢复为正常值 0x2102</span></span></span><br><span class="line">Router(config)<span class="meta">#exit <span class="comment">//退出全局模式</span></span></span><br><span class="line">Router<span class="meta">#copy running-config startup-config <span class="comment">//保存路由器配置的更改</span></span></span><br><span class="line">Destination filename [startup-config]?</span><br><span class="line">Building configuration...</span><br><span class="line">[OK]</span><br><span class="line">Router<span class="meta">#reload <span class="comment">//重新启动路由器</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="引用文献"><a href="#引用文献" class="headerlink" title="引用文献"></a>引用文献</h2><blockquote>
-<p><strong>参考文献</strong></p>
+<h2 id="储备文献"><a href="#储备文献" class="headerlink" title="储备文献"></a>储备文献</h2><blockquote>
 <ul>
-<li>[1] <a target="_blank" rel="noopener" href="https://www.likecs.com/show-687047.html">https://www.likecs.com/show-687047.html</a></li>
-<li>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/duanph/article/details/123396207">https://blog.csdn.net/duanph/article/details/123396207</a></li>
+<li>[1] <a target="_blank" rel="noopener" href="https://blog.51cto.com/skypegnu1/1719950">https://blog.51cto.com/skypegnu1/1719950</a></li>
 </ul>
 </blockquote>
 <hr>
