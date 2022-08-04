@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：服务器基础、存储技术基础、计算机网络基础、数据库基础、虚拟化技术基础 摘要：掌握STP技术的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「思科NA培训」CCNA-7 STP生成树协议部分">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/fe4bf7a8.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：服务器基础、存储技术基础、计算机网络基础、数据库基础、虚拟化技术基础 摘要：掌握STP技术的方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg3j1npj20vc05c0u3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg4966nj21ue0u079p.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg53hb3j21i60u00wj.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg5j916j20c20950sy.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg6hq43j21hl0u0tdz.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg5wtmyj21h40u0n2f.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg2y939j21hk0u0q7m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up43qfu4j20yk0cqdjn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up46tt5tj21al0qdgpu.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up48ofonj211c0u0wha.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up47mr3vj21180u0q51.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up486nixj218w0u0dj2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg4hoknj21400u0mzk.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up43aqguj212k07ywfw.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up450g75j213u0u0wij.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up45tcjrj20q609igmh.jpg">
+<meta property="article:published_time" content="2022-08-01T01:30:00.000Z">
+<meta property="article:modified_time" content="2022-08-04T06:02:00.040Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/fe4bf7a8.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;fe4bf7a8.html&quot;,&quot;path&quot;:&quot;posts&#x2F;fe4bf7a8.html&quot;,&quot;title&quot;:&quot;「思科NA培训」CCNA-7 STP生成树协议部分&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「思科NA培训」CCNA-7 STP生成树协议部分 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STP%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">STP基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">一  背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%94%9F%E6%88%90%E6%A0%91%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%89%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.</span> <span class="nav-text">二  生成树算法的三个步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E9%80%89%E4%B8%BE%E6%A0%B9%E4%BA%A4%E6%8D%A2%E6%9C%BA%E2%80%94%E2%80%94%E7%BD%91%E6%A1%A5ID%EF%BC%88BID%EF%BC%89%E6%9C%80%E5%B0%8F%E8%80%85%E5%BD%93%E9%80%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、选举根交换机——网桥ID（BID）最小者当选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%80%89%E4%B8%BE%E6%A0%B9%E7%AB%AF%E5%8F%A3RP%EF%BC%88Root-Port%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、选举根端口RP（Root Port）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E9%80%89%E4%B8%BE%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3DP%EF%BC%88Designated-Port%EF%BC%89%EF%BC%8C%E5%B9%B6%E9%98%BB%E5%A1%9E%E5%A4%87%E7%94%A8%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、选举指定端口DP（Designated Port），并阻塞备用端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%AE%9E%E9%AA%8C%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.</span> <span class="nav-text">三  实验测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-STP%E9%80%89%E4%B8%BE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">四    STP选举过程详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-STP%E7%9A%84%E4%BA%94%E7%A7%8D%E7%AB%AF%E5%8F%A3%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%89%E7%A7%8D%E7%AB%AF%E5%8F%A3%E8%A7%92%E8%89%B2"><span class="nav-number">1.5.</span> <span class="nav-text">五    STP的五种端口状态和三种端口角色</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RSTP%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">RSTP基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%B8%BA%E4%BB%80%E4%B9%88RSTP"><span class="nav-number">2.1.</span> <span class="nav-text">一  为什么RSTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-RSTP%E7%9A%84P-A%E5%8D%8F%E5%95%86%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">二  RSTP的P&#x2F;A协商机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-RSTP%E7%9A%84%E4%B8%89%E4%B8%AA%E5%BF%AB%E9%80%9F%E6%94%B6%E6%95%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">三    RSTP的三个快速收敛机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MSTP"><span class="nav-number">3.</span> <span class="nav-text">MSTP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="nav-number">3.1.</span> <span class="nav-text">一  为什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">3.2.</span> <span class="nav-text">二  是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%80%8E%E4%B9%88%E5%81%9A"><span class="nav-number">3.3.</span> <span class="nav-text">三  怎么做</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#STP-Toolkit%EF%BC%88STP%E4%BC%98%E5%8C%96%E5%B7%A5%E5%85%B7%E5%8C%85%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">STP Toolkit（STP优化工具包）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%88%86%E7%B1%BB"><span class="nav-number">4.1.</span> <span class="nav-text">一  分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-PortFast"><span class="nav-number">4.2.</span> <span class="nav-text">二  PortFast</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">4.2.1.</span> <span class="nav-text">1、功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">4.2.2.</span> <span class="nav-text">2、配置方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-BPDU-Filter"><span class="nav-number">4.3.</span> <span class="nav-text">三  BPDU Filter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%8A%9F%E8%83%BD%EF%BC%9A-1"><span class="nav-number">4.3.1.</span> <span class="nav-text">1、功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%EF%BC%9A-1"><span class="nav-number">4.3.2.</span> <span class="nav-text">2、配置方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-BPDU-Guard"><span class="nav-number">4.4.</span> <span class="nav-text">四  BPDU Guard</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%8A%9F%E8%83%BD%EF%BC%9A-2"><span class="nav-number">4.4.1.</span> <span class="nav-text">1、功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E7%BB%83%E4%B9%A0%EF%BC%9A"><span class="nav-number">4.4.2.</span> <span class="nav-text">2、配置练习：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-Root-Guard"><span class="nav-number">4.5.</span> <span class="nav-text">五  Root Guard</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%8A%9F%E8%83%BD"><span class="nav-number">4.5.1.</span> <span class="nav-text">1、功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E7%BB%83%E4%B9%A0"><span class="nav-number">4.5.2.</span> <span class="nav-text">2、配置练习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-Root-Guard-VS-BPDU-Guard"><span class="nav-number">4.6.</span> <span class="nav-text">六    Root Guard VS BPDU Guard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83-Loop-Guard"><span class="nav-number">4.7.</span> <span class="nav-text">七  Loop Guard</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%96%91%E9%97%AE%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">疑问？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/fe4bf7a8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「思科NA培训」CCNA-7 STP生成树协议部分
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-01 09:30:00" itemprop="dateCreated datePublished" datetime="2022-08-01T09:30:00+08:00">2022-08-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-08-04 14:02:00" itemprop="dateModified" datetime="2022-08-04T14:02:00+08:00">2022-08-04</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" />
+
+<p>关键字：服务器基础、存储技术基础、计算机网络基础、数据库基础、虚拟化技术基础</p>
+<p>摘要：掌握STP技术的方法。</p>
+<span id="more"></span>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1090113&auto=0&height=66"></iframe>
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg3j1npj20vc05c0u3.jpg" alt="截屏2022-08-01 09.12.47"></p>
+<h1 id="STP基础"><a href="#STP基础" class="headerlink" title="STP基础"></a>STP基础</h1><h2 id="一-背景"><a href="#一-背景" class="headerlink" title="一  背景"></a>一  背景</h2><p>前文我们学到，当三个交换机形成环路时会产生广播风暴。</p>
+<p>为此通过生成树协议STP，在提高网络可靠性的同时避免环路带来的各种问题。</p>
+<p>生成树算法STA是生成树协议STP的核心，其目标在于构建一个<strong>能遍历所有节点</strong>的树型<strong>无环</strong>逻辑拓扑。</p>
+<h2 id="二-生成树算法的三个步骤"><a href="#二-生成树算法的三个步骤" class="headerlink" title="二  生成树算法的三个步骤"></a>二  生成树算法的三个步骤</h2><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg4966nj21ue0u079p.jpg" alt="WechatIMG167"></p>
+<h3 id="1、选举根交换机——网桥ID（BID）最小者当选"><a href="#1、选举根交换机——网桥ID（BID）最小者当选" class="headerlink" title="1、选举根交换机——网桥ID（BID）最小者当选"></a>1、选举根交换机——网桥ID（BID）最小者当选</h3><p>（1） 网桥ID=优先级+MAC地址</p>
+<p>（2）比较方法：</p>
+<p>​            · 优先值越小，BID越小</p>
+<p>​            · MAC地址从左往右，数值越小，BID越小</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg53hb3j21i60u00wj.jpg" alt="WechatIMG168" style="zoom: 33%;" />
+
+
+
+<h3 id="2、选举根端口RP（Root-Port）"><a href="#2、选举根端口RP（Root-Port）" class="headerlink" title="2、选举根端口RP（Root Port）"></a>2、选举根端口RP（Root Port）</h3><p>在每一个<strong>非根</strong>交换机选<strong>一个</strong>RP，一个交换机仅有一个</p>
+<p><strong>选举方法：</strong></p>
+<p>​    · BPDU接收端口到根交换机的路径成本最小</p>
+<p>​    · 对端网桥ID最小</p>
+<p>​    · 对端的端口ID最小</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg5j916j20c20950sy.jpg" alt="WechatIMG169" style="zoom:50%;" />
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg6hq43j21hl0u0tdz.jpg" alt="WechatIMG172" style="zoom: 33%;" />
+
+<p>​        </p>
+<p>在E交换机中，其对端只有一个D，故需通过第三个判断条件，即对端端口最小来判断。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg5wtmyj21h40u0n2f.jpg" alt="1741659327595_.pic" style="zoom:33%;" />
+
+
+
+
+
+<h3 id="3、选举指定端口DP（Designated-Port），并阻塞备用端口"><a href="#3、选举指定端口DP（Designated-Port），并阻塞备用端口" class="headerlink" title="3、选举指定端口DP（Designated Port），并阻塞备用端口"></a>3、选举指定端口DP（Designated Port），并阻塞备用端口</h3><p>每一个网段有且仅有一个指定端口DP</p>
+<p><strong>选取方法：</strong></p>
+<p>​    · 根交换机的所有端口都是指定端口</p>
+<p>​    · 根端口RP的对端端口一定是指定端口</p>
+<p>​    · 到根交换机路径成本最小的为指定端口</p>
+<p>​    · 本端的网桥ID最小</p>
+<p><strong>最后剩余的端口成为备用端口AP，将它们阻塞！</strong></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg2y939j21hk0u0q7m.jpg" alt="WechatIMG175" style="zoom:33%;" />
+
+<blockquote>
+<p>1、<strong>讲的最好！</strong>湖科大教书匠-交换机的生成树协议STP-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/lZTwcl8">https://b23.tv/lZTwcl8</a></p>
+<p>2、【STP选举根桥、根端口、指定端口-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/dbg8oAC">https://b23.tv/dbg8oAC</a></p>
+</blockquote>
+<h2 id="三-实验测试"><a href="#三-实验测试" class="headerlink" title="三  实验测试"></a>三  实验测试</h2><p>1、查看优先级、MAC地址等</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up43qfu4j20yk0cqdjn.jpg" alt="image-20220803110930283" style="zoom: 33%;" />
+
+
+
+
+
+<h2 id="四-STP选举过程详解"><a href="#四-STP选举过程详解" class="headerlink" title="四    STP选举过程详解"></a>四    STP选举过程详解</h2><p>1、根交换机选举</p>
+<p>在最开始的时候，所有交换机都会认为自己是根交换机，都会发送一个配置BPDU报文，BPDU的Root ID都是各自的优先级+MAC地址。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up46tt5tj21al0qdgpu.jpg" alt="WechatIMG200" style="zoom: 33%;" />
+
+<ul>
+<li><p>第一轮选举（先认清自己是小弟）</p>
+<p>在ABC上半部分，A、B、C各自发送和接收BPDU，B、C先拿自己跟A、D比，比不过（甘当小弟，但大哥未定）；</p>
+</li>
+</ul>
+<p>​        再拿A和D比，发现A更大，是更大的大哥。故选出A的Root ID最小，为根网桥。</p>
+<p>​        B、C的Root ID更改为A的值（认大哥的名头了）。</p>
+<p>​        在BCD下半部分，D在比对自己和B、C后，仍认为自己是根网桥。</p>
+<ul>
+<li><p>第二轮选取（2个大哥的角逐）</p>
+<p>在第二轮选举中，D接收到B、C中BPDU含Root ID=A的更小的信息，认怂当二哥，修改自己的Root ID为A。</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up48ofonj211c0u0wha.jpg"></p>
+<p>tips 1：值得注意的是，当拓扑结构越来越复杂，树结构越来越深时，会有更多需要二轮、三轮、四轮的“D”需要选举，这无疑会导致耗时的增多。</p>
+<p>tips 2：认了小弟后就只能转发BPDU，只有根交换机才配发送BPDU。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up47mr3vj21180u0q51.jpg" alt="image-20220803150944805" style="zoom: 33%;" />
+
+<blockquote>
+<p>1、【文字选举】<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/139844708">https://zhuanlan.zhihu.com/p/139844708</a></p>
+<p>2、【进阶NP讲解】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sy4y1C7TZ?p=10&amp;vd_source=7ca2f78bb398ed8ad30a2d6cdf374471">https://www.bilibili.com/video/BV1sy4y1C7TZ?p=10&amp;vd_source=7ca2f78bb398ed8ad30a2d6cdf374471</a></p>
+</blockquote>
+<h2 id="五-STP的五种端口状态和三种端口角色"><a href="#五-STP的五种端口状态和三种端口角色" class="headerlink" title="五    STP的五种端口状态和三种端口角色"></a>五    STP的五种端口状态和三种端口角色</h2><p>STP定义了五种端口状态：Disable、Blocking、Listening、Learning、Forwarding。</p>
+<p>STP定义了三种端口角色：根端口、指定端口、阻塞端口</p>
+<p><strong>五种接口状态:</strong><br><strong>Forwarding：</strong>接口转发用户流量和BPDU。只有根接口和指定接口才能进入此状态。</p>
+<p><strong>Learning：</strong>为了防止出现临时的二层环路而设置的一个类似于过渡的状态，此时设备会根据收到的用户流量构建MAC地址表而不转发用户流量。</p>
+<p><strong>Listening：</strong>该状态表示设备正在选举根桥、根接口和指定接口。</p>
+<p><strong>Blocking：</strong>表示只接受和处理BPDU，不转发用户流量。</p>
+<p><strong>Disabled：</strong>接口Down（阻塞）掉。</p>
+<blockquote>
+<p>Q：为什么从Listening到Forwarding需要经过learning？<br>A：当拓扑稳定后，如果发生链路故障，网络会重新进行生成树的计算，逻辑拓扑也会发生相应的变化。但重新计算得到的新的配置消息不一定能够立即传遍整个网络，如果此时新选出的根接口和指定接口立即进入Forwarding的话很可能会造成临时的二层环路。为了防止环路的产生，STP中，新选举出来的根接口和指定接口需要经过两倍的Forward Delay才能进入转发状态。</p>
+</blockquote>
+<blockquote>
+<p>【补充】</p>
+<p>在发生拓扑更改时，交换机会发送一种名为TCN BPDU（拓扑更改通知BPDU）。</p>
+<p>【TCN详解】<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/4cb4e51432126edb6f1aff00bed5b9f3f90f72b3.html">https://wenku.baidu.com/view/4cb4e51432126edb6f1aff00bed5b9f3f90f72b3.html</a></p>
+</blockquote>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up486nixj218w0u0dj2.jpg" alt="2031659516993_.pic" style="zoom:33%;" />
+
+<blockquote>
+<p>【STP详细-知乎】<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38982648">https://zhuanlan.zhihu.com/p/38982648</a></p>
+</blockquote>
+<h1 id="RSTP基础"><a href="#RSTP基础" class="headerlink" title="RSTP基础"></a>RSTP基础</h1><h2 id="一-为什么RSTP"><a href="#一-为什么RSTP" class="headerlink" title="一  为什么RSTP"></a>一  为什么RSTP</h2><p>RSTP，即Rapid STP（快速生成树协议），主要在于弥补STP存在的问题：</p>
+<ul>
+<li><p>拓扑变化收敛机制不灵活</p>
+<p>所有交换机发生拓扑变化，都需要根交换机的批准同意。小到村长修条路，只有皇上一个人决策所有。</p>
+</li>
+<li><p>主机的频繁上下线，产生大量TCN</p>
+</li>
+<li><p>临时环路问题</p>
+<p>当根端口出现问题，转换开启备用（阻塞）端口时，STP需要30s～50s的延迟。因为若直接打开，可能造成临时环路</p>
+</li>
+<li><p>非相邻链路异常问题</p>
+<p>当非相邻链路出现问题时，必须等待C1、C2的通知才能进行调整，开启阻塞备用端口</p>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg4hoknj21400u0mzk.jpg" alt="WechatIMG178" style="zoom: 50%;" />
+
+
+
+<p>RSTP和STP的改进之处：</p>
+<ul>
+<li><p>减少了端口状态</p>
+</li>
+<li><p>增加了端口角色：</p>
+<ul>
+<li>根端口</li>
+</ul>
+<p>阻塞端口改为Alternate替代端口+Backup备份端口</p>
+</li>
+<li><p>BPDU格式及发送方式不同</p>
+</li>
+<li><p>当网络拓扑发生改变时，RSTP科更快的恢复网络连通性</p>
+</li>
+</ul>
+<p>Tips：替代端口是根端口的备胎，备份端口是指定端口的备胎</p>
+<h2 id="二-RSTP的P-A协商机制"><a href="#二-RSTP的P-A协商机制" class="headerlink" title="二  RSTP的P/A协商机制"></a>二  RSTP的P/A协商机制</h2><blockquote>
+<p>​    讲的非常形象生动的P/A机制，需要反复观看：</p>
+<p>【一秒收敛？快速生成树RSTP就是比STP强，不服来战！-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/B5wqMM6">https://b23.tv/B5wqMM6</a></p>
+</blockquote>
+<h2 id="三-RSTP的三个快速收敛机制"><a href="#三-RSTP的三个快速收敛机制" class="headerlink" title="三    RSTP的三个快速收敛机制"></a>三    RSTP的三个快速收敛机制</h2><ul>
+<li><p>边缘端口：交换机不知道所连接的是PC还是另一台交换机，故都会进入等待，协商等步骤。而工程师可以手动配置，减少延迟时间。</p>
+</li>
+<li><p>根端口快速切换：🔍🔥</p>
+</li>
+<li><p>指定端口快速切换：P/A机制，根据强弱快速切换。（见上文视频）</p>
+<blockquote>
+<p>【十分钟理解RSTP快速生成树 交换技术基础-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/ErxysfU">https://b23.tv/ErxysfU</a></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="MSTP"><a href="#MSTP" class="headerlink" title="MSTP"></a>MSTP</h1><h2 id="一-为什么"><a href="#一-为什么" class="headerlink" title="一  为什么"></a>一  为什么</h2><p>上文我们学习了STP以及改良过的RSTP，那么为何会又升级为MSTP呢？</p>
+<p>STP和RSTP缺陷如下：</p>
+<ul>
+<li>单生成树：阻断的那路部分的VLAN无法正常通信</li>
+<li>无法流量分摊：被阻断的链路只能当作备用，而无法利用起来，导致了带宽资源的浪费</li>
+<li>次优二层路径：由于环路中有阻断的路，所以在通信传输过程中会出现绕远路的情况</li>
+</ul>
+<blockquote>
+<p>1</p>
+</blockquote>
+<h2 id="二-是什么"><a href="#二-是什么" class="headerlink" title="二  是什么"></a>二  是什么</h2><p>MSTP（Multi-Instance Spanning TreeProtocol）多实例生成树协议，实例就是多个VLAN的集合。</p>
+<p>会根据每个实例具体划分根交换机，且独立计算端口状态。在不同的实例中，生成不同的树，选举不同的根交换机，阻塞不通的端口。</p>
+<blockquote>
+<p>【6.2.5 MSTP&amp;ERPS-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/5RZ8s3u">https://b23.tv/5RZ8s3u</a></p>
+</blockquote>
+<h2 id="三-怎么做"><a href="#三-怎么做" class="headerlink" title="三  怎么做"></a>三  怎么做</h2><h1 id="STP-Toolkit（STP优化工具包）"><a href="#STP-Toolkit（STP优化工具包）" class="headerlink" title="STP Toolkit（STP优化工具包）"></a>STP Toolkit（STP优化工具包）</h1><blockquote>
+<p>【整体介绍的优秀视频】知乎：<a target="_blank" rel="noopener" href="https://www.zhihu.com/zvideo/1489743415251861504">https://www.zhihu.com/zvideo/1489743415251861504</a></p>
+</blockquote>
+<h2 id="一-分类"><a href="#一-分类" class="headerlink" title="一  分类"></a>一  分类</h2><p><strong>Fast Converge（快速收敛）：</strong></p>
+<p>​    · Port Fast：对终端PC手动进行配置</p>
+<p><strong>Secure the STP（STP安全）：</strong></p>
+<p>​    · Root Guard：保护根交换机不因新增而变动</p>
+<p>​    · BPDU Gurad：</p>
+<p>​    · BPDU Filter</p>
+<p>​    · Port Security</p>
+<p><strong>Loop Prevention（防环）：</strong></p>
+<p>​    · Loop guard</p>
+<p>​    · UDLD</p>
+<h2 id="二-PortFast"><a href="#二-PortFast" class="headerlink" title="二  PortFast"></a>二  PortFast</h2><h3 id="1、功能："><a href="#1、功能：" class="headerlink" title="1、功能："></a>1、功能：</h3><h3 id="2、配置方法："><a href="#2、配置方法：" class="headerlink" title="2、配置方法："></a>2、配置方法：</h3><ul>
+<li><p>Globa全局方式：(所有access都会变成portfast)</p>
+<p>Switch(config)#spanning-tree portfast default</p>
+</li>
+<li><p>Interface具体端口配置：</p>
+<p>Switch(config)#int fa0/1</p>
+<p>Switch(config-if)#spanning-tree portfast</p>
+</li>
+</ul>
+<p><strong>显示效果：</strong></p>
+<p>show spanning-tree interface f0/1 portfast</p>
+<p>show spanning-tree interface f0/1 details</p>
+<h2 id="三-BPDU-Filter"><a href="#三-BPDU-Filter" class="headerlink" title="三  BPDU Filter"></a>三  BPDU Filter</h2><h3 id="1、功能：-1"><a href="#1、功能：-1" class="headerlink" title="1、功能："></a>1、功能：</h3><p><strong>Tips：全局和具体端口配置中其具备不同特性！</strong></p>
+<p>全局配置特性：</p>
+<ul>
+<li>只对portfast端口起作用：我们知道global是对一个交换机的所有端口都配置功能，但当有一个端口为non-PF模式时，该配置仅对其他PF端口起作用</li>
+<li>全局模式下，不会filter接收，只会filter发送：例如A–&gt;B，若在A端口配置BPDU Filter，只会过滤A发给B的BPDU而不会过滤B发给A的BPDU。</li>
+<li>自动转换：在连接PC时，交换机发送的BPDU会被丢弃，BPDU Filter检测到后就不再发送了。当连接的PC机被换成交换机时，原交换机接收到新的BPDU，便会关闭Filter和PortFast并重新进入生成树。</li>
+</ul>
+<p>端口模式配置特性：</p>
+<ul>
+<li>端口模式下，接收和发送都会filter过滤。</li>
+<li>与PortFast状态无关：即使不是PortFast状态也可进行过滤</li>
+</ul>
+<p>（这种模式较为危险，等同于关掉了生成树，不用！）</p>
+<p>（不建议使用BPDU Filter！容易造成环路！）</p>
+<h3 id="2、配置方法：-1"><a href="#2、配置方法：-1" class="headerlink" title="2、配置方法："></a>2、配置方法：</h3><ul>
+<li><p>Globa全局方式：</p>
+</li>
+<li><p>Interface具体端口配置：</p>
+</li>
+</ul>
+<p><strong>显示效果：</strong></p>
+<h2 id="四-BPDU-Guard"><a href="#四-BPDU-Guard" class="headerlink" title="四  BPDU Guard"></a>四  BPDU Guard</h2><h3 id="1、功能：-2"><a href="#1、功能：-2" class="headerlink" title="1、功能："></a>1、功能：</h3><p>在路由器和PC相连中，若偷偷将PC换成优先级更高的交换机接入，就会打乱原先的所有根交换机等的选举。</p>
+<p>为此，通过BPDU Guard，当检测到新的SW4接入时，将与之相连的端口改为error disable状态进行阻断</p>
+<blockquote>
+<p> 【【IELAB】一分钟就学会什么是思科生成树 bpdu guard防护 网络工程师一学就会-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/Kdi6GIm">https://b23.tv/Kdi6GIm</a></p>
+</blockquote>
+<h3 id="2、配置练习："><a href="#2、配置练习：" class="headerlink" title="2、配置练习："></a>2、配置练习：</h3><h2 id="五-Root-Guard"><a href="#五-Root-Guard" class="headerlink" title="五  Root Guard"></a>五  Root Guard</h2><h3 id="1、功能"><a href="#1、功能" class="headerlink" title="1、功能"></a>1、功能</h3><p>在已经选举好根交换机的生成树中，若有个黑客接入一个高优先级的交换机，就会改变原有网络结构，同时黑客的交换机变成Root Switch，从而控制流量的转发。</p>
+<p><strong>这便需要Root Guard进行防范！</strong>(在黑客接入的那个交换机的端口)</p>
+<h3 id="2、配置练习"><a href="#2、配置练习" class="headerlink" title="2、配置练习"></a>2、配置练习</h3><p>Switch(config-if)#spanning-tree guard root</p>
+<h2 id="六-Root-Guard-VS-BPDU-Guard"><a href="#六-Root-Guard-VS-BPDU-Guard" class="headerlink" title="六    Root Guard VS BPDU Guard"></a>六    Root Guard VS BPDU Guard</h2><p>BPDU Guard：只要收到BPDU，就阻断与之相连的端口disable</p>
+<p>Root Guard：只有收到更高级别的BPDU，才会把该交换机放入root-unconsistent（不参加树选举的表）中</p>
+<h2 id="七-Loop-Guard"><a href="#七-Loop-Guard" class="headerlink" title="七  Loop Guard"></a>七  Loop Guard</h2><h1 id="疑问？"><a href="#疑问？" class="headerlink" title="疑问？"></a>疑问？</h1><p>1、一台交换机有几个MAC地址？多个端口也有各自的多个MAC地址吗？</p>
+<p>在选举比较网桥BID时比的是哪个MAC地址？</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up43aqguj212k07ywfw.jpg" alt="截屏2022-08-03 11.02.16"></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up450g75j213u0u0wij.jpg" alt="image-20220803110538528"></p>
+<p>查看MAC地址表</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up45tcjrj20q609igmh.jpg" alt="image-20220803112138198"></p>
+<blockquote>
+<p>比较全的资料包：<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/8242491840323968011ca300a6c30c225901f08f.html">https://wenku.baidu.com/view/8242491840323968011ca300a6c30c225901f08f.html</a></p>
+</blockquote>
+<hr>
+<center><b>Keep going，and keep trying...</b></center>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/17d41813.html" rel="prev" title="「思科NA培训」CCNA-6 IT基础">
+                  <i class="fa fa-chevron-left"></i> 「思科NA培训」CCNA-6 IT基础
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
