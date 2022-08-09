@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：Linux用户指令、组管理指令等摘要：包含linux中用户和组管理的增删改查等实用指令。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「Linux系列」2-实用指令篇-用户&#x2F;组管理">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/c9007e35.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：Linux用户指令、组管理指令等摘要：包含linux中用户和组管理的增删改查等实用指令。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50plxy9csj21hc0goabv.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnax90wj20kh0ayabm.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rndiu1dj20sc05lt99.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rne47e3j20bt01j748.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rncq6dij20jw05pq3h.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnf2mp4j20r00i377e.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnel7yej20op0h9dj7.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnd3s93j20o305xt9o.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnc7uorj20r7082mz6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnf2mp4j20r00i377e.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnbmhlmj20bi05awer.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50plxdopnj20u07sxh3n.jpg">
+<meta property="article:published_time" content="2022-08-09T02:30:00.000Z">
+<meta property="article:modified_time" content="2022-08-09T12:03:01.928Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50plxy9csj21hc0goabv.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/c9007e35.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;c9007e35.html&quot;,&quot;path&quot;:&quot;posts&#x2F;c9007e35.html&quot;,&quot;title&quot;:&quot;「Linux系列」2-实用指令篇-用户&#x2F;组管理&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「Linux系列」2-实用指令篇-用户/组管理 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%92%8C%E7%BB%84%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">用户管理和组管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">一  用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、新增用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、删除用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81"><span class="nav-number">1.1.3.</span> <span class="nav-text">3、设置用户密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7"><span class="nav-number">1.1.4.</span> <span class="nav-text">4、切换用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.1.5.</span> <span class="nav-text">5、查看当前用户信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90test%E6%B5%8B%E8%AF%95%E3%80%91"><span class="nav-number">1.1.6.</span> <span class="nav-text">【test测试】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%94%A8%E6%88%B7%E7%BB%84%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">二 用户组配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E7%BB%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、创建组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%88%A0%E9%99%A4%E7%BB%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、删除组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7%E5%85%A5%E7%BB%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、新增用户入组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E7%A7%BB%E5%8A%A8%E7%94%A8%E6%88%B7%E5%85%A5%E7%BB%84"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、移动用户入组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%9F%A5%E7%9C%8B%E7%94%A8%E6%88%B7%E3%80%81%E6%9F%A5%E7%9C%8B%E7%BB%84%E4%BF%A1%E6%81%AF"><span class="nav-number">1.3.</span> <span class="nav-text">三 查看用户、查看组信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81-etc-passwd"><span class="nav-number">1.3.1.</span> <span class="nav-text">1、&#x2F;etc&#x2F;passwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81etc-shadow"><span class="nav-number">1.3.2.</span> <span class="nav-text">2、etc&#x2F;shadow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81etc-group"><span class="nav-number">1.3.3.</span> <span class="nav-text">3、etc&#x2F;group</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E9%99%84%E5%BD%95%E3%80%91"><span class="nav-number">2.</span> <span class="nav-text">【附录】</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/c9007e35.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「Linux系列」2-实用指令篇-用户/组管理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-08-09 10:30:00 / 修改时间：20:03:01" itemprop="dateCreated datePublished" datetime="2022-08-09T10:30:00+08:00">2022-08-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50plxy9csj21hc0goabv.jpg" alt="Keep Going !" style="zoom:67%;" />
+
+<p>关键字：Linux用户指令、组管理指令等<br>摘要：包含linux中用户和组管理的增删改查等实用指令。</p>
+<span id="more"></span>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1484861101&auto=0&height=66"></iframe>
+
+<blockquote>
+<center><b>文末有Linux学习思维导图！</b></center>
+</blockquote>
+<h1 id="用户管理和组管理"><a href="#用户管理和组管理" class="headerlink" title="用户管理和组管理"></a>用户管理和组管理</h1><h2 id="一-用户管理"><a href="#一-用户管理" class="headerlink" title="一  用户管理"></a>一  用户管理</h2><h3 id="1、新增用户"><a href="#1、新增用户" class="headerlink" title="1、新增用户"></a>1、新增用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd xiaoyao_guest1	//新增用户</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、删除用户"><a href="#2、删除用户" class="headerlink" title="2、删除用户"></a>2、删除用户</h3><ul>
+<li><p>仅删除用户，保留文件    </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel xiaoyao_guest1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>彻底删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel -r xiaoyao_guert</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnax90wj20kh0ayabm.jpg" alt="image-20220809191417188"></p>
+<blockquote>
+<p>​    1. 大部分情况下仅删除用户，否则之前用户所做项目将全部删除</p>
+<p>​    2. 就算彻底删除，默认的用户组也会保存，需要继续删！</p>
+</blockquote>
+<h3 id="3、设置用户密码"><a href="#3、设置用户密码" class="headerlink" title="3、设置用户密码"></a>3、设置用户密码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd xiaoyao_guest</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、切换用户"><a href="#4、切换用户" class="headerlink" title="4、切换用户"></a>4、切换用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//跳转到root用户（升权限需要输密码）</span><br><span class="line">su - root	</span><br><span class="line"></span><br><span class="line">//跳转到xiaoyao_guest1(降权限不用)</span><br><span class="line">su - xiaoyao_guest1</span><br><span class="line"></span><br><span class="line">//<span class="built_in">logout</span>可返回上一级用户</span><br><span class="line"><span class="built_in">logout</span>/<span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rndiu1dj20sc05lt99.jpg" alt="img" style="zoom:67%;" />
+
+
+
+<h3 id="5、查看当前用户信息"><a href="#5、查看当前用户信息" class="headerlink" title="5、查看当前用户信息"></a>5、查看当前用户信息</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">who am i </span><br></pre></td></tr></table></figure>
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rne47e3j20bt01j748.jpg" alt="image-20220809191255423" style="zoom: 67%;" />
+
+<h3 id="【test测试】"><a href="#【test测试】" class="headerlink" title="【test测试】"></a>【test测试】</h3><p>要求：创建用户，并设置密码，然后跳转进入?</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rncq6dij20jw05pq3h.jpg" alt="image-20220809191439516" style="zoom:80%;" />
+
+<p>通过vim etc/shadow查看密码是否配置完成</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnf2mp4j20r00i377e.jpg" alt="image-20220809191546995" style="zoom:80%;" />
+
+
+
+<h2 id="二-用户组配置"><a href="#二-用户组配置" class="headerlink" title="二 用户组配置"></a>二 用户组配置</h2><blockquote>
+<p> 在实际工作中，部分用户具备A权限，另一部分用户具备B权限，这就需要对用户进行分组管理。即系统可通过用户组对有共性或共同权限的多个用户进行统一的管理。</p>
+</blockquote>
+<h3 id="1、创建组"><a href="#1、创建组" class="headerlink" title="1、创建组"></a>1、创建组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd IT</span><br><span class="line">groupadd HR</span><br></pre></td></tr></table></figure>
+
+<p><strong>Tips：默认新增用户时，就会默认创建一个与账户名同名的组，并将该用户划到该组中！</strong></p>
+<h3 id="2、删除组"><a href="#2、删除组" class="headerlink" title="2、删除组"></a>2、删除组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupdel IT</span><br><span class="line">groupdel HR</span><br></pre></td></tr></table></figure>
+
+<p><strong>tips：当通过 <u>userdel -r xiaoyao_test1</u> 彻底删除该用户时，这个组却还没有删除。需要再通过 <u>groupdel xiaoyao_test1</u> 对应删除。或者通过 <u>vim /etc/group</u> 进入后通过 dd 编辑的方式删除！</strong></p>
+<h3 id="3、新增用户入组"><a href="#3、新增用户入组" class="headerlink" title="3、新增用户入组"></a>3、新增用户入组</h3><p>直接将新增的用户划分到 IT 组中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -g IT xiaoyao_guest1</span><br></pre></td></tr></table></figure>
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnel7yej20op0h9dj7.jpg" alt="image-20220809194852928"  />
+
+<h3 id="4、移动用户入组"><a href="#4、移动用户入组" class="headerlink" title="4、移动用户入组"></a>4、移动用户入组</h3><p>将原有的用户移动至指定分组 HR 中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -g HR xiaoyao_guest1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnd3s93j20o305xt9o.jpg" alt="image-20220809194915501"></p>
+<h2 id="三-查看用户、查看组信息"><a href="#三-查看用户、查看组信息" class="headerlink" title="三 查看用户、查看组信息"></a>三 查看用户、查看组信息</h2><h3 id="1、-etc-passwd"><a href="#1、-etc-passwd" class="headerlink" title="1、/etc/passwd"></a>1、/etc/passwd</h3><p><strong>记录用户信息：用户名：口令×：用户标识号：注释性描述：主目录、登录shell</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnc7uorj20r7082mz6.jpg" alt="image-20220809195145510"></p>
+<h3 id="2、etc-shadow"><a href="#2、etc-shadow" class="headerlink" title="2、etc/shadow"></a>2、etc/shadow</h3><p>记录口令的配置文件，可以判断用户是否设置好了密码</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnf2mp4j20r00i377e.jpg" alt="image-20220809191546995" style="zoom:80%;" />
+
+
+
+<h3 id="3、etc-group"><a href="#3、etc-group" class="headerlink" title="3、etc/group"></a>3、etc/group</h3><p>组的配置文件，记录了组的信息</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rnbmhlmj20bi05awer.jpg" alt="image-20220809195945849" style="zoom:50%;" />
+
+
+
+<blockquote>
+<h1 id="【附录】"><a href="#【附录】" class="headerlink" title="【附录】"></a>【附录】</h1><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50plxdopnj20u07sxh3n.jpg" alt="image-20220809172630702" style="zoom:150%;" />
+</blockquote>
+<hr>
+<center><b>Keep going，and keep trying...</b></center>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/70b22af.html" rel="prev" title="「Linux系列」1-前期基础篇">
+                  <i class="fa fa-chevron-left"></i> 「Linux系列」1-前期基础篇
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
