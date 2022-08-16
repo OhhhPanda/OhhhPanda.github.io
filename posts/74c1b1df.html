@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：Linux学习路线、工具、常识、目录结构等摘要：包含linux的学习路线和前要基础知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「Linux系列」3-文件目录指令篇">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/74c1b1df.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：Linux学习路线、工具、常识、目录结构等摘要：包含linux的学习路线和前要基础知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「Linux入门」/assets/e6c9d24ely1h50rq7ufh8j21hc0goabv.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/vgPpXfUcVQYaJjh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/HmkaZu89pUwy7F3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/PEZO9Y3MUGarbp4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/XhHnlbuvA5VZQI2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/ElbFCdkGXVgWpwA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/y3YMx1hvEpiOePT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/8kyEKNGXbPociQh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/OFtm1MgPQwanjWJ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/08/11/daO18WQeP2BbkJL.png">
+<meta property="article:published_time" content="2022-08-14T01:30:00.000Z">
+<meta property="article:modified_time" content="2022-08-16T04:49:40.144Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「Linux入门」/assets/e6c9d24ely1h50rq7ufh8j21hc0goabv.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/74c1b1df.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;74c1b1df.html&quot;,&quot;path&quot;:&quot;posts&#x2F;74c1b1df.html&quot;,&quot;title&quot;:&quot;「Linux系列」3-文件目录指令篇&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「Linux系列」3-文件目录指令篇 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">文件目录常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81dir%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、dir——新建&#x2F;删除文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B0%E5%A2%9Emkdir%E6%8C%87%E4%BB%A4"><span class="nav-number">1.0.1.0.1.</span> <span class="nav-text">新增mkdir指令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81cp%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6-%E6%96%87%E4%BB%B6%E5%A4%B9%E5%A4%8D%E5%88%B6"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、cp——文件&#x2F;文件夹复制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6"><span class="nav-number">1.0.2.0.1.</span> <span class="nav-text">单文件复制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E5%A4%8D%E5%88%B6%EF%BC%88%E7%9B%B8%E5%BD%93%E4%BA%8E%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89"><span class="nav-number">1.0.2.0.2.</span> <span class="nav-text">文件夹复制（相当于复制文件夹）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81rm%E2%80%94%E2%80%94%E5%88%A0%E9%99%A4"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、rm——删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81mv%E2%80%94%E2%80%94%E7%A7%BB%E5%8A%A8-%E9%87%8D%E5%91%BD%E5%90%8D"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、mv——移动&#x2F;重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81cat%E2%80%94%E2%80%94%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、cat——查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81less%E2%80%94%E2%80%94%E5%A4%A7%E6%96%87%E4%BB%B6%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.0.6.</span> <span class="nav-text">6、less——大文件查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81echo%E2%80%94%E2%80%94%E8%BE%93%E5%87%BA"><span class="nav-number">1.0.7.</span> <span class="nav-text">7、echo——输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81history%E2%80%94%E2%80%94%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4"><span class="nav-number">1.0.8.</span> <span class="nav-text">8、history——查看历史命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%90%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E3%80%91"><span class="nav-number">1.0.9.</span> <span class="nav-text">【问题汇总】</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/74c1b1df.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「Linux系列」3-文件目录指令篇
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-14 09:30:00" itemprop="dateCreated datePublished" datetime="2022-08-14T09:30:00+08:00">2022-08-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-08-16 12:49:40" itemprop="dateModified" datetime="2022-08-16T12:49:40+08:00">2022-08-16</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="/Users/xiaoyao/Desktop/MD小记/「Linux入门」/assets/e6c9d24ely1h50rq7ufh8j21hc0goabv.jpg" alt="Keep Going !" style="zoom:67%;" />
+
+<p>关键字：Linux学习路线、工具、常识、目录结构等<br>摘要：包含linux的学习路线和前要基础知识。</p>
+<span id="more"></span>
+
+<h1 id="文件目录常用指令"><a href="#文件目录常用指令" class="headerlink" title="文件目录常用指令"></a>文件目录常用指令</h1><h3 id="1、dir——新建-删除文件夹"><a href="#1、dir——新建-删除文件夹" class="headerlink" title="1、dir——新建/删除文件夹"></a>1、dir——新建/删除文件夹</h3><ul>
+<li><h5 id="新增mkdir指令"><a href="#新增mkdir指令" class="headerlink" title="新增mkdir指令"></a>新增mkdir指令</h5></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//新建名为box1的空文件夹</span><br><span class="line">mkdir box1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除指令rmdir指令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rmdir box1</span><br><span class="line">//注意，rmdir只能删除空文件夹，如果删除非空目录，需要通过rm -rf来实现。</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<br/>
+
+<h3 id="2、cp——文件-文件夹复制"><a href="#2、cp——文件-文件夹复制" class="headerlink" title="2、cp——文件/文件夹复制"></a>2、cp——文件/文件夹复制</h3><ul>
+<li><h5 id="单文件复制"><a href="#单文件复制" class="headerlink" title="单文件复制"></a>单文件复制</h5></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost animals]<span class="comment"># cp cat_2.txt cats  //将目录中一个文件复制到另一个文件</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="文件夹复制（相当于复制文件夹）"><a href="#文件夹复制（相当于复制文件夹）" class="headerlink" title="文件夹复制（相当于复制文件夹）"></a>文件夹复制（相当于复制文件夹）</h5></li>
+</ul>
+<p>例：将animals中的cats目录复制到human目录中）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp -r cats/ ../human		//把cats文件夹复制到human文件夹</span><br><span class="line"></span><br><span class="line">\cp -r /home/cats ../human </span><br><span class="line">//强制覆盖相同不提示</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/08/11/vgPpXfUcVQYaJjh.png" alt="image-20220811123833320"></p>
+<br/>
+
+<br/>
+
+<h3 id="3、rm——删除"><a href="#3、rm——删除" class="headerlink" title="3、rm——删除"></a>3、rm——删除</h3><ul>
+<li>将/home/hello.txt 单文件删除</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -r /home/test1.txt</span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2022/08/11/HmkaZu89pUwy7F3.png" alt="image-20220811135431592" style="zoom:50%;" />
+
+
+
+<ul>
+<li>将/home/test_box整个文件夹删除</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /home/test_box </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>//-r会一个个问是否删除，在文件较多时不合适；-rf则不用</p>
+<img src="https://s2.loli.net/2022/08/11/PEZO9Y3MUGarbp4.png" alt="image-20220811141333351" style="zoom:50%;" />
+</blockquote>
+<br/>
+
+<br/>
+
+<h3 id="4、mv——移动-重命名"><a href="#4、mv——移动-重命名" class="headerlink" title="4、mv——移动/重命名"></a>4、mv——移动/重命名</h3><p>mv指令用户移动文件/目录、重命名</p>
+<ul>
+<li>重命名</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//重新命名txt文件</span><br><span class="line">mv hello_oldName.txt hello_newName.txt</span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2022/08/11/XhHnlbuvA5VZQI2.png" alt="image-20220811142145566" style="zoom:50%;" />
+
+
+
+<ul>
+<li>移动（剪切）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//将home中的txt移动到test_box文件夹中</span><br><span class="line">mv  hello.txt /test_box</span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2022/08/11/ElbFCdkGXVgWpwA.png" alt="image-20220811143134779" style="zoom: 67%;" />
+
+<br/>
+
+<br/>
+
+<h3 id="5、cat——查看"><a href="#5、cat——查看" class="headerlink" title="5、cat——查看"></a>5、cat——查看</h3><p>cat指令用于查看文件内容信息</p>
+<ul>
+<li>查看文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat hello.txt</span><br><span class="line">cat -n hello.txt</span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2022/08/11/y3YMx1hvEpiOePT.png" alt="image-20220811145859760" style="zoom:50%;" />
+
+<br/>
+
+<br/>
+
+<h3 id="6、less——大文件查看"><a href="#6、less——大文件查看" class="headerlink" title="6、less——大文件查看"></a>6、less——大文件查看</h3><p>less指令用于分屏查看文件内容，相较于vim全部读取，less可以更高效的查看较大的文件信息</p>
+<p>less指令下，空格用来翻页</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空格键</td>
+<td>向下翻页</td>
+</tr>
+<tr>
+<td>/hello!</td>
+<td>查看hello！单词（n向下，N向上找）</td>
+</tr>
+<tr>
+<td>q</td>
+<td>退出less模式</td>
+</tr>
+</tbody></table>
+<img src="https://s2.loli.net/2022/08/11/8kyEKNGXbPociQh.png" alt="image-20220811151424841" style="zoom: 80%;" />
+
+<br/>
+
+<br/>
+
+<h3 id="7、echo——输出"><a href="#7、echo——输出" class="headerlink" title="7、echo——输出"></a>7、echo——输出</h3><p>echo指令用于输出内容，类似printf</p>
+<img src="https://s2.loli.net/2022/08/11/OFtm1MgPQwanjWJ.png" alt="image-20220811152036328" style="zoom:80%;" />
+
+<br/>
+
+<br/>
+
+<h3 id="8、history——查看历史命令"><a href="#8、history——查看历史命令" class="headerlink" title="8、history——查看历史命令"></a>8、history——查看历史命令</h3><ul>
+<li><p>查看所有历史命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># history</span></span><br></pre></td></tr></table></figure></li>
+<li><p>查看最近10条命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost home]<span class="comment"># history 10</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://s2.loli.net/2022/08/11/daO18WQeP2BbkJL.png" alt="image-20220811153432500" style="zoom:80%;" /></li>
+</ul>
+<br/>
+
+<br/>
+
+<hr>
+<br/>
+
+
+
+<blockquote>
+<h3 id="【问题汇总】"><a href="#【问题汇总】" class="headerlink" title="【问题汇总】"></a>【问题汇总】</h3><p>在相对路径、绝对路径，那些有/（斜杠)，哪些没有/（斜杠)。还不是很掌握！！！</p>
+</blockquote>
+<p><br/><br/><br/></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/linux-common-command.html">Linux 常用命令集合 | 菜鸟教程 (runoob.com)</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/c9007e35.html" rel="prev" title="「Linux系列」2-实用指令篇-用户/组管理">
+                  <i class="fa fa-chevron-left"></i> 「Linux系列」2-实用指令篇-用户/组管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
