@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：端口安全、DHCP option、UDLP、CDP&#x2F;LLDP 摘要：掌握交换机特性的更多内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「思科NA培训」CCNA-9 交换技术相关特性">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/d60cf9fb.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：端口安全、DHCP option、UDLP、CDP&#x2F;LLDP 摘要：掌握交换机特性的更多内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofmjslxj20o6090753.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofisnllj210q034q3b.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofny1duj20se04mt9x.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofdnzluj20q603q74x.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofn09wej20k00d10u5.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofez9btj20k009ywf7.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofneqwuj20pq06adgg.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofot4saj21ak0u0aez.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aoflnt7rj212q0q6777.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofqatkzj20co07i74g.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofky9ugj219c0u0gpn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofpnqt3j217b0u0jv6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofec3u1j21c10u0n1m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofi4elzj21hq0r0jwd.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofh4ilgj21ai0u0did.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofk8jfcj20i50bqt9e.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aoffh83wj20jv0bxq3p.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofgb7q2j21ga0u0djw.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofjdhd3j21920pawhi.jpg">
+<meta property="article:published_time" content="2022-08-15T01:30:00.000Z">
+<meta property="article:modified_time" content="2022-08-18T01:47:29.508Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/d60cf9fb.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;d60cf9fb.html&quot;,&quot;path&quot;:&quot;posts&#x2F;d60cf9fb.html&quot;,&quot;title&quot;:&quot;「思科NA培训」CCNA-9 交换技术相关特性&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「思科NA培训」CCNA-9 交换技术相关特性 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">端口安全技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">一  背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">二 端口配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3MAC%E8%A1%A8"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1、查看端口MAC表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8MAC%E5%9C%B0%E5%9D%80"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2、配置安全MAC地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E8%BF%9E%E6%8E%A5%E6%83%A9%E7%BD%9A"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3、连接惩罚</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E6%8A%A5%E9%94%99%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">4、报错补充</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%AB%AF%E5%8F%A3%E9%A3%8E%E6%9A%B4%E6%8E%A7%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">交换机端口风暴控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UDLD%EF%BC%88%E5%8D%95%E5%90%91%E9%93%BE%E8%B7%AF%E6%A3%80%E6%B5%8B%EF%BC%89%EF%BC%88STP%E5%A2%9E%E5%BC%BA%E5%8C%85%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">UDLD（单向链路检测）（STP增强包）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E8%83%8C%E6%99%AF%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">一  背景概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E4%B8%A4%E4%B8%AA%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">二    两个工作模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CDP%E5%8D%8F%E8%AE%AE%EF%BC%88%E6%80%9D%E7%A7%91%E5%8F%91%E7%8E%B0%E5%8D%8F%E8%AE%AE%EF%BC%89%EF%BC%88CCIE%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">CDP协议（思科发现协议）（CCIE）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9A%E4%B9%89"><span class="nav-number">4.1.</span> <span class="nav-text">一    定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">二    使用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%BC%80%E5%85%B3CDP%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.3.</span> <span class="nav-text">三    开关CDP协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LLDP%E5%8D%8F%E8%AE%AE%EF%BC%88%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8F%91%E7%8E%B0%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">LLDP协议（链路层发现协议）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%AE%9A%E4%B9%89-1"><span class="nav-number">5.1.</span> <span class="nav-text">一  定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E4%BD%BF%E7%94%A8%EF%BC%9A-1"><span class="nav-number">5.2.</span> <span class="nav-text">二  使用：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP%E9%85%8D%E7%BD%AE%E6%8E%8C%E6%8F%A1%E5%92%8CDHCP%E4%B8%AD%E7%BB%A7"><span class="nav-number">6.</span> <span class="nav-text">DHCP配置掌握和DHCP中继</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-DHCP%E4%B8%AD%E7%BB%A7%EF%BC%88%E6%8E%8C%E6%8F%A1%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="nav-number">6.1.</span> <span class="nav-text">一  DHCP中继（掌握配置）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-DHCP-Option%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">6.2.</span> <span class="nav-text">二  DHCP Option整理（了解）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP-Snooping"><span class="nav-number">7.</span> <span class="nav-text">DHCP Snooping</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%8A%9F%E8%83%BD"><span class="nav-number">7.1.</span> <span class="nav-text">一 功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%8F%8D-DHCP-%E4%BB%BF%E5%86%92%E8%80%85%E6%94%BB%E5%87%BB"><span class="nav-number">7.1.1.</span> <span class="nav-text">1、反-DHCP 仿冒者攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%8F%8D-%E6%B3%9B%E6%B4%AA%E6%94%BB%E5%87%BB"><span class="nav-number">7.1.2.</span> <span class="nav-text">2、反-泛洪攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81DoS%E6%9C%8D%E5%8A%A1%E6%8B%92%E7%BB%9D%E6%94%BB%E5%87%BB"><span class="nav-number">7.1.3.</span> <span class="nav-text">3、DoS服务拒绝攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81-%E5%8F%8D-DHCP%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB"><span class="nav-number">7.1.4.</span> <span class="nav-text">4、 反-DHCP服务中间人攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">7.1.5.</span> <span class="nav-text">二、配置方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DAI%EF%BC%88%E5%8A%A8%E6%80%81ARP%E6%A3%80%E6%B5%8B%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">DAI（动态ARP检测）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP%E6%BA%90%E9%98%B2%E6%8A%A4%E5%8E%9F%E7%90%86"><span class="nav-number">9.</span> <span class="nav-text">IP源防护原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-IP%E6%BA%90%E9%98%B2%E6%8A%A4%E6%8A%80%E6%9C%AF"><span class="nav-number">9.1.</span> <span class="nav-text">一  IP源防护技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE"><span class="nav-number">9.2.</span> <span class="nav-text">二  配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP-SLA%EF%BC%88%E6%9C%8D%E5%8A%A1%E7%BA%A7%E5%88%AB%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">IP SLA（服务级别协议）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%8A%9F%E8%83%BD-1"><span class="nav-number">10.1.</span> <span class="nav-text">一 功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%A3%80%E6%9F%A5%E8%BF%9C%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-number">10.1.1.</span> <span class="nav-text">1、检查远端路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%80%A7%E8%83%BD%E6%A3%80%E6%B5%8B%E5%92%8C%E6%8B%A9%E4%BC%98"><span class="nav-number">10.1.2.</span> <span class="nav-text">2、性能检测和择优</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0"><span class="nav-number">10.2.</span> <span class="nav-text">二  配置学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SDM-Security-Device-Manager-%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86"><span class="nav-number">11.</span> <span class="nav-text">SDM(Security Device Manager 安全设备管理)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E9%95%9C%E5%83%8F%E9%85%8D%E7%BD%AE"><span class="nav-number">12.</span> <span class="nav-text">端口镜像配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%BD%9C%E7%94%A8"><span class="nav-number">12.1.</span> <span class="nav-text">一  作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">12.2.</span> <span class="nav-text">二 两种模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E9%85%8D%E7%BD%AE"><span class="nav-number">12.3.</span> <span class="nav-text">三 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-SPAN%E5%92%8CRSPAN"><span class="nav-number">12.4.</span> <span class="nav-text">四 SPAN和RSPAN</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/d60cf9fb.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「思科NA培训」CCNA-9 交换技术相关特性
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-15 09:30:00" itemprop="dateCreated datePublished" datetime="2022-08-15T09:30:00+08:00">2022-08-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-08-18 09:47:29" itemprop="dateModified" datetime="2022-08-18T09:47:29+08:00">2022-08-18</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" /> 
+
+<p>关键字：端口安全、DHCP option、UDLP、CDP/LLDP</p>
+<p>摘要：掌握交换机特性的更多内容。</p>
+<span id="more"></span>
+
+<h1 id="端口安全技术"><a href="#端口安全技术" class="headerlink" title="端口安全技术"></a>端口安全技术</h1><h2 id="一-背景"><a href="#一-背景" class="headerlink" title="一  背景"></a>一  背景</h2><p>如何防止公司内网中偷偷连入的未知PC老六？</p>
+<p>交换机，是会允许所有网络用户接入，没有拒绝功能的！</p>
+<p>在二层层面，交换机通过配置安全MAC地址表，从而识别那些不在的陌生MAC。</p>
+<blockquote>
+<p> tips：</p>
+<ul>
+<li>交换机的一个端口可以连接<strong>多个</strong>mac地址PC</li>
+<li>不断添加不同mac地址设备，MAC地址表也会不断学习、增加新MAC地址。不过经过MAC老化时间后会清除</li>
+</ul>
+</blockquote>
+<br/>
+
+<br/>
+
+
+
+<h2 id="二-端口配置"><a href="#二-端口配置" class="headerlink" title="二 端口配置"></a>二 端口配置</h2><h4 id="1、查看端口MAC表"><a href="#1、查看端口MAC表" class="headerlink" title="1、查看端口MAC表"></a>1、查看端口MAC表</h4><p>思科通过<strong>show mac addres</strong> 来查看Mac地址</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofmjslxj20o6090753.jpg" alt="image-20220815102326003" style="zoom:50%;" />
+
+
+
+<h4 id="2、配置安全MAC地址"><a href="#2、配置安全MAC地址" class="headerlink" title="2、配置安全MAC地址"></a>2、配置安全MAC地址</h4><p>手动配置mac地址后，交换机的端口仅允许所配置的MAC安全表中的PC通信</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofisnllj210q034q3b.jpg" alt="image-20220815114029209" style="zoom:50%;" />
+
+
+
+<h4 id="3、连接惩罚"><a href="#3、连接惩罚" class="headerlink" title="3、连接惩罚"></a>3、连接惩罚</h4><p>当有非法用户MAC连进来，设置了一些惩罚机制</p>
+<ul>
+<li>protect：不允许连接</li>
+<li>restrict：不允许连接并报信</li>
+<li>Shutdown：直接关闭端口（注意！这种协议的端口shutudown无法手动开启！）</li>
+</ul>
+<p>解决方法：</p>
+<p>设置惩罚时间，即关闭一段时间的端口/禁止一段时间的连接或者重启交换机</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofny1duj20se04mt9x.jpg" alt="image-20220815114521114" style="zoom:50%;" />
+
+
+
+<h4 id="4、报错补充"><a href="#4、报错补充" class="headerlink" title="4、报错补充"></a>4、报错补充</h4><p>报错1:</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofdnzluj20q603q74x.jpg" alt="image-20220815111702268"></p>
+<p><strong>原因分析：</strong></p>
+<p><strong>dynamic port不能启用Port Security，只有静态接入端口或中继端口才行。需要将模式切换为access。****动态端口是自动识别的，既可以为access，也可以为trunk，所以要设为access模式。</strong></p>
+<p>解决方法：<br>Switch(config-if)#switchport mode access<br>Switch(config-if)#switchport port-security</p>
+<br/>
+
+<br/>
+
+<hr>
+<h1 id="交换机端口风暴控制"><a href="#交换机端口风暴控制" class="headerlink" title="交换机端口风暴控制"></a>交换机端口风暴控制</h1><p>通过配置端口的带宽level、传输速率bps、转发速率PPS的上下限来限制端口的广播、单播和多播风暴。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">以下例子在f0/17下把组播风暴级别限制在70.5%</span><br><span class="line">Switch<span class="comment"># configure terminal</span></span><br><span class="line">Switch(config)<span class="comment"># interface fastethernet0/17</span></span><br><span class="line">Switch(config-if)<span class="comment"># storm-control multicast level 70.5</span></span><br><span class="line">Switch(config-if)<span class="comment"># end</span></span><br><span class="line">Switch<span class="comment"># show storm-control fastethernet0/17 multicast</span></span><br><span class="line"></span><br><span class="line">Interface  Filter State   Level    Current</span><br><span class="line">-------  -------------  -------  -------</span><br><span class="line">Fa0/17     Forwarding      70.50%    0.00%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">这个是关闭风暴控制</span><br><span class="line">Switch<span class="comment"># configure terminal</span></span><br><span class="line">Switch(config)<span class="comment"># interface fastethernet0/17</span></span><br><span class="line">Switch(config-if)<span class="comment"># no storm-control multicast level</span></span><br><span class="line">Switch(config-if)<span class="comment"># end</span></span><br><span class="line">Switch<span class="comment"># show storm-control fastethernet0/17 multicast</span></span><br><span class="line"></span><br><span class="line">Interface  Filter State   Level    Current</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>1、<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/646b8011ac45b307e87101f69e3143323968f565.html">https://wenku.baidu.com/view/646b8011ac45b307e87101f69e3143323968f565.html</a></p>
+<p>2、【代码】<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43207781/article/details/105279877">https://blog.csdn.net/qq_43207781/article/details/105279877</a></p>
+<p>3、<a target="_blank" rel="noopener" href="http://www.pcxitongcheng.com/zhishi/jiaohuanji/2020-12-20/18439.html">http://www.pcxitongcheng.com/zhishi/jiaohuanji/2020-12-20/18439.html</a></p>
+</blockquote>
+<br/>
+
+<hr>
+<h1 id="UDLD（单向链路检测）（STP增强包）"><a href="#UDLD（单向链路检测）（STP增强包）" class="headerlink" title="UDLD（单向链路检测）（STP增强包）"></a>UDLD（单向链路检测）（STP增强包）</h1><h2 id="一-背景概念"><a href="#一-背景概念" class="headerlink" title="一  背景概念"></a>一  背景概念</h2><p>UDLD是一个Cisco私有的二层协议（交换机），防止存在单向链路时，生成树中的单向链路可能会导致回环。</p>
+<p>当出现单向链路时，UDLD可以检测出该情况，<strong>关闭端口并发送示警。</strong></p>
+<ul>
+<li>将端口shutdown，并表示为’ErrDisabled’状态</li>
+<li>发送一个syslog示警信息</li>
+</ul>
+<blockquote>
+<p>单向链路：只能一个方向传输。（我发你接不到，你发我接不到）</p>
+</blockquote>
+<h2 id="二-两个工作模式"><a href="#二-两个工作模式" class="headerlink" title="二    两个工作模式"></a>二    两个工作模式</h2><ul>
+<li>普通模式（normal）：当单向链路被发现，这个端口会标记为未确定状态 </li>
+<li>主动模式（aggressive）：当邻居丢失的时候UDLD会主动建重新建立与邻居的连接，尝试8次后，端口状态会变成errod-disable状态</li>
+</ul>
+<p><strong>配置UDLD</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofn09wej20k00d10u5.jpg" alt="img"></p>
+<p><strong>查看UDLD状态</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofez9btj20k009ywf7.jpg" alt="img"></p>
+<blockquote>
+<p>1、【概念】<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30563319/article/details/98933348">https://blog.csdn.net/weixin_30563319/article/details/98933348</a></p>
+<p>2、【配置】<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv7742593/">https://www.bilibili.com/read/cv7742593/</a></p>
+</blockquote>
+<br/>
+
+<br/>
+
+<hr>
+<h1 id="CDP协议（思科发现协议）（CCIE）"><a href="#CDP协议（思科发现协议）（CCIE）" class="headerlink" title="CDP协议（思科发现协议）（CCIE）"></a>CDP协议（思科发现协议）（CCIE）</h1><h2 id="一-定义"><a href="#一-定义" class="headerlink" title="一    定义"></a>一    定义</h2><p>CDP协议<strong>默认</strong>在思科设备上运行，功能为查看<strong>相邻Cisco设备</strong>的摘要信息</p>
+<ul>
+<li>设备标识符：查看主机名</li>
+<li>地址列表：查看邻居的IP地址</li>
+<li>端口识别符：查看哪个端口连接到对端的哪个端口</li>
+<li>功能列表：查看连接的是路由器还是交换机</li>
+<li>平台：查看邻居的具体型号</li>
+</ul>
+<h2 id="二-使用："><a href="#二-使用：" class="headerlink" title="二    使用："></a>二    使用：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R1<span class="comment">#show cdp ?</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>entry *：可以查看设备的device id、IP地址、端口信息、双工模式、对端的IP等</li>
+<li>interfacce：可以查看哪些开启了CDP服务（默认都开启）</li>
+<li>neighbors：可以查看连接了哪些物理（路由器、交换机等信息）</li>
+</ul>
+<h2 id="三-开关CDP协议"><a href="#三-开关CDP协议" class="headerlink" title="三    开关CDP协议"></a>三    开关CDP协议</h2><ul>
+<li>全局开启或关闭</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R1(config)<span class="comment"># no cdp run  //全局关闭CDP协议</span></span><br><span class="line">R1<span class="comment">#show cdp neighbors		//检查发现已关闭</span></span><br><span class="line"></span><br><span class="line">R1(config)<span class="comment">#cdp run	    //重新全局开启</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接口开启或关闭</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R1(config)<span class="comment">#interface f0/0  //f0端口关闭CDP协议</span></span><br><span class="line">R1(config-if)<span class="comment">#no cdp enable	</span></span><br><span class="line"></span><br><span class="line">R1(config-if)<span class="comment">#cdp enable	    //重新开启</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>【CDP和LLDP的优秀讲解】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tK4y1o7Zw?spm_id_from=333.337.search-card.all.click&amp;vd_source=7fb3822bb52761ad460dfb6e200a6022">https://www.bilibili.com/video/BV1tK4y1o7Zw?spm_id_from=333.337.search-card.all.click&amp;vd_source=7fb3822bb52761ad460dfb6e200a6022</a></p>
+</blockquote>
+<p><br/><br/></p>
+<hr>
+<h1 id="LLDP协议（链路层发现协议）"><a href="#LLDP协议（链路层发现协议）" class="headerlink" title="LLDP协议（链路层发现协议）"></a>LLDP协议（链路层发现协议）</h1><h2 id="一-定义-1"><a href="#一-定义-1" class="headerlink" title="一  定义"></a>一  定义</h2><p><strong>LLDP（公有协议）==CDP（私有）</strong></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofneqwuj20pq06adgg.jpg" alt="image-20220816094514574" style="zoom:67%;" />
+
+
+
+<h2 id="二-使用：-1"><a href="#二-使用：-1" class="headerlink" title="二  使用："></a>二  使用：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">R1(config)<span class="comment">#no lldp run			//华为的LLDP默认关闭</span></span><br><span class="line">R1(config)<span class="comment">#lldp run 				//全局开启LLDP</span></span><br><span class="line">R1(config)<span class="comment">#interface f0/1</span></span><br><span class="line">R1(config-if)<span class="comment">#no lldp transmit		//不发送LLDP报文</span></span><br><span class="line">R1(config-if)<span class="comment">#no lldp receive			//不接收LLDP报文</span></span><br><span class="line">R1<span class="comment">#show lldp neighbors</span></span><br></pre></td></tr></table></figure>
+
+<p><br/><br/></p>
+<hr>
+<h1 id="DHCP配置掌握和DHCP中继"><a href="#DHCP配置掌握和DHCP中继" class="headerlink" title="DHCP配置掌握和DHCP中继"></a>DHCP配置掌握和DHCP中继</h1><h2 id="一-DHCP中继（掌握配置）"><a href="#一-DHCP中继（掌握配置）" class="headerlink" title="一  DHCP中继（掌握配置）"></a>一  DHCP中继（掌握配置）</h2><p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofot4saj21ak0u0aez.jpg" alt="image-20220816111222975"></p>
+<blockquote>
+<p>1、【DHCP中继】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13a411w7vh?share_source=copy_web&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV13a411w7vh?share_source=copy_web&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+<h2 id="二-DHCP-Option整理（了解）"><a href="#二-DHCP-Option整理（了解）" class="headerlink" title="二  DHCP Option整理（了解）"></a>二  DHCP Option整理（了解）</h2><p>Options号<br>Options作用1设置<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%90%E7%BD%91&spm=1001.2101.3001.7020">子网</a>掩码选项。<br>3设置网关地址选项。<br>6设置DNS服务器地址选项。<br>12设置域名选项。<br>15设置域名后缀选项。<br>33设置<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1&spm=1001.2101.3001.7020">静态路由</a>选项。该选项中包含一组有分类静态路由（即目的地址的掩码固定为自然掩码，不能划分子网），客户端收到该选项后，将在路由表中添加这些静态路由。如果存在Option121，则忽略该选项。<br>44设置NetBios服务器选项。<br>46设置NetBios节点类型选项。<br>50设置请求IP选项。<br>51设置IP地址租约时间选项。<br>52设置Option附加选项。<br>53设置<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=DHCP&spm=1001.2101.3001.7020">DHCP</a>消息类型。<br>54设置服务器标识。<br>55设置请求参数列表选项。客户端利用该选项指明需要从服务器获取哪些网络配置参数。该选项内容为客户端请求的参数对应的选项值。<br>58设置续约T1时间，一般是租期时间的50%。<br>59设置续约T2时间。一般是租期时间的87.5%。<br>60设置厂商分类信息选项，用于标识DHCP客户端的类型和配置。<br>61设置客户端标识选项。<br>66设置TFTP服务器名选项，用来指定为客户端分配的TFTP服务器的域名。<br>67设置启动文件名选项，用来指定为客户端分配的启动文件名。<br>77设置用户类型标识。<br>121设置无分类路由选项。该选项中包含一组无分类静态路由（即目的地址的掩码为任意值，可以通过掩码来划分子网），客户端收到该选项后，将在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%B7%AF%E7%94%B1%E8%A1%A8&spm=1001.2101.3001.7020">路由表</a>中添加这些静态路由。<br>148EasyDeploy中Commander的IP地址。<br>149SFTP和FTPS服务器的IP地址。<br>150设置TFTP服务器地址选项，指定为客户端分配的TFTP服务器的地址。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://max.book118.com/html/2021/0806/7151160106003154.shtm">https://max.book118.com/html/2021/0806/7151160106003154.shtm</a></p>
+</blockquote>
+<blockquote>
+<p>【7_二层攻击防范-dhcp_snooping-哔哩哔哩】 <a target="_blank" rel="noopener" href="https://b23.tv/OnmIr14">https://b23.tv/OnmIr14</a></p>
+</blockquote>
+<br/>
+
+<br/>
+
+<hr>
+<h1 id="DHCP-Snooping"><a href="#DHCP-Snooping" class="headerlink" title="DHCP Snooping"></a>DHCP Snooping</h1><h2 id="一-功能"><a href="#一-功能" class="headerlink" title="一 功能"></a>一 功能</h2><h3 id="1、反-DHCP-仿冒者攻击"><a href="#1、反-DHCP-仿冒者攻击" class="headerlink" title="1、反-DHCP 仿冒者攻击"></a>1、反-DHCP 仿冒者攻击</h3><p><strong>攻击原理：</strong>因为DHCP服务器和Client间没有认证机制，所以Hacker随意新增一台自己的DHCP服务器就可以进行冒充，从而分配发送错误的IP地址造成危险。</p>
+<p><strong>反制手段：</strong>给设备接口上区分’Trusted’和’Untrusted’两种模式，默认全部Untrusted。在DHCP的四次握手中丢弃所有DCHP服务器的握手回应报文，只有配置了Trusted的才通过。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aoflnt7rj212q0q6777.jpg" alt="image-20220816142838450" style="zoom: 50%;" />
+
+<br/>
+
+
+
+<h3 id="2、反-泛洪攻击"><a href="#2、反-泛洪攻击" class="headerlink" title="2、反-泛洪攻击"></a>2、反-泛洪攻击</h3><p>攻击原理：Hacker向服务器发送大量DHCP Discover报文，导致服务器处理不过来而瘫痪</p>
+<p>反制手段：Snooping具备速率检测的功能，超过规定速率的报文就丢弃。</p>
+<br/>
+
+<h3 id="3、DoS服务拒绝攻击"><a href="#3、DoS服务拒绝攻击" class="headerlink" title="3、DoS服务拒绝攻击"></a>3、DoS服务拒绝攻击</h3><p>攻击原理：Hacker的大量肉鸡申请DHCP服务，从而快速耗尽DHCP Server的IP地址，导致真正合法的用户申请不到</p>
+<p>反制方法：可设定一个接口接入所允许的最大DHCP用户数，超过该值不再分配。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofqatkzj20co07i74g.jpg" alt="image-20220816144450864"  />
+
+
+
+<br/>
+
+<h3 id="4、-反-DHCP服务中间人攻击"><a href="#4、-反-DHCP服务中间人攻击" class="headerlink" title="4、 反-DHCP服务中间人攻击"></a>4、 反-DHCP服务中间人攻击</h3><p>攻击原理：在缺乏认证的通信中，中间人攻击是较为常见的。Hacker对PC假装自己是DHCP服务器，对服务器假装自己是PC。</p>
+<p>反制方法：Snooping配置中可以将IP地址和MAC地址绑定。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofky9ugj219c0u0gpn.jpg" alt="image-20220816144109612" style="zoom: 50%;" />
+
+<p><br/><br/></p>
+<h3 id="二、配置方法"><a href="#二、配置方法" class="headerlink" title="二、配置方法"></a>二、配置方法</h3><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofpnqt3j217b0u0jv6.jpg" alt="image-20220816145711526" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofec3u1j21c10u0n1m.jpg" alt="image-20220816145647455" style="zoom:50%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofi4elzj21hq0r0jwd.jpg" alt="image-20220816145614182" style="zoom:50%;" />
+
+
+
+<blockquote>
+<p>1、【知乎】<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/161078990">https://zhuanlan.zhihu.com/p/161078990</a></p>
+<p>2、【H3C官方文档】<a target="_blank" rel="noopener" href="https://download.csdn.net/download/emptylee/5775317">https://download.csdn.net/download/emptylee/5775317</a></p>
+<p>3、【简要配置】<a target="_blank" rel="noopener" href="https://blog.csdn.net/Yang__Qi/article/details/105741740">https://blog.csdn.net/Yang__Qi/article/details/105741740</a></p>
+</blockquote>
+<br/>
+
+<hr>
+<h1 id="DAI（动态ARP检测）"><a href="#DAI（动态ARP检测）" class="headerlink" title="DAI（动态ARP检测）"></a>DAI（动态ARP检测）</h1><blockquote>
+<p>1、【华为DAI文档】<a target="_blank" rel="noopener" href="https://support.huawei.com/enterprise/zh/doc/EDOC1100127132?section=j06e">https://support.huawei.com/enterprise/zh/doc/EDOC1100127132?section=j06e</a></p>
+<p>2、【CSDN】<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62311779/article/details/122758756">https://blog.csdn.net/qq_62311779/article/details/122758756</a></p>
+</blockquote>
+<br/>
+
+<hr>
+<h1 id="IP源防护原理"><a href="#IP源防护原理" class="headerlink" title="IP源防护原理"></a>IP源防护原理</h1><h2 id="一-IP源防护技术"><a href="#一-IP源防护技术" class="headerlink" title="一  IP源防护技术"></a>一  IP源防护技术</h2><p><strong>IP地址欺骗：</strong>黑客假装冒充其他人的IP地址和服务器连接。</p>
+<p><strong>IP源防护：</strong>IPSG基于绑定表（DHCP动态和静态绑定表）对IP报文进行匹配检查，当设备在转发IP报文时，将此IP报文中的源IP、源MAC、端口、VLAN信息和绑定表的信息进行比较，如果信息匹配，表明是合法用户，则允许此报文正常转发，否则认为是攻击报文，并丢弃该IP报文。</p>
+<p>对于非信任端口，IP源防护有两种过滤策略（配置）</p>
+<p>1、源IP地址过滤<br>2、源IP和源MAC地址过滤</p>
+<p>使用源IP地址过滤时，IP源防护和端口安全是相互独立的。使用源IP和源MAC地址过滤时，数据包源IP和源MAC地址必须符合IP源绑定表中的条目才能转发，并且为了确保DHCP工作正常，启用DHCP监听时必须启用option 82。</p>
+<h2 id="二-配置"><a href="#二-配置" class="headerlink" title="二  配置"></a>二  配置</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofh4ilgj21ai0u0did.jpg" alt="image-20220817100242178" style="zoom: 33%;" />
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//源IP地址过滤：</span><br><span class="line">switch(config-if)<span class="comment">#ip verify source</span></span><br><span class="line">//Cisco 35系列交换机命令</span><br><span class="line">switch(config-if)<span class="comment">#ip verify source vlan dhcp-snooping</span></span><br><span class="line">//Cisco 45、65系列交换机命令</span><br><span class="line"></span><br><span class="line">//源IP和源MAC地址过滤：</span><br><span class="line">//首先要启用端口安全(switchport port-security),然后启用IP源防护</span><br><span class="line">switch(config-if)<span class="comment">#ip verify source port-security</span></span><br><span class="line"></span><br><span class="line">//Cisco 35系列交换机命令</span><br><span class="line">switch(config-if)<span class="comment">#ip verify source vlan dhcp-snooping port-security</span></span><br><span class="line">//Cisco 45、65系列交换机命令</span><br><span class="line"></span><br><span class="line">//静态IP源绑定命令</span><br><span class="line">switch(config)<span class="comment">#ip source binding mac-address vlan vlan-number ip-address interface interface-type interface-number</span></span><br></pre></td></tr></table></figure>
+
+<p><br/><br/></p>
+<hr>
+<h1 id="IP-SLA（服务级别协议）"><a href="#IP-SLA（服务级别协议）" class="headerlink" title="IP SLA（服务级别协议）"></a>IP SLA（服务级别协议）</h1><p>为思科用于测量网络性能的协议，和ping一样检查，不过得到更为详细的内容。</p>
+<p>此外，IP SLA还可以与静态路由、基于策略的路由和OSPF、EIGRP等路由协议相结合。</p>
+<h2 id="一-功能-1"><a href="#一-功能-1" class="headerlink" title="一 功能"></a>一 功能</h2><h3 id="1、检查远端路由"><a href="#1、检查远端路由" class="headerlink" title="1、检查远端路由"></a>1、检查远端路由</h3><p>用户路由器连接两个ISP路由器到达服务器，一般根据异常进行ISP路由切换。但当ISP1无法访问远端服务器时，所有流量仍通过ISP1。为此，我们需要借助SLA来ping远程服务器确认是否连接成功。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofk8jfcj20i50bqt9e.jpg" alt="image-20220817110552719" style="zoom:50%;" />
+
+
+
+<h3 id="2、性能检测和择优"><a href="#2、性能检测和择优" class="headerlink" title="2、性能检测和择优"></a>2、性能检测和择优</h3><p>同理，我们可通过SLA ping远端的分支路由器，根据延迟抖动计算MOS分数，从而在低于某阈值时切换到ISP2路由器。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aoffh83wj20jv0bxq3p.jpg" alt="image-20220817110750425" style="zoom:50%;" />
+
+<br/>
+
+
+
+<h2 id="二-配置学习"><a href="#二-配置学习" class="headerlink" title="二  配置学习"></a>二  配置学习</h2><p>（根据需求情况，后续补充）</p>
+<blockquote>
+<p>1、【理论】<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80950988">https://zhuanlan.zhihu.com/p/80950988</a></p>
+<p>2、【作用】<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26533645">https://zhuanlan.zhihu.com/p/26533645</a></p>
+</blockquote>
+<p><br/><br/></p>
+<hr>
+<h1 id="SDM-Security-Device-Manager-安全设备管理"><a href="#SDM-Security-Device-Manager-安全设备管理" class="headerlink" title="SDM(Security Device Manager 安全设备管理)"></a>SDM(Security Device Manager 安全设备管理)</h1><p>SDM是一款基于Cisco软件的Web图形化路由器管理工具，使用户无需CLI即可轻松完成IOS的状态监控、功能配置等。连QoS、Easy VPN Server、IPS、DHCP Server、动态路由协议等配置任务也可以通过SDM轻松实现。</p>
+<blockquote>
+<p>【关于连接等非常好的资料，值得反复观看】<a target="_blank" rel="noopener" href="https://www.cnblogs.com/MenAngel/p/6103226.html">https://www.cnblogs.com/MenAngel/p/6103226.html</a></p>
+</blockquote>
+<p><br/><br/></p>
+<hr>
+<h1 id="端口镜像配置"><a href="#端口镜像配置" class="headerlink" title="端口镜像配置"></a>端口镜像配置</h1><h2 id="一-作用"><a href="#一-作用" class="headerlink" title="一  作用"></a>一  作用</h2><p>网络维护中，需要对存在异常、怀疑黑客攻击等报文进行获取和分析，但同时又不能影响原端口的正常工作。</p>
+<p>端口镜像技术可以将镜像端口的报文<strong>复制一份</strong>到观察端口，再利用数据监控设备来分析，进行网络监控和故障排除。</p>
+<p>主要作用：业务实时监控、故障处理分析、网络流量优化</p>
+<br/>
+
+<h2 id="二-两种模式"><a href="#二-两种模式" class="headerlink" title="二 两种模式"></a>二 两种模式</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofgb7q2j21ga0u0djw.jpg" alt="image-20220817141043324" style="zoom:50%;" />
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofjdhd3j21920pawhi.jpg" alt="image-20220817141117116"></p>
+<br/>
+
+<h2 id="三-配置"><a href="#三-配置" class="headerlink" title="三 配置"></a>三 配置</h2><p>（第二轮时补充）</p>
+<br/>
+
+<h2 id="四-SPAN和RSPAN"><a href="#四-SPAN和RSPAN" class="headerlink" title="四 SPAN和RSPAN"></a>四 SPAN和RSPAN</h2><p>本地SPAN：将交换机上某些想要监控的端口（镜像）复制同一台交换机的端口（监控）上</p>
+<p>远程RSPAN：将交换机上某些想要监控的端口（镜像）复制到不同的交换机上</p>
+<br/>
+
+
+
+<blockquote>
+<p>【2.4.1 镜像技术原理与配置】 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Th41187wD?share_source=copy_web&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1Th41187wD?share_source=copy_web&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<p><br/><br/></p>
+<hr>
+<center><b>Keep going，and keep trying...</b></center>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/74c1b1df.html" rel="prev" title="「Linux系列」3-文件目录指令篇">
+                  <i class="fa fa-chevron-left"></i> 「Linux系列」3-文件目录指令篇
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
