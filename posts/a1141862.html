@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：VLAN 部分、STP 部分、冗余技术部分、交换安全特性部分 摘要：在开启路由技术部分之前，我们对交换技术的所有内容进行总结和复习！ tips：本次尝试极简风！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「阶段性总结」Review-1 交换技术">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/a1141862.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：VLAN 部分、STP 部分、冗余技术部分、交换安全特性部分 摘要：在开启路由技术部分之前，我们对交换技术的所有内容进行总结和复习！ tips：本次尝试极简风！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/posts/.%5Cassets_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=4315470006459425362&skey=@crypt_d7371de6_a7f2d44af67b5c4d83bf8b3296c1e779&mmweb_appid=wx_webfilehelper-16620998397061-16620998415983-16620998457165.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2orj54j21lz0tx422.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2s4yzqj21gc0u0wie.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9w39dwj217t0bfaam.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/posts/assets/image-20220831215849838.png">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg3j1npj20vc05c0u3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg4966nj21ue0u079p.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up48ofonj211c0u0wha.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4vy7g3qfzj20qw05ymy2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4vy7drpmmj21910u079i.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4vy7fbm8rj212b0u0wi1.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/posts/%5Cassets_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=3040632275727591768&skey=@crypt_d7371de6_a7f2d44af67b5c4d83bf8b3296c1e779&mmweb_appid=wx_webfilehelper.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofot4saj21ak0u0aez.jpg">
+<meta property="article:published_time" content="2022-08-31T01:30:00.000Z">
+<meta property="article:modified_time" content="2022-09-02T07:29:32.363Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/a1141862.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;a1141862.html&quot;,&quot;path&quot;:&quot;posts&#x2F;a1141862.html&quot;,&quot;title&quot;:&quot;「阶段性总结」Review-1 交换技术&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「阶段性总结」Review-1 交换技术 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#red-circle-%E3%80%90-VLAN-%E9%83%A8%E5%88%86-%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">:red_circle:【 VLAN 部分 】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%BB%80%E4%B9%88%E6%98%AF-VLan-%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">一 什么是 VLan ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%AE%80%E8%BF%B0-Vlan-%E8%BD%AC%E5%8F%91%E8%BF%87%E7%A8%8B-%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">二    简述 Vlan 转发过程 ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%85%B6%E4%BB%96"><span class="nav-number">1.3.</span> <span class="nav-text">三    其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#question-MAC%E5%9C%B0%E5%9D%80%E3%80%81%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E7%BB%84%E6%88%90-%EF%BC%9F"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">:question:  MAC地址、以太网帧组成 ？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#question-%E4%BB%80%E4%B9%88%E6%98%AF-Voice-Vlan-%E3%80%81Pvlan"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">:question:  什么是 Voice Vlan 、Pvlan ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#question-%E7%AE%80%E8%BF%B0-Vlan-%E5%86%85%E3%80%81Vlan%E9%97%B4%E5%A6%82%E4%BD%95%E9%80%9A%E4%BF%A1"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">:question:  简述 Vlan 内、Vlan间如何通信 ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#question-%E7%AE%80%E8%BF%B0%E6%8A%A5%E6%96%87%E5%B0%81%E8%A3%85%E5%92%8C%E8%A7%A3%E5%B0%81%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">:question:  简述报文封装和解封装过程 ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#question-%E7%AE%80%E8%BF%B0-VTP-%E7%9A%84%E5%8E%9F%E7%90%86%E3%80%81%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.3.0.5.</span> <span class="nav-text">:question:  简述 VTP 的原理、配置及模式 ?</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#large-blue-circle-%E3%80%90STP-%E9%83%A8%E5%88%86%E3%80%91"><span class="nav-number">2.</span> <span class="nav-text">:large_blue_circle:【STP 部分】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%BB%80%E4%B9%88%E6%98%AF-STP-%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">一    什么是 STP ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-STP-%E9%80%89%E4%B8%BE%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">二    STP 选举过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%92%E8%89%B2%E9%80%89%E4%B8%BE"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">角色选举</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">内部流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#tips%EF%BC%9A"><span class="nav-number">2.2.0.2.1.</span> <span class="nav-text">tips：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-STP%E3%80%81RSTP%E3%80%81MSTP-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.3.</span> <span class="nav-text">三    STP、RSTP、MSTP 的区别 ?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-RSTP"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">1    RSTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-MSTP"><span class="nav-number">2.3.0.2.</span> <span class="nav-text">2    MSTP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-STP%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="nav-number">2.4.</span> <span class="nav-text">四    STP增强工具包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E5%85%B6%E4%BB%96"><span class="nav-number">2.5.</span> <span class="nav-text">五    其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#black-circle-%E3%80%90%E5%86%97%E4%BD%99%E6%8A%80%E6%9C%AF%E9%83%A8%E5%88%86%E3%80%91"><span class="nav-number">3.</span> <span class="nav-text">:black_circle:【冗余技术部分】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-VRRP-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">3.1.</span> <span class="nav-text">一    VRRP  是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-VRRP-%E4%B8%BB%E5%A4%87%E5%88%87%E6%8D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">二    VRRP 主备切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%88%86%E6%8B%85"><span class="nav-number">3.3.</span> <span class="nav-text">三    链路聚合与负载分担</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#red-circle-%E3%80%90%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%AB%AF%E5%8F%A3%E5%AE%89%E5%85%A8%E3%80%91"><span class="nav-number">4.</span> <span class="nav-text">:red_circle:【交换机端口安全】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E9%83%A8%E5%88%86"><span class="nav-number">5.</span> <span class="nav-text">Linux 部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8"><span class="nav-number">6.</span> <span class="nav-text">路由技术入门</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/a1141862.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「阶段性总结」Review-1 交换技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-31 09:30:00" itemprop="dateCreated datePublished" datetime="2022-08-31T09:30:00+08:00">2022-08-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-09-02 15:29:32" itemprop="dateModified" datetime="2022-09-02T15:29:32+08:00">2022-09-02</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4qhfzpk5ej21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" /> 
+
+<p>关键字：VLAN 部分、STP 部分、冗余技术部分、交换安全特性部分</p>
+<p>摘要：在开启路由技术部分之前，我们对<strong>交换技术的所有内容</strong>进行总结和复习！</p>
+<p>tips：本次尝试极简风！</p>
+<span id="more"></span>
+
+<hr>
+<h1 id="red-circle-【-VLAN-部分-】"><a href="#red-circle-【-VLAN-部分-】" class="headerlink" title=":red_circle:【 VLAN 部分 】"></a>:red_circle:【 VLAN 部分 】</h1><p><strong>【摘要】</strong></p>
+<p><img src=".%5Cassets_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=4315470006459425362&skey=@crypt_d7371de6_a7f2d44af67b5c4d83bf8b3296c1e779&mmweb_appid=wx_webfilehelper-16620998397061-16620998415983-16620998457165.jpg" alt="test"></p>
+<h2 id="一-什么是-VLan-？"><a href="#一-什么是-VLan-？" class="headerlink" title="一 什么是 VLan ？"></a>一 什么是 VLan ？</h2><p><strong>背景：</strong> 交换机的所有接口都在一个<strong>广播域</strong>中，容易发生<strong>广播风暴</strong>、ARP攻击等问题。</p>
+<blockquote>
+<p>:question:  广播域、冲突域、广播风暴</p>
+<p>广播域：能收到广播信息的范围</p>
+<p>冲突域：管道中一次只有一台设备发送的范围</p>
+<p>广播风暴：二层环路，导致链路拥塞、MAC表震荡</p>
+</blockquote>
+<br/>
+
+<p><strong>作用：</strong> 把一个局域网划分成多个相互隔离的逻辑上的局域网</p>
+<ul>
+<li><p>隔离广播域</p>
+</li>
+<li><p>提高安全性</p>
+</li>
+</ul>
+<br/>
+
+<p><strong>划分方式：</strong></p>
+<ul>
+<li><strong>基于端口</strong></li>
+<li>基于MAC地址</li>
+<li>基于协议</li>
+<li>基于子网</li>
+</ul>
+<br/>
+
+<br/>
+
+<h2 id="二-简述-Vlan-转发过程-？"><a href="#二-简述-Vlan-转发过程-？" class="headerlink" title="二    简述 Vlan 转发过程 ？"></a>二    简述 Vlan 转发过程 ？</h2><p><strong>Vlan大致转发过程如下：</strong></p>
+<ul>
+<li><strong>源PC</strong>发送 <code>以太网帧</code> 至交换机，交换机打上 <code>Vlan tag</code> 变成 <code>802.1Q格式帧</code> ，标识所属 VLAN 1  </li>
+<li><strong>交换机</strong>检查目的地址的 MAC 地址，允许 tag 中的 Vlan 就转发，不允许就丢弃</li>
+<li>数据帧转发至<strong>目的PC</strong>时，剥离 Vlan tag ，还原成 <code>以太网帧</code></li>
+</ul>
+<br/>
+
+<p><strong>Vlan 有三种端口，其具体转发过程各不相同</strong> :fire:</p>
+<ul>
+<li><strong>Aceess 端口（</strong>连PC或路由器）：仅允许一个 VLAN 的通过<ul>
+<li>接收：从 PC 接收 untagged 的报文后，打上接口 <code>PVID</code> （标识属于哪个 vlan )的标签。</li>
+<li>转发：PVID 相同则<strong>剥离标签</strong>发给PC， PVID 不符则丢弃。</li>
+</ul>
+</li>
+<li><strong>Trunk 端口</strong>（连交换机）：因为交换机——交换机相连，故允许多VLAN通过<ul>
+<li>接收：从上台交换机接收到带 tag 的标签时，若标签中的 vlan id 在允许列表中接收，不在则丢弃 </li>
+<li>转发：同理</li>
+</ul>
+</li>
+<li><strong>Hybrid 端口</strong>（混合）：混合型，部分才有</li>
+</ul>
+<br/>
+
+<br/>
+
+
+
+<h2 id="三-其他"><a href="#三-其他" class="headerlink" title="三    其他"></a>三    其他</h2><h4 id="question-MAC地址、以太网帧组成-？"><a href="#question-MAC地址、以太网帧组成-？" class="headerlink" title=":question:  MAC地址、以太网帧组成 ？"></a>:question:  MAC地址、以太网帧组成 ？</h4><ul>
+<li>MAC 地址组成：</li>
+</ul>
+<p>前三段为厂商 OUI ，标识哪个公司的产品</p>
+<p>后三段为制造商分配，标识产品独一无二的型号</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2orj54j21lz0tx422.jpg" alt="IMG_0836" style="zoom: 25%;" />
+
+<br/>
+
+<ul>
+<li><p>以太网帧：</p>
+<p>有两种标准，主要包含<strong>从哪来</strong>、到哪去、<strong>什么类型报文</strong>（http、arp？）、<strong>用户数据</strong>、<strong>校验位</strong></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2s4yzqj21gc0u0wie.jpg" alt="IMG_0838" style="zoom: 25%;" /></li>
+</ul>
+<br/>
+
+
+
+<h4 id="question-什么是-Voice-Vlan-、Pvlan"><a href="#question-什么是-Voice-Vlan-、Pvlan" class="headerlink" title=":question:  什么是 Voice Vlan 、Pvlan ?"></a>:question:  什么是 Voice Vlan 、Pvlan ?</h4><ul>
+<li><strong>Voice Vlan</strong> ：对音视频这类数据，通过 MAC 和 Vlan 识别两种方式，定向提高其带宽和流量的优先级。</li>
+<li>PVlan：分为<strong>主Vlan</strong>和<strong>辅助Vlan</strong>，主 VLAN 可总揽全局，辅助 Vlan 有单（隔离）和多（团体）之分，都互相隔离。</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9w39dwj217t0bfaam.jpg" alt="WechatIMG145"></p>
+<br/>
+
+<h4 id="question-简述-Vlan-内、Vlan间如何通信"><a href="#question-简述-Vlan-内、Vlan间如何通信" class="headerlink" title=":question:  简述 Vlan 内、Vlan间如何通信 ?"></a>:question:  简述 Vlan 内、Vlan间如何通信 ?</h4><ul>
+<li><strong>Vlan 之间</strong>：Vlan 20 和Vlan 30 在二层广播域隔离，故需要通过<strong>三层路由设备</strong>进行路由转发。</li>
+<li><strong>Vlan内部</strong>：通过<strong>Vlan ID</strong>实现，交换机会识别Vlan ID和目的MAC，是否在允许列表中。</li>
+</ul>
+<br/>
+
+<h4 id="question-简述报文封装和解封装过程"><a href="#question-简述报文封装和解封装过程" class="headerlink" title=":question:  简述报文封装和解封装过程 ?"></a>:question:  简述报文封装和解封装过程 ?</h4><img src=".\assets\image-20220831215849838.png" alt="image-20220831215849838" style="zoom:50%;" />
+
+<br/>
+
+<h4 id="question-简述-VTP-的原理、配置及模式"><a href="#question-简述-VTP-的原理、配置及模式" class="headerlink" title=":question:  简述 VTP 的原理、配置及模式 ?"></a>:question:  简述 VTP 的原理、配置及模式 ?</h4><ul>
+<li>VTP：即vlan中继协议，思科私有，用于快捷同步和配置 VLAN 。</li>
+<li>配置和原理：可以把一台交换机配置成VTP Server，其余交换机配置成 VTP Client，然后自动学习 Server 机上的 vlan 信息</li>
+<li>VTP 模式：Server模式、Client模式、Transparent模式（独立不学server机）</li>
+</ul>
+<br/>
+
+<br/>
+
+<hr>
+<h1 id="large-blue-circle-【STP-部分】"><a href="#large-blue-circle-【STP-部分】" class="headerlink" title=":large_blue_circle:【STP 部分】"></a>:large_blue_circle:【STP 部分】</h1><p> <strong>【摘要】</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg3j1npj20vc05c0u3.jpg" alt="截屏2022-08-01 09.12.47"></p>
+<h2 id="一-什么是-STP-？"><a href="#一-什么是-STP-？" class="headerlink" title="一    什么是 STP ？"></a>一    什么是 STP ？</h2><p>背景：由三层逻辑环路导致广播风暴问题，故通过 STP 解决</p>
+<p>功能：通过STP生成树协议，选择性的阻断部分链路，解决环路问题</p>
+<br/>
+
+<br/>
+
+<h2 id="二-STP-选举过程"><a href="#二-STP-选举过程" class="headerlink" title="二    STP 选举过程"></a>二    STP 选举过程</h2><p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4swg4966nj21ue0u079p.jpg" alt="WechatIMG167"></p>
+<h4 id="角色选举"><a href="#角色选举" class="headerlink" title="角色选举"></a>角色选举</h4><ul>
+<li>选举根交换机</li>
+<li>选举根端口RP</li>
+<li>选举制定端口DP，并阻塞备用端口</li>
+</ul>
+<br/>
+
+<h4 id="内部流程"><a href="#内部流程" class="headerlink" title="内部流程"></a>内部流程</h4><ul>
+<li><p><strong>第一轮</strong></p>
+<p>首先所有交换机都认为自己是根交换机，故都发送 <code>配置BPDU</code> 报文。</p>
+</li>
+<li><p><strong>第二轮</strong></p>
+</li>
+</ul>
+<p>​        各交换机之间交换完BPDU后，认清自己是小弟。将BPDU报文中大哥位子 <code>Root ID</code> 改为公认大哥的 MAC 值。</p>
+<ul>
+<li><p><strong>第三轮</strong></p>
+<p>在扩展中随着树结构加深，后续陆陆续续自认为是大哥的交换机D、E、F等在一次次交换中，重复第二轮的操作。</p>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4up48ofonj211c0u0wha.jpg" alt="img" style="zoom:50%;" />
+
+<blockquote>
+<h5 id="tips："><a href="#tips：" class="headerlink" title="tips："></a>tips：</h5><p>1、树结构越来越复杂，选举耗时也越来越长</p>
+<p>2、只有根交换机才能发配置BPDU，其他只能转发</p>
+</blockquote>
+<br/>
+
+<br/>
+
+<h2 id="三-STP、RSTP、MSTP-的区别"><a href="#三-STP、RSTP、MSTP-的区别" class="headerlink" title="三    STP、RSTP、MSTP 的区别 ?"></a>三    STP、RSTP、MSTP 的区别 ?</h2><p><strong>STP  ——&gt; RSTP ——&gt; MSTP</strong></p>
+<h4 id="1-RSTP"><a href="#1-RSTP" class="headerlink" title="1    RSTP"></a>1    RSTP</h4><ul>
+<li>背景</li>
+</ul>
+<p>​        即快速生成树协议，主要弥补STP拓扑变化收敛机制不灵活、可能产生临时环路、异常检测慢等问题。</p>
+<blockquote>
+<p>:question:  RSTP 相较于 STP 快在何处？</p>
+<p>STP 在端口主备切换的过程中需等待 30s 左右的时间，避免形成临时环路。</p>
+</blockquote>
+<br/>
+
+<ul>
+<li>P/A协商机制</li>
+</ul>
+<p>P：提议报文</p>
+<p>A：同意报文</p>
+<p>在选举内核中我们介绍过，只有小弟知道自己不如大哥修改自己的 Rout ID 且不再发配置 BPDU，但大哥并不知道对面有没有自己强，故需<strong>等待一段时间</strong>。</p>
+<p>在协商机制中，大哥 A 不仅发送 BPDU 报文，同时发送一个 <code>P波</code>（提议报文），提议我的优先级高于你。</p>
+<p>小弟 B 接收到后也不会默默不发，而是立马回复一个 <code>A波</code>（同意报文）。</p>
+<p>此时大哥 A 不用再等待，而是立马把自己的端口变为<code>指定端口</code>。</p>
+<p>当有更强的 D 时，便通过<code>不同意</code>报文一个个拉拢 C、B叛变，直至原大哥 A 也同意。</p>
+<br/>
+
+<h4 id="2-MSTP"><a href="#2-MSTP" class="headerlink" title="2    MSTP"></a>2    MSTP</h4><ul>
+<li><p><strong>背景</strong></p>
+<p>STP 和 RSTP 都有资源浪费、绕远路等问题。<br>MSTP即多实例生成树协议，在不同的实例中生产不同的树，选举不同的根交换机，阻塞不同的端口。</p>
+</li>
+</ul>
+<br/>
+<br/>
+
+<h2 id="四-STP增强工具包"><a href="#四-STP增强工具包" class="headerlink" title="四    STP增强工具包"></a>四    STP增强工具包</h2><p><strong>Fast Converge（快速收敛）：</strong></p>
+<p> · Port Fast：对终端PC手动进行配置</p>
+<p><strong>Secure the STP（STP安全）：</strong></p>
+<p> · Root Guard：保护根交换机不因新增而变动</p>
+<p> · BPDU Gurad：</p>
+<p> · BPDU Filter</p>
+<p> · Port Security</p>
+<p><strong>Loop Prevention（防环）：</strong></p>
+<p> · Loop guard</p>
+<p> · UDLD</p>
+<br/>
+
+<br/>
+
+<h2 id="五-其他"><a href="#五-其他" class="headerlink" title="五    其他"></a>五    其他</h2><br/>
+<br/>
+
+<hr>
+<h1 id="black-circle-【冗余技术部分】"><a href="#black-circle-【冗余技术部分】" class="headerlink" title=":black_circle:【冗余技术部分】"></a>:black_circle:【冗余技术部分】</h1><p><strong>【摘要】</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4vy7g3qfzj20qw05ymy2.jpg" alt="image-20220805103948737"></p>
+<h2 id="一-VRRP-是什么"><a href="#一-VRRP-是什么" class="headerlink" title="一    VRRP  是什么"></a>一    VRRP  是什么</h2><p>背景: 终端PC都只能配置一个网关地址，当这个网关路由器发生故障时，所有电脑就无法上网</p>
+<p>功能：VRRP即虚拟路由冗余协议，将多个路由器虚拟成一个逻辑上的路由器。看似只有一个网关IP地址，其实由多个路由器组成。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4vy7drpmmj21910u079i.jpg" alt="image-20220805150051538" style="zoom: 50%;" />
+
+<br/>
+
+<br/>
+
+<h2 id="二-VRRP-主备切换"><a href="#二-VRRP-主备切换" class="headerlink" title="二    VRRP 主备切换"></a>二    VRRP 主备切换</h2><ul>
+<li><p>互发 VRRP 报文，选举 <code>Master</code></p>
+<p>A、B路由器互发 <code>VRRP报文</code> 来选举Master</p>
+</li>
+<li><p>Master承担责任</p>
+<p>Master路由器做网关，并每隔1s发送VRRP通知其他 <code>Backup</code> 备份路由器，报告自己状态正常</p>
+</li>
+<li><p>Master 异常，Backup 上位</p>
+<p>当 Master 异常无法正常发 VRRP 报文时，Backup 等待 3s 切换为 Master 上位。</p>
+<p>当原 Master 恢复后，发现不如自己立刻发 VRRP 报文，夺回 Master 身份，也叫 <code>抢占模式</code>。</p>
+</li>
+</ul>
+<h2 id="三-链路聚合与负载分担"><a href="#三-链路聚合与负载分担" class="headerlink" title="三    链路聚合与负载分担"></a>三    链路聚合与负载分担</h2><p><strong>背景：</strong>VRRP 虽然有主备之分，但备用路由器闲着不用过于浪费</p>
+<p><strong>解决方法：</strong>通过配置不同的备份组，在备份组 1 中 A 是 Master ，在备份组 2 中 B 是 Master ，A、B 互为各自的 Backup 备份。</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h4vy7fbm8rj212b0u0wi1.jpg" alt="image-20220805145956215"></p>
+<br/>
+
+<br/>
+
+<hr>
+<h1 id="red-circle-【交换机端口安全】"><a href="#red-circle-【交换机端口安全】" class="headerlink" title=":red_circle:【交换机端口安全】"></a>:red_circle:【交换机端口安全】</h1><p><strong>【摘要】</strong></p>
+<p>一句话总结！</p>
+<p><img src="%5Cassets_cgi-bin_mmwebwx-bin_webwxgetmsgimg__&MsgID=3040632275727591768&skey=@crypt_d7371de6_a7f2d44af67b5c4d83bf8b3296c1e779&mmweb_appid=wx_webfilehelper.jpg" alt="ttt"></p>
+<ul>
+<li><strong>端口安全特性</strong></li>
+</ul>
+<p>​        交换机允许所有网络用户接入，无拒绝功能的。故通过在交换机端口配置安全MAC地址表，设定非法接入的惩罚机制。</p>
+<br/>
+
+<ul>
+<li><strong>端口风暴控制</strong></li>
+</ul>
+<p>​        通过设置端口的带宽、传输速率、转发速率的上下限，来限制和避免广播、单播和多播风暴。</p>
+<br/>
+
+<ul>
+<li><strong>UDLD（STP增强包）</strong></li>
+</ul>
+<p>​        UDLD 是 Cisco 私有的交换机协议，用于防止单向链路问题。当出现单向链路时，UDLD 可以检测出并关闭端口，发送示警。</p>
+<br/>
+
+<ul>
+<li><strong>CDP/LLDP 协议</strong></li>
+</ul>
+<p>​        CDP为私有，LLDP为公有。</p>
+<p>​        二者皆为 <code>发现</code> 协议，用于查看相邻设备的摘要信息。（ip、双工模式、连了什么等）</p>
+<br/>
+
+<ul>
+<li><strong>DHCP 中继、DHCP Option</strong></li>
+</ul>
+<p>​        通过开启路由器的 DHCP Relay 功能，从而为多个二层广播域中的DHCP Client 用户提供DHCP 服务。节省成本，方便管理。</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h5aofot4saj21ak0u0aez.jpg" alt="image-20220816111222975" style="zoom:33%;" />
+
+<br/>
+
+<ul>
+<li><p><strong>DHCP Snooping (反制 DHCP 欺骗攻击)</strong></p>
+<p>DHCP Snooping 设定<code>端口开关</code>、<code>速率检测</code>、<code>设置最大DHCP用户数</code>、<code>IP 与 MAC绑定</code>。</p>
+<p>专门用于反制 <code>DHCP仿冒者攻击</code> 、<code>泛洪攻击</code> 、<code>Dos服务拒绝攻击</code> 、<code>DHCP服务中间人攻击</code> 这四个主要的安全问题。</p>
+</li>
+</ul>
+<p>​        <br/></p>
+<ul>
+<li><strong>IP 源防护（反制 IP 欺骗攻击</strong></li>
+</ul>
+<p>​        IP 源防护可以对 IP 报文 的源 IP、源MAC、端口、等信息和绑定表进行比对，判断是否为合法用户。</p>
+<br/>
+
+<ul>
+<li><strong>DAI （反制 ARP欺骗攻击）</strong></li>
+</ul>
+<p>​        DAI 可以对 <code>ARP 报文 </code> 中对应的源 IP、源 MAC、接口、Vlan 等信息与绑定表总的信息进行比对，判断是否为合法用户。</p>
+<br/>
+
+<ul>
+<li><strong>IP SLA</strong></li>
+</ul>
+<p>​        类似高级版的 ping 功能，IP SLA主要有以下三种应用场合：</p>
+<p>​            1.<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/3183330.htm">浮动静态路由</a><a target="_blank" rel="noopener" href="http://baike.baidu.com/view/1686120.htm">下一跳</a>检测。</p>
+<p>​            2.HSRP出接口检测。</p>
+<p>​            3.PBR<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/1138604.htm">策略路由</a>下一跳检测。</p>
+<br/>
+
+<ul>
+<li><strong>交换机SDM</strong></li>
+</ul>
+<p>​        思科Web端的路由器管理界面，无需 CLI。</p>
+<br/>
+
+<ul>
+<li><strong>端口镜像 SPAN、RSPAN</strong></li>
+</ul>
+<p>​        本地SPAN：将交换机上某些想要监控的端口（镜像）复制同一台交换机的端口（监控）上</p>
+<p>​        远程RSPAN：将交换机上某些想要监控的端口（镜像）复制到不同的交换机上</p>
+<br/>
+
+<br/>
+
+<hr>
+<h1 id="Linux-部分"><a href="#Linux-部分" class="headerlink" title="Linux 部分"></a>Linux 部分</h1><p>（后续补充）</p>
+<br/>
+
+<br/>
+
+<hr>
+<h1 id="路由技术入门"><a href="#路由技术入门" class="headerlink" title="路由技术入门"></a>路由技术入门</h1><p>（后续补充）</p>
+<p><br/><br/></p>
+<hr>
+<center><b>Keep going，and keep trying...</b></center>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/d60cf9fb.html" rel="prev" title="「思科NA培训」CCNA-9 交换技术相关特性">
+                  <i class="fa fa-chevron-left"></i> 「思科NA培训」CCNA-9 交换技术相关特性
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
