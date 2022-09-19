@@ -20,25 +20,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
-<meta name="description" content="春秋读书，冬夏猎射">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ohxiaoyao.life">
-<meta property="og:url" content="http://ohxiaoyao.life/archives/2022/09/index.html">
+<meta name="description" content="关键字：Linux学习路线、工具、常识、目录结构等摘要：包含linux的学习路线和前要基础知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「Linux系列」4-查询和解压缩">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/8b431164.html">
 <meta property="og:site_name" content="ohxiaoyao.life">
-<meta property="og:description" content="春秋读书，冬夏猎射">
+<meta property="og:description" content="关键字：Linux学习路线、工具、常识、目录结构等摘要：包含linux的学习路线和前要基础知识。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg">
+<meta property="article:published_time" content="2022-09-19T07:30:00.000Z">
+<meta property="article:modified_time" content="2022-09-19T09:17:56.925Z">
 <meta property="article:author" content="Xiao Yao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg">
 
 
-<link rel="canonical" href="http://ohxiaoyao.life/archives/2022/09/">
+<link rel="canonical" href="http://ohxiaoyao.life/posts/8b431164.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:false,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:&quot;&quot;,&quot;permalink&quot;:&quot;&quot;,&quot;path&quot;:&quot;archives&#x2F;2022&#x2F;09&#x2F;index.html&quot;,&quot;title&quot;:&quot;&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;8b431164.html&quot;,&quot;path&quot;:&quot;posts&#x2F;8b431164.html&quot;,&quot;title&quot;:&quot;「Linux系列」4-查询和解压缩&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>归档 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+<title>「Linux系列」4-查询和解压缩 | ohxiaoyao.life</title><script src="/js/config.js"></script>
   
 
 
@@ -114,7 +118,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -127,6 +131,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%A6%82%E4%BD%95%E6%89%BE%E5%9B%9Eroot%E5%AF%86%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">一    如何找回root密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%8C%87%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">二    文件目录指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%9F%A5%E6%89%BE%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">三    查找类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%8E%8B%E7%BC%A9-%E8%A7%A3%E5%8E%8B"><span class="nav-number">4.</span> <span class="nav-text">四    压缩&#x2F;解压</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,129 +211,311 @@
 </noscript>
 
     
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 30 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/8b431164.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「Linux系列」4-查询和解压缩
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+
+      <time title="创建时间：2022-09-19 15:30:00 / 修改时间：17:17:56" itemprop="dateCreated datePublished" datetime="2022-09-19T15:30:00+08:00">2022-09-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg" alt="Keep Going !" style="zoom:67%;" />
+
+<p>关键字：Linux学习路线、工具、常识、目录结构等<br>摘要：包含linux的学习路线和前要基础知识。</p>
+<span id="more"></span>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1484861101&auto=0&height=66"></iframe>
+
+<h2 id="一-如何找回root密码"><a href="#一-如何找回root密码" class="headerlink" title="一    如何找回root密码"></a>一    如何找回root密码</h2><h2 id="二-文件目录指令"><a href="#二-文件目录指令" class="headerlink" title="二    文件目录指令"></a>二    文件目录指令</h2><ul>
+<li><p>pwd查看当前目录的绝对地址</p>
+<ul>
+<li> <code>pwd</code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+
+<ul>
+<li>ls：显示当前目录的所有文件<ul>
+<li>-a：包括隐藏文件  <code>ls -a</code></li>
+<li>-l：列表形式   <code>ls -l</code></li>
+<li><strong>常用直观：<code>ls -lh</code></strong></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>cd：进入目录 </p>
+<ul>
+<li><code>cd /home/box</code> </li>
+</ul>
+</li>
+</ul>
+<br/>
+
+
+
+<ul>
+<li>mkdir：创建目录   <code>mkdir nexbox</code></li>
+</ul>
+<br/>
+
+<ul>
+<li>rmdir：删除空目录 <ul>
+<li>删除空目录:  <code>rmdir /home/box</code></li>
+<li><strong>删除有文件的目录:  <code>rm -rf /home/box</code></strong></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>touch：创建空文件</p>
+<ul>
+<li> <code>touch hello.txt</code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li>cp：复制拷贝<ul>
+<li>文件复制：<code>cp hello.java /home/aaa </code></li>
+<li>空文件夹：<code>cp /home/ccc /home/aaa</code></li>
+<li><strong>有文件的文件夹：<code>cp -r /home/bbb /home/aaa</code></strong></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>rm：删除文件或文件夹</p>
+<ul>
+<li><p>-r：删除整个文件夹</p>
+</li>
+<li><p>-f：删除不提示</p>
+</li>
+<li><p><strong>常用组合技: <code>rm -rf /home/box</code></strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>mv：移动文件或目录，重命名</p>
+<ul>
+<li><strong>移动：<code>mv home/aaa  /home/bbb</code></strong></li>
+<li><strong>重命名：<code>mv oldname.txt newname.txt</code></strong></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>cat：查看文件内容</p>
+<ul>
+<li> <code>cat </code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>more： 全屏幕查看</p>
+<ul>
+<li> <code>more hello.txt</code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>less：分配查看，是more的高级方法</p>
+<ul>
+<li> <code>less hello.txt</code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>echo：打印文本或信息</p>
+<ul>
+<li> <code>echo “Hello World！”</code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>head：查看文件开头内容</p>
+<ul>
+<li>查看头5行内容：<code>head -n 5 hello.txt</code> </li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>tail：查看文件尾部内容</p>
+<ul>
+<li>查看尾部5行内容：<code>tail -n 5 hello.txt</code></li>
+<li>查看文档所有更新：<code>tail -f hello.txt</code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li>输出重定向&gt;和追加&gt;&gt; :  </li>
+</ul>
+<br/>
+
+<ul>
+<li><p>ln指令：软链接，类似windows的快捷方式</p>
+<ul>
+<li>在home目录创建一个快捷方式myroot，连接到/root目录：<code>ln -s /root /home/myroot</code></li>
+<li>删除软链接：<code>rm /home/myroot</code></li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li><p>history指令：查看历史命令</p>
+<ul>
+<li>  <code>history</code></li>
+</ul>
+<br/></li>
+</ul>
+<h2 id="三-查找类"><a href="#三-查找类" class="headerlink" title="三    查找类"></a>三    查找类</h2><ul>
+<li><p>find：</p>
+<ul>
+<li><p>找home目录下hello.txt文件：<code>find /home -name hello.txt</code></p>
+</li>
+<li><p>找home目录下大于200M文件：<code>find /home -size +200M</code></p>
+<br/></li>
+</ul>
+</li>
+<li><p>locate</p>
+<ul>
+<li>快速定位hello.txt文件：<code>locate hello.txt</code><br/></li>
+</ul>
+</li>
+<li><p>grep</p>
+<ul>
+<li>文件中找关键字Hello：<code>cat /home/hello.txt | grep -n Hello</code><br/></li>
+</ul>
+</li>
+<li><p>管道符号｜</p>
+<ul>
+<li>表示先进行A再进行B<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="四-压缩-解压"><a href="#四-压缩-解压" class="headerlink" title="四    压缩/解压"></a>四    压缩/解压</h2><ul>
+<li><p>gzip/gunzip</p>
+<ul>
+<li><p>文件压缩：<code>gzip /home/hello.txt</code></p>
+</li>
+<li><p>解压：<code>gunzip /home/hello.txt.zip</code></p>
+<br/></li>
+</ul>
+</li>
+<li><p>zip/unzip</p>
+<ul>
+<li>文件压缩：<code>zip /home/hello.txt</code></li>
+<li>文件解压缩：<code>unzip /home/hello.txt.gz</code></li>
+<li>文件夹压缩：<code>zip -r mybox.zip /home/box</code></li>
+<li>文件夹解压缩：<code>unzip -d box /home/mybox.zip</code><br/></li>
+</ul>
+</li>
+<li><p>tar</p>
+<ul>
+<li>多个文件打包成一个压缩包：<code>tar -zcvf animal.tar.gz /home/pig.txt /home/dog.txt</code></li>
+<li>文件夹压缩：<code>tar -zcvf mybox.tar.gz /home/box</code></li>
+<li>解压当前目录：<code>tar -zcvf /home/mybox.zip</code></li>
+<li>创建个新文件夹，并解压到指定目录：<code>mkdir /home/box1</code>   |  <code> tar -zxvf /home/mybox.zip -C /home/box1</code><br/></li>
+</ul>
+</li>
+</ul>
+<hr>
+<center><b>Keep going，and keep trying...</b></center>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-19T15:30:00+08:00"
-              content="2022-09-19">
-          09-19
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/8b431164.html" itemprop="url">
-            <span itemprop="name">「Linux系列」4-查询和解压缩</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/390a9887.html" rel="prev" title="「路由技术3」 OSPF入门卷——细节解析">
+                  <i class="fa fa-chevron-left"></i> 「路由技术3」 OSPF入门卷——细节解析
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/8b431164.html" rel="next" title="「Linux系列」4-查询和解压缩">
+                  「Linux系列」4-查询和解压缩 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-19T15:30:00+08:00"
-              content="2022-09-19">
-          09-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/8b431164.html" itemprop="url">
-            <span itemprop="name">「Linux系列」4-查询和解压缩</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-15T09:30:00+08:00"
-              content="2022-09-15">
-          09-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/390a9887.html" itemprop="url">
-            <span itemprop="name">「路由技术3」 OSPF入门卷——细节解析</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-06T09:30:00+08:00"
-              content="2022-09-06">
-          09-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/4c71a48a.html" itemprop="url">
-            <span itemprop="name">「路由技术2」OSPF卷1——基础内容</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-09-05T09:30:00+08:00"
-              content="2022-09-05">
-          09-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/af3435c9.html" itemprop="url">
-            <span itemprop="name">「路由技术1」路由基础内容</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 <script src="/js/comments.js"></script>
 </div>
   </main>
