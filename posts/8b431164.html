@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg">
 <meta property="article:published_time" content="2022-09-19T07:30:00.000Z">
-<meta property="article:modified_time" content="2022-09-19T09:17:56.925Z">
+<meta property="article:modified_time" content="2022-09-19T09:25:34.123Z">
 <meta property="article:author" content="Xiao Yao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg">
@@ -247,7 +247,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-09-19 15:30:00 / 修改时间：17:17:56" itemprop="dateCreated datePublished" datetime="2022-09-19T15:30:00+08:00">2022-09-19</time>
+      <time title="创建时间：2022-09-19 15:30:00 / 修改时间：17:25:34" itemprop="dateCreated datePublished" datetime="2022-09-19T15:30:00+08:00">2022-09-19</time>
     </span>
 
   
@@ -265,17 +265,16 @@
 <p>关键字：Linux学习路线、工具、常识、目录结构等<br>摘要：包含linux的学习路线和前要基础知识。</p>
 <span id="more"></span>
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1484861101&auto=0&height=66"></iframe>
-
-<h2 id="一-如何找回root密码"><a href="#一-如何找回root密码" class="headerlink" title="一    如何找回root密码"></a>一    如何找回root密码</h2><h2 id="二-文件目录指令"><a href="#二-文件目录指令" class="headerlink" title="二    文件目录指令"></a>二    文件目录指令</h2><ul>
-<li><p>pwd查看当前目录的绝对地址</p>
-<ul>
-<li> <code>pwd</code></li>
+<h2 id="一-如何找回root密码"><a href="#一-如何找回root密码" class="headerlink" title="一    如何找回root密码"></a>一    如何找回root密码</h2><blockquote>
+<p>百度一下，你就知道！！！</p>
+</blockquote>
+<h2 id="二-文件目录指令"><a href="#二-文件目录指令" class="headerlink" title="二    文件目录指令"></a>二    文件目录指令</h2><ul>
+<li>pwd查看当前目录的绝对地址<ul>
+<li><code>pwd</code></li>
 </ul>
 </li>
 </ul>
 <br/>
-
 
 <ul>
 <li>ls：显示当前目录的所有文件<ul>
@@ -288,8 +287,7 @@
 <br/>
 
 <ul>
-<li><p>cd：进入目录 </p>
-<ul>
+<li>cd：进入目录 <ul>
 <li><code>cd /home/box</code> </li>
 </ul>
 </li>
@@ -299,7 +297,10 @@
 
 
 <ul>
-<li>mkdir：创建目录   <code>mkdir nexbox</code></li>
+<li>mkdir：创建目录  <ul>
+<li><code>mkdir nexbox</code></li>
+</ul>
+</li>
 </ul>
 <br/>
 
@@ -313,9 +314,8 @@
 <br/>
 
 <ul>
-<li><p>touch：创建空文件</p>
-<ul>
-<li> <code>touch hello.txt</code></li>
+<li>touch：创建空文件<ul>
+<li><code>touch hello.txt</code></li>
 </ul>
 </li>
 </ul>
@@ -332,22 +332,17 @@
 <br/>
 
 <ul>
-<li><p>rm：删除文件或文件夹</p>
-<ul>
-<li><p>-r：删除整个文件夹</p>
-</li>
-<li><p>-f：删除不提示</p>
-</li>
-<li><p><strong>常用组合技: <code>rm -rf /home/box</code></strong></p>
-</li>
+<li>rm：删除文件或文件夹<ul>
+<li>-r：删除整个文件夹</li>
+<li>-f：删除不提示</li>
+<li><strong>常用组合技: <code>rm -rf /home/box</code></strong></li>
 </ul>
 </li>
 </ul>
 <br/>
 
 <ul>
-<li><p>mv：移动文件或目录，重命名</p>
-<ul>
+<li>mv：移动文件或目录，重命名<ul>
 <li><strong>移动：<code>mv home/aaa  /home/bbb</code></strong></li>
 <li><strong>重命名：<code>mv oldname.txt newname.txt</code></strong></li>
 </ul>
@@ -356,44 +351,39 @@
 <br/>
 
 <ul>
-<li><p>cat：查看文件内容</p>
-<ul>
-<li> <code>cat </code></li>
+<li>cat：查看文件内容<ul>
+<li><code>cat </code></li>
 </ul>
 </li>
 </ul>
 <br/>
 
 <ul>
-<li><p>more： 全屏幕查看</p>
-<ul>
-<li> <code>more hello.txt</code></li>
+<li>more： 全屏幕查看<ul>
+<li><code>more hello.txt</code></li>
 </ul>
 </li>
 </ul>
 <br/>
 
 <ul>
-<li><p>less：分配查看，是more的高级方法</p>
-<ul>
-<li> <code>less hello.txt</code></li>
+<li>less：分配查看，是more的高级方法<ul>
+<li><code>less hello.txt</code></li>
 </ul>
 </li>
 </ul>
 <br/>
 
 <ul>
-<li><p>echo：打印文本或信息</p>
-<ul>
-<li> <code>echo “Hello World！”</code></li>
+<li>echo：打印文本或信息<ul>
+<li><code>echo “Hello World！”</code></li>
 </ul>
 </li>
 </ul>
 <br/>
 
 <ul>
-<li><p>head：查看文件开头内容</p>
-<ul>
+<li>head：查看文件开头内容<ul>
 <li>查看头5行内容：<code>head -n 5 hello.txt</code> </li>
 </ul>
 </li>
@@ -401,8 +391,7 @@
 <br/>
 
 <ul>
-<li><p>tail：查看文件尾部内容</p>
-<ul>
+<li>tail：查看文件尾部内容<ul>
 <li>查看尾部5行内容：<code>tail -n 5 hello.txt</code></li>
 <li>查看文档所有更新：<code>tail -f hello.txt</code></li>
 </ul>
@@ -416,8 +405,7 @@
 <br/>
 
 <ul>
-<li><p>ln指令：软链接，类似windows的快捷方式</p>
-<ul>
+<li>ln指令：软链接，类似windows的快捷方式<ul>
 <li>在home目录创建一个快捷方式myroot，连接到/root目录：<code>ln -s /root /home/myroot</code></li>
 <li>删除软链接：<code>rm /home/myroot</code></li>
 </ul>
@@ -428,54 +416,43 @@
 <ul>
 <li><p>history指令：查看历史命令</p>
 <ul>
-<li>  <code>history</code></li>
+<li><code>history</code></li>
 </ul>
 <br/></li>
 </ul>
 <h2 id="三-查找类"><a href="#三-查找类" class="headerlink" title="三    查找类"></a>三    查找类</h2><ul>
-<li><p>find：</p>
-<ul>
-<li><p>找home目录下hello.txt文件：<code>find /home -name hello.txt</code></p>
-</li>
-<li><p>找home目录下大于200M文件：<code>find /home -size +200M</code></p>
-<br/></li>
+<li>find：查找文件<ul>
+<li>找home目录下hello.txt文件：<code>find /home -name hello.txt</code></li>
+<li>找home目录下大于200M文件：<code>find /home -size +200M</code><br/></li>
 </ul>
 </li>
-<li><p>locate</p>
-<ul>
-<li>快速定位hello.txt文件：<code>locate hello.txt</code><br/></li>
+<li>locate：快速查找文件hello.txt<ul>
+<li><code>locate hello.txt</code><br/></li>
 </ul>
 </li>
-<li><p>grep</p>
-<ul>
-<li>文件中找关键字Hello：<code>cat /home/hello.txt | grep -n Hello</code><br/></li>
+<li>grep：文件中找关键字”Hello”<ul>
+<li><code>cat /home/hello.txt | grep -n Hello</code><br/></li>
 </ul>
 </li>
-<li><p>管道符号｜</p>
-<ul>
-<li>表示先进行A再进行B<br/></li>
+<li>管道符号：表示先进行A再进行B<ul>
+<li><code>cat /home/hello.txt | grep -n Hello</code><br/></li>
 </ul>
 </li>
 </ul>
 <h2 id="四-压缩-解压"><a href="#四-压缩-解压" class="headerlink" title="四    压缩/解压"></a>四    压缩/解压</h2><ul>
-<li><p>gzip/gunzip</p>
-<ul>
-<li><p>文件压缩：<code>gzip /home/hello.txt</code></p>
-</li>
-<li><p>解压：<code>gunzip /home/hello.txt.zip</code></p>
-<br/></li>
+<li>gzip/gunzip<ul>
+<li>文件压缩：<code>gzip /home/hello.txt</code></li>
+<li>解压：<code>gunzip /home/hello.txt.zip</code><br/></li>
 </ul>
 </li>
-<li><p>zip/unzip</p>
-<ul>
+<li>zip/unzip<ul>
 <li>文件压缩：<code>zip /home/hello.txt</code></li>
 <li>文件解压缩：<code>unzip /home/hello.txt.gz</code></li>
 <li>文件夹压缩：<code>zip -r mybox.zip /home/box</code></li>
 <li>文件夹解压缩：<code>unzip -d box /home/mybox.zip</code><br/></li>
 </ul>
 </li>
-<li><p>tar</p>
-<ul>
+<li>tar<ul>
 <li>多个文件打包成一个压缩包：<code>tar -zcvf animal.tar.gz /home/pig.txt /home/dog.txt</code></li>
 <li>文件夹压缩：<code>tar -zcvf mybox.tar.gz /home/box</code></li>
 <li>解压当前目录：<code>tar -zcvf /home/mybox.zip</code></li>
@@ -484,7 +461,11 @@
 </li>
 </ul>
 <hr>
-<center><b>Keep going，and keep trying...</b></center>
+<pre><code>            HTML
+</code></pre>
+<p>​<br>​<br>​<br>​<br>​<br>​            </p>
+<pre><code>    Keep going，and keep trying...​
+</code></pre>
 
     </div>
 
