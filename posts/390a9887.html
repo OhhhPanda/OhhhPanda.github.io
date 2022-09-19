@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：路由技术基础 摘要：路由技术中，OSPF的 Part 2。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「路由技术3」 OSPF入门卷——细节解析">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/390a9887.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：路由技术基础 摘要：路由技术中，OSPF的 Part 2。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h63vo4v6iyj21hc0gojro.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CNetWork%E3%80%8D%E8%B7%AF%E7%94%B1%E6%8A%80%E6%9C%AF%E9%83%A8%E5%88%86/assets/image-20220914164044425.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「NetWork」路由技术部分/assets/e6c9d24ely1h63xdtckb1j20km04d3yo.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD小记/「NetWork」路由技术部分/assets/e6c9d24ely1h63xdu76htj20kh047dfy.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CNetWork%E3%80%8D%E8%B7%AF%E7%94%B1%E6%8A%80%E6%9C%AF%E9%83%A8%E5%88%86/assets/e6c9d24ely1h63xdts9spj20t50qqjs8.jpg">
+<meta property="article:published_time" content="2022-09-15T01:30:00.000Z">
+<meta property="article:modified_time" content="2022-09-19T02:43:09.430Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h63vo4v6iyj21hc0gojro.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/390a9887.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;390a9887.html&quot;,&quot;path&quot;:&quot;posts&#x2F;390a9887.html&quot;,&quot;title&quot;:&quot;「路由技术3」 OSPF入门卷——细节解析&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「路由技术3」 OSPF入门卷——细节解析 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OSPF%E8%AF%A6%E8%A7%A3%E5%8D%B72-%E5%86%85%E6%A0%B8%E7%90%86%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">OSPF详解卷2-内核理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#point-right-OSPF%E7%BB%86%E8%8A%82%E6%B1%87%E6%80%BB-point-left"><span class="nav-number">1.1.1.</span> <span class="nav-text">:point_right:   OSPF细节汇总  :point_left:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B%E5%92%8C%E9%82%BB%E6%8E%A5%E5%85%B3%E7%B3%BB%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B-star"><span class="nav-number">1.2.</span> <span class="nav-text">一    邻居建立过程和邻接关系建立过程:star:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#question-%E7%AE%80%E8%BF%B0-OSPF-%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E7%9A%84%E8%BF%87%E7%A8%8B%E5%92%8C%E5%BD%B1%E5%93%8D%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9B%A0%E7%B4%A0%EF%BC%9F"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">:question:   简述 OSPF 邻居建立的过程和影响建立的几个因素？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#question-%E7%AE%80%E8%BF%B0-OSPF-%E5%BD%B1%E5%93%8D%E9%82%BB%E5%B1%85%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9B%A0%E7%B4%A0%EF%BC%9F"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">:question:   简述 OSPF 影响邻居建立的几个因素？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-OSPF-LSA-%E7%9A%84%E5%87%A0%E7%A7%8D-LSA"><span class="nav-number">1.3.</span> <span class="nav-text">二    OSPF LSA 的几种 LSA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#question-OSPF-%E7%9A%84-LSA-%E4%BD%A0%E7%9F%A5%E9%81%93%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%EF%BC%9F"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">:question:   OSPF 的 LSA 你知道有哪几种？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-OSPF%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text">三    OSPF的四种网络类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-OSPF%E7%9A%842%E5%A4%A7%E7%B1%BB%E3%80%81%E5%9B%9B%E4%B8%AA%E5%B0%8F%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">四    OSPF的2大类、四个小类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-OSPF%E8%AE%A4%E8%AF%81"><span class="nav-number">1.6.</span> <span class="nav-text">五    OSPF认证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BD%95%E4%B8%BAOSPF%E8%AE%A4%E8%AF%81"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">1    何为OSPF认证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AE%A4%E8%AF%81%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">2    认证的三种模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">1.6.0.3.</span> <span class="nav-text">3    认证配置方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-%E8%B7%AF%E7%94%B1%E6%B1%87%E6%80%BB"><span class="nav-number">1.7.</span> <span class="nav-text">六    路由汇总</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E6%B3%A8%E5%85%A5"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">1    默认路由注入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%B7%AF%E7%94%B1%E6%B1%87%E6%80%BB"><span class="nav-number">1.7.0.2.</span> <span class="nav-text">2    路由汇总</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4"><span class="nav-number">1.7.0.3.</span> <span class="nav-text">3    路由过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%B7%AF%E7%94%B1%E9%87%8D%E5%8F%91%E5%B8%83"><span class="nav-number">1.7.0.4.</span> <span class="nav-text">4    路由重发布</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83-OSPF-%E5%8F%91%E5%B8%83%E5%85%B6%E4%BB%96%E8%B7%AF%E7%94%B1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.8.</span> <span class="nav-text">七    OSPF 发布其他路由的方式</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/390a9887.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「路由技术3」 OSPF入门卷——细节解析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-15 09:30:00" itemprop="dateCreated datePublished" datetime="2022-09-15T09:30:00+08:00">2022-09-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-09-19 10:43:09" itemprop="dateModified" datetime="2022-09-19T10:43:09+08:00">2022-09-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h63vo4v6iyj21hc0gojro.jpg" alt="褐黄色叶子阴影简约分享中文电商banner" style="zoom: 50%;" />
+
+<p>关键字：路由技术基础</p>
+<p>摘要：路由技术中，OSPF的 Part 2。</p>
+<span id="more"></span>
+
+<h1 id="OSPF详解卷2-内核理解"><a href="#OSPF详解卷2-内核理解" class="headerlink" title="OSPF详解卷2-内核理解"></a>OSPF详解卷2-内核理解</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上卷我们学习了 OSPF 的基本概念，本卷就OSPF更多深入的细节进行探究和总结，其中包含 OSPF 的 <u><strong>邻居建立过程</strong></u> 和 <strong><u>邻接建立过程</u></strong> ， <strong><u>影响邻居建立的因素</u></strong> 等内容。</p>
+<blockquote>
+<p>【这绝对是目前B站最好的OSPF最全教程 | 基本概念 | 工作原理 | 项目实战 | 考题讲解】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DY411N7V8?p=16&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1DY411N7V8?p=16&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+<br/>
+
+<h3 id="point-right-OSPF细节汇总-point-left"><a href="#point-right-OSPF细节汇总-point-left" class="headerlink" title=":point_right:   OSPF细节汇总  :point_left:"></a>:point_right:   OSPF细节汇总  :point_left:</h3><hr>
+<h2 id="一-邻居建立过程和邻接关系建立过程-star"><a href="#一-邻居建立过程和邻接关系建立过程-star" class="headerlink" title="一    邻居建立过程和邻接关系建立过程:star:"></a>一    邻居建立过程和邻接关系建立过程<sup>:star:</sup></h2><blockquote>
+<h4 id="question-简述-OSPF-邻居建立的过程和影响建立的几个因素？"><a href="#question-简述-OSPF-邻居建立的过程和影响建立的几个因素？" class="headerlink" title=":question:   简述 OSPF 邻居建立的过程和影响建立的几个因素？"></a>:question:   <strong>简述 OSPF 邻居建立的过程和影响建立的几个因素？</strong></h4></blockquote>
+<p><strong>OSPF 主要三个步骤：</strong> </p>
+<ul>
+<li>首先通过 <code>hello报文</code> 建立邻居</li>
+<li>然后通过 <code>LSA报文</code> 交互同步数据库</li>
+<li>最后通过<code>计算</code> 建立路由表  </li>
+</ul>
+<p><img src="/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CNetWork%E3%80%8D%E8%B7%AF%E7%94%B1%E6%8A%80%E6%9C%AF%E9%83%A8%E5%88%86/assets/image-20220914164044425.png" alt="image-20220914164044425"></p>
+<blockquote>
+<p> 【HCIE面试题-OSPF邻居建立过程以及影响邻居建立的因素】 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Mv411H7GF?share_source=copy_web&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1Mv411H7GF?share_source=copy_web&amp;vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+<br/>
+
+<h4 id="question-简述-OSPF-影响邻居建立的几个因素？"><a href="#question-简述-OSPF-影响邻居建立的几个因素？" class="headerlink" title=":question:   简述 OSPF 影响邻居建立的几个因素？"></a>:question:   <strong>简述 OSPF 影响邻居建立的几个因素？</strong></h4><br/>
+
+<br/>
+
+
+
+<h2 id="二-OSPF-LSA-的几种-LSA"><a href="#二-OSPF-LSA-的几种-LSA" class="headerlink" title="二    OSPF LSA 的几种 LSA"></a>二    OSPF LSA 的几种 LSA</h2><blockquote>
+<h4 id="question-OSPF-的-LSA-你知道有哪几种？"><a href="#question-OSPF-的-LSA-你知道有哪几种？" class="headerlink" title=":question:   OSPF 的 LSA 你知道有哪几种？"></a>:question:   <strong>OSPF 的 LSA 你知道有哪几种？</strong></h4></blockquote>
+<p> OSPF 需要描述邻接路由器信息、直连链路信息、跨区域信息等多种信息，所以定义了多种类型的 LSA 一共有 11 种  LSA  ，其中常用的有 1类、2类、3类、4类、5类、7类 LSA 。</p>
+<p>LSA-1（Router-LSA）：最常见的路由器 LSA ，罗列自己的邻居信息和链路状态</p>
+<p>LSA-2（Network-LSA）：由 DR 产生，描述 MA 网络链路状态。（P2P没有）</p>
+<p>LSA-3（Network-summary-LSA）：各区域之间通过 LSA-3 来交换路由信息</p>
+<p>LSA-4（ASBR-summary-LSA）：除 ASBR 所在区域外进行通告其位置</p>
+<p>LSA-5（External）：仅负责通告 OSPF 路由域外，其他协议的路由，如 RIP 、 BGP 等。</p>
+<p>LSA-7（NSSA）：在 NSSA 区域内传递外部路由信息</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62567244/article/details/123091559">https://blog.csdn.net/qq_62567244/article/details/123091559</a></p>
+</blockquote>
+<br/>
+
+<br/>
+
+<h2 id="三-OSPF的四种网络类型"><a href="#三-OSPF的四种网络类型" class="headerlink" title="三    OSPF的四种网络类型"></a>三    OSPF的四种网络类型</h2><p>OSPF 的不同网络类型会影响是否需要选举 DR 、 BDR 。</p>
+<p>常见的有四种网络类型：<strong>BMA</strong>、NBMA、P2MP、<strong>P2P</strong></p>
+<ul>
+<li>**P2P **点对点：一一相连的两台路由器，常见于PPP端口。</li>
+<li>**BMA **广播式多路访问： 也称Broadcast，指与一个多台设备接入的广播环境相连。常见于Ethernet以太网</li>
+<li>NBMA：没人用，了解即可</li>
+<li>P2MP：没人用，了解即可</li>
+</ul>
+<img src="/Users/xiaoyao/Desktop/MD小记/「NetWork」路由技术部分/assets/e6c9d24ely1h63xdtckb1j20km04d3yo.jpg" alt="image-20220830102444225"  />
+
+<img src="/Users/xiaoyao/Desktop/MD小记/「NetWork」路由技术部分/assets/e6c9d24ely1h63xdu76htj20kh047dfy.jpg" alt="image-20220830102605880" style="zoom:80%;" />
+
+<br/>
+
+<br/>
+
+
+
+<h2 id="四-OSPF的2大类、四个小类"><a href="#四-OSPF的2大类、四个小类" class="headerlink" title="四    OSPF的2大类、四个小类"></a>四    OSPF的2大类、四个小类</h2><p>OSPF 有四个特殊的区域：Stub、Totally Stub、NSSA、Totally NSSA。</p>
+<p>:question:  <strong>理解较为困难！！！</strong></p>
+<p><img src="/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CNetWork%E3%80%8D%E8%B7%AF%E7%94%B1%E6%8A%80%E6%9C%AF%E9%83%A8%E5%88%86/assets/e6c9d24ely1h63xdts9spj20t50qqjs8.jpg" alt="image-20220830105125482"></p>
+<blockquote>
+<p>【华为HCIP-DATACOM考题讲解-OSPF特殊区域题目解析】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PB4y127ft?vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1PB4y127ft?vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+<br/>
+
+
+
+<h2 id="五-OSPF认证"><a href="#五-OSPF认证" class="headerlink" title="五    OSPF认证"></a>五    OSPF认证</h2><h4 id="1-何为OSPF认证"><a href="#1-何为OSPF认证" class="headerlink" title="1    何为OSPF认证"></a>1    何为OSPF认证</h4><p>在OSPF网络中，若攻击者的路由器接入网络中，同样参与选举，成为邻居，建立邻接关系。这样数据包就会转发到黑客的路由器上去了！</p>
+<p>为此通过 OSPF 设置设备之间的认证，非合法路由器的邻居申请都不会被通过！</p>
+<h4 id="2-认证的三种模式"><a href="#2-认证的三种模式" class="headerlink" title="2    认证的三种模式"></a>2    认证的三种模式</h4><ul>
+<li>无认证模式：</li>
+<li>明文认证模式：</li>
+<li>密文认证模式：</li>
+</ul>
+<h4 id="3-认证配置方法"><a href="#3-认证配置方法" class="headerlink" title="3    认证配置方法"></a>3    认证配置方法</h4><blockquote>
+<p>【65详解OSPF 认证：基于区域认证和接口认证】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kh411Q79R?vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1Kh411Q79R?vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<h2 id="六-路由汇总"><a href="#六-路由汇总" class="headerlink" title="六    路由汇总"></a>六    路由汇总</h2><h4 id="1-默认路由注入"><a href="#1-默认路由注入" class="headerlink" title="1    默认路由注入"></a>1    默认路由注入</h4><blockquote>
+<p>【小飞侠-企业网综合实训第17期-园区网技术-60-默认路由注入进OSPF网络】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Cv4y1N7Hr?vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1Cv4y1N7Hr?vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+<h4 id="2-路由汇总"><a href="#2-路由汇总" class="headerlink" title="2    路由汇总"></a>2    路由汇总</h4><blockquote>
+<p>【38.OSPF路由配置汇总】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1334y1j7kP?vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1334y1j7kP?vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+<h4 id="3-路由过滤"><a href="#3-路由过滤" class="headerlink" title="3    路由过滤"></a>3    路由过滤</h4><blockquote>
+<p>【53配置 OSPF 路由信息过滤功能示例】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Pb4y1976c?vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1Pb4y1976c?vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+<h4 id="4-路由重发布"><a href="#4-路由重发布" class="headerlink" title="4    路由重发布"></a>4    路由重发布</h4><blockquote>
+<p>【63详解路由重发布（OSPF 重发布静态路由）】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Nr4y1P7fy?vd_source=f93b7f971786bb01adb4d7606dd361b4">https://www.bilibili.com/video/BV1Nr4y1P7fy?vd_source=f93b7f971786bb01adb4d7606dd361b4</a></p>
+</blockquote>
+<br/>
+
+
+
+<h2 id="七-OSPF-发布其他路由的方式"><a href="#七-OSPF-发布其他路由的方式" class="headerlink" title="七    OSPF 发布其他路由的方式"></a>七    OSPF 发布其他路由的方式</h2><br/>
+
+<br/>
+
+
+
+
+
+<hr>
+<p>总结：本章节的内容为 OSPF 的更底层逻辑和原理，理解起来还较为困难。需要在熟练掌握OSPF基础配置和基本原理的前提下再精进这个部分的内容！</p>
+<hr>
+<pre><code>            HTML
+</code></pre>
+<p>​<br>​<br>​<br>​<br>​<br>​            </p>
+<pre><code>    Keep going，and keep trying...​
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/4c71a48a.html" rel="prev" title="「路由技术2」OSPF卷1——基础内容">
+                  <i class="fa fa-chevron-left"></i> 「路由技术2」OSPF卷1——基础内容
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
