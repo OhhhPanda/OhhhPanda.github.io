@@ -20,33 +20,32 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
-<meta name="description" content="关键字：Linux学习路线、工具、常识、目录结构等摘要：包含linux的学习路线和前要基础知识。">
+<meta name="description" content="关键字：Linux 学习路线、工具、常识、目录结构等摘要：包含 linux 的学习路线和前要基础知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「Linux系列」1-前期基础篇">
-<meta property="og:url" content="http://ohxiaoyao.life/posts/70b22af.html">
+<meta property="og:title" content="「Linux系列」6-权限设置">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/e2c9b928.html">
 <meta property="og:site_name" content="ohxiaoyao.life">
-<meta property="og:description" content="关键字：Linux学习路线、工具、常识、目录结构等摘要：包含linux的学习路线和前要基础知识。">
+<meta property="og:description" content="关键字：Linux 学习路线、工具、常识、目录结构等摘要：包含 linux 的学习路线和前要基础知识。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rq7ufh8j21hc0goabv.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rqa0xbkj21na0smq9m.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rqaer0pj215u0u0afz.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rq8ly99j20zw0o475q.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rq9id0bj20u07sxh3n.jpg">
-<meta property="article:published_time" content="2022-08-06T01:30:00.000Z">
-<meta property="article:modified_time" content="2022-09-19T09:23:49.088Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGly1h77bmypiwej30ep06emxu.jpg">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CLinux%E5%85%A5%E9%97%A8%E3%80%8D/assets/image-20221010164727561-5917384.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CLinux%E5%85%A5%E9%97%A8%E3%80%8D/assets/image-20221010164556362-5917384.png">
+<meta property="article:published_time" content="2022-10-14T07:30:00.000Z">
+<meta property="article:modified_time" content="2022-10-16T10:56:37.974Z">
 <meta property="article:author" content="Xiao Yao">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rq7ufh8j21hc0goabv.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg">
 
 
-<link rel="canonical" href="http://ohxiaoyao.life/posts/70b22af.html">
+<link rel="canonical" href="http://ohxiaoyao.life/posts/e2c9b928.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;70b22af.html&quot;,&quot;path&quot;:&quot;posts&#x2F;70b22af.html&quot;,&quot;title&quot;:&quot;「Linux系列」1-前期基础篇&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;e2c9b928.html&quot;,&quot;path&quot;:&quot;posts&#x2F;e2c9b928.html&quot;,&quot;title&quot;:&quot;「Linux系列」6-权限设置&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>「Linux系列」1-前期基础篇 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+<title>「Linux系列」6-权限设置 | ohxiaoyao.life</title><script src="/js/config.js"></script>
   
 
 
@@ -135,7 +134,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E5%89%8D%E6%9C%9F%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">Linux 前期基础篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BF%AB%E7%85%A7%E5%92%8C%E5%85%8B%E9%9A%86"><span class="nav-number">1.1.</span> <span class="nav-text">一  虚拟机快照和克隆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%BF%AB%E7%85%A7"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、虚拟机克隆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-VMtools%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.</span> <span class="nav-text">二  VMtools工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95XShell%E5%92%8CXFTP%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.</span> <span class="nav-text">三 远程登录XShell和XFTP工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%EF%BC%88%E8%AE%B0%E5%BF%86%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">四 目录结构（记忆）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-vi%E5%92%8Cvim%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-number">1.5.</span> <span class="nav-text">五 vi和vim编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81vim%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.5.1.</span> <span class="nav-text">1、vim操作模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C%EF%BC%88%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%E4%B8%8B%EF%BC%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">2、快捷操作（命令模式下）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD-%E7%B3%BB%E7%BB%9F%E6%8C%87%E4%BB%A4"><span class="nav-number">1.6.</span> <span class="nav-text">六  系统指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83-%E8%B4%A6%E5%8F%B7%E4%BD%BF%E7%94%A8"><span class="nav-number">1.7.</span> <span class="nav-text">七 账号使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%90%E9%99%84%E5%BD%95%E3%80%91"><span class="nav-number">2.</span> <span class="nav-text">【附录】</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E4%B8%AA%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">一    文件的三个组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%89%80%E6%9C%89%E8%80%85%E5%92%8C%E6%89%80%E5%9C%A8%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">二    修改文件所有者和所在组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text">三    修改权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rwx-%E6%9D%83%E9%99%90%E7%BB%93%E6%9E%84%EF%BC%8810%E4%BD%8D%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">rwx 权限结构（10位）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E9%80%9A%E8%BF%87%E5%AD%97%E6%AF%8D-%E3%80%81-%E3%80%81-%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"><span class="nav-number">3.2.</span> <span class="nav-text">方法一：通过字母+、-、&#x3D;修改权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E9%80%9A%E8%BF%87%E6%95%B0%E5%AD%97%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90"><span class="nav-number">3.3.</span> <span class="nav-text">方法二：通过数字修改权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E7%BB%83%E4%B9%A0"><span class="nav-number">4.</span> <span class="nav-text">四    练习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F-1"><span class="nav-number">4.1.</span> <span class="nav-text">游戏-1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F-2"><span class="nav-number">4.2.</span> <span class="nav-text">游戏-2</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -226,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/70b22af.html">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/e2c9b928.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
@@ -239,7 +238,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          「Linux系列」1-前期基础篇
+          「Linux系列」6-权限设置
         </h1>
 
         <div class="post-meta-container">
@@ -250,14 +249,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-08-06 09:30:00" itemprop="dateCreated datePublished" datetime="2022-08-06T09:30:00+08:00">2022-08-06</time>
+      <time title="创建时间：2022-10-14 15:30:00" itemprop="dateCreated datePublished" datetime="2022-10-14T15:30:00+08:00">2022-10-14</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-09-19 17:23:49" itemprop="dateModified" datetime="2022-09-19T17:23:49+08:00">2022-09-19</time>
+        <time title="修改时间：2022-10-16 18:56:37" itemprop="dateModified" datetime="2022-10-16T18:56:37+08:00">2022-10-16</time>
       </span>
 
   
@@ -270,101 +269,167 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rq7ufh8j21hc0goabv.jpg" alt="Keep Going !" style="zoom:67%;" />
+        <img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h6c1a6dflyj21hc0gowga.jpg" alt="Keep Going !" style="zoom:67%;" />
 
-<p>关键字：Linux学习路线、工具、常识、目录结构等<br>摘要：包含linux的学习路线和前要基础知识。</p>
+<p>关键字：Linux 学习路线、工具、常识、目录结构等<br>摘要：包含 linux 的学习路线和前要基础知识。</p>
 <span id="more"></span>
-
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1484861101&auto=0&height=66"></iframe>
-
-<p>工科一大特点：</p>
+<h2 id="一-文件的三个组"><a href="#一-文件的三个组" class="headerlink" title="一    文件的三个组"></a>一    文件的三个组</h2><ul>
+<li>创建者（我）：u</li>
+<li>组（我家）：g</li>
+<li>其他组（别人家）： o</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h77bmypiwej30ep06emxu.jpg" alt="image-20221010160925951"></p>
+<p><strong>查看用户所在组：</strong></p>
 <ul>
-<li>先know how，再know why。</li>
-<li>别卡在难点，继续往前走。</li>
-<li>Linux不是思想，是工具。需要用的溜！</li>
+<li>查看所有组：<code>cat /etc/group</code></li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rqa0xbkj21na0smq9m.jpg" alt="image-20220805165516946" style="zoom:50%;" />
-
-
-
-
-
-
-<center><b>文末有Linux学习思维导图！</b></center>
-
-<p><br/><br/><br/></p>
-<h1 id="Linux-前期基础篇"><a href="#Linux-前期基础篇" class="headerlink" title="Linux 前期基础篇"></a>Linux 前期基础篇</h1><h2 id="一-虚拟机快照和克隆"><a href="#一-虚拟机快照和克隆" class="headerlink" title="一  虚拟机快照和克隆"></a>一  虚拟机快照和克隆</h2><h3 id="1、快照"><a href="#1、快照" class="headerlink" title="1、快照"></a>1、快照</h3><p>在打BOSS前我们往往存个档以防万一，Linux系统同理。<br>当下一步将进行重要操作时，往往拍摄一份快照作为备份。</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rqaer0pj215u0u0afz.jpg" alt="image-20220809163217494" style="zoom: 25%;" />
-
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rq8ly99j20zw0o475q.jpg" alt="image-20220809163227587" style="zoom: 33%;" />
-
-
-
-<p><br/><br/></p>
-<h3 id="2、虚拟机克隆"><a href="#2、虚拟机克隆" class="headerlink" title="2、虚拟机克隆"></a>2、虚拟机克隆</h3><p>当需要配置多个虚拟机时，一个个配置内存、硬盘大小、OS系统等显然不现实，这便需要采用克隆的方式。<br>一个是通过文件复制的方式，一个是通过VMware WorkStation 右键菜单的克隆即可。</p>
-<p><br/><br/><br/></p>
-<h2 id="二-VMtools工具"><a href="#二-VMtools工具" class="headerlink" title="二  VMtools工具"></a>二  VMtools工具</h2><p>VMtools是一个建立本机Windows和虚拟机Linux系统的桥梁，可以通过共享文件夹来共享文件。</p>
+<p><img src="/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CLinux%E5%85%A5%E9%97%A8%E3%80%8D/assets/image-20221010164727561-5917384.png" alt="image-20221010164727561"></p>
 <ul>
-<li>Linux目录：mnt/hgfs/myshare</li>
-<li>Windows目录：在WMware配置中设置</li>
+<li>仅查看具体的组</li>
 </ul>
-<p><br/><br/><br/></p>
-<h2 id="三-远程登录XShell和XFTP工具"><a href="#三-远程登录XShell和XFTP工具" class="headerlink" title="三 远程登录XShell和XFTP工具"></a>三 远程登录XShell和XFTP工具</h2><blockquote>
-<p>在学习中或许是在自己电脑的虚拟机上实现，但是在实际应用场景中，Linux服务器是多人共享、运行在公网上的，所以要求程序员需要通过远程登录到Linux服务器上进行项目的管理和开发工作。</p>
-</blockquote>
-<ul>
-<li>SSH登录工具：putty、SecureCRT、<strong>Xshell</strong>等工具</li>
-<li>FTP文件传输工具：<strong>Xftp</strong>。</li>
-</ul>
-<p><br/><br/><br/></p>
-<h2 id="四-目录结构（记忆）"><a href="#四-目录结构（记忆）" class="headerlink" title="四 目录结构（记忆）"></a>四 目录结构（记忆）</h2><p>“Linux世界中，一切皆文件”<br>正如C盘放系统，D盘放软件一样。Linux系统的目录结构也功能各异，需要大致记忆。详见思维导图。</p>
-<p><br/><br/><br/></p>
-<h2 id="五-vi和vim编辑器"><a href="#五-vi和vim编辑器" class="headerlink" title="五 vi和vim编辑器"></a>五 vi和vim编辑器</h2><p>Linux系统内置vi编辑器，vim可以看成是vi的增强版，就好比是在idea中编写代码，关键字，语句都会用不同颜色来表示，方便程序设计，代码补全，编译等操作。</p>
-<h3 id="1、vim操作模式"><a href="#1、vim操作模式" class="headerlink" title="1、vim操作模式"></a>1、vim操作模式</h3><p>vim中分两种模式（3种）</p>
-<ul>
-<li><p>编辑模式（按i进入），用于编写具体代码</p>
-</li>
-<li><p>命令模式（按ESC+ ：），用于进行复制、粘贴、删除、保存退出等命令。</p>
-<br/></li>
-</ul>
-<h3 id="2、快捷操作（命令模式下）"><a href="#2、快捷操作（命令模式下）" class="headerlink" title="2、快捷操作（命令模式下）"></a>2、快捷操作（命令模式下）</h3><ul>
-<li>拷贝—&gt;<strong>yy + p</strong>（效果等同于ctrl + c  ， ctrl + v，5yyp表示复制下面5行）</li>
-<li>删除 —&gt;<strong>dd</strong> （若要是删除多行需要进行和拷贝多行一样的操作，数字 + dd ）</li>
-<li>查找某个单词—&gt;  <strong>/Hello</strong>（按n下一个）</li>
-<li>跳转首行和末尾行 —&gt;<strong>gg、G</strong>（使用G进入到文件末尾，使用gg进入文件的最首行）</li>
-<li>开启和关闭行号 —&gt;<strong>set nu / set nonu</strong></li>
-<li>撤销操作 —&gt; <strong>u</strong> （等同于windows下ctrl + z）</li>
-</ul>
-<p><br/><br/><br/></p>
-<h2 id="六-系统指令"><a href="#六-系统指令" class="headerlink" title="六  系统指令"></a>六  系统指令</h2><ul>
-<li><p><strong>shutdown -h now       立刻关机</strong></p>
-</li>
-<li><p>shutdown -h 1              1分钟后关机</p>
-</li>
-<li><p>shutdown -r  now        现在重启开机</p>
-</li>
-<li><p>halt                                关机</p>
-</li>
-<li><p><strong>reboot                             重新启动</strong></p>
-</li>
-<li><p><strong>sync                                 把内存的数据同步到磁盘</strong>*</p>
-</li>
-</ul>
-<p>tips：在重启和关机前，往往都要进行<strong>syns</strong>操作！</p>
-<p><br/><br/><br/></p>
-<h2 id="七-账号使用"><a href="#七-账号使用" class="headerlink" title="七 账号使用"></a>七 账号使用</h2><p>实际工作中很少用root用户登录，因为root权限过高。往往通过普通用户登录，权限不够再用<strong>su - root</strong> 切换成管理员身份。<br>升权限输密码，降权限不用；使用logout可以返回上一级的用户。</p>
+<p><img src="/Users/xiaoyao/Desktop/MD%E5%B0%8F%E8%AE%B0/%E3%80%8CLinux%E5%85%A5%E9%97%A8%E3%80%8D/assets/image-20221010164556362-5917384.png" alt="image-20221010164556362"></p>
 <br/>
 
 <br/>
 
-<br/>
-
-<br/>
-
-<hr>
+<h2 id="二-修改文件所有者和所在组"><a href="#二-修改文件所有者和所在组" class="headerlink" title="二    修改文件所有者和所在组"></a>二    修改文件所有者和所在组</h2><ul>
+<li><p>所有者 <code>chown</code></p>
+<ul>
+<li>将 hello.txt 文件的所有者修改为 cat ：<code>chown cat hello.txt</code></li>
+</ul>
+<ul>
+<li>将 animals 目录下所有文件和目录<strong>所有者</strong>改为 cat ：<code>chown -R cat animal</code> </li>
+</ul>
+</li>
+<li><p>所在组**( !!! )**<code>chgrp和usermod区别</code></p>
+<ul>
+<li>将文件 hello.txt 的所在组修改为 Good ：<code>chgrp Good hello.txt</code></li>
+<li>将 animals 目录下所有文件和目录<strong>所在组</strong>改为 Good ：<code>chgrp -R Good /home/box</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>**将用户 pig 的组修改为 Good **：<code>usermod -g Good pig</code></li>
+</ul>
 <blockquote>
-<h1 id="【附录】"><a href="#【附录】" class="headerlink" title="【附录】"></a>【附录】</h1><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h50rq9id0bj20u07sxh3n.jpg" alt="image-20220809172630702" style="zoom:150%;" />
+<p><strong>Tips：一定要分清 chgrp 和 usermod 的区别！一个是修改文件的组，一个是修改用户的组！</strong></p>
 </blockquote>
+<br/>
+
+<p>【例子】</p>
+<p>[1] 将 test.txt 文件的所有者改为 HL</p>
+<p><code>chown HL test.txt</code></p>
+<p>[2] 将 testbox 目录下所有文件和目录所有者改为 tom</p>
+<p><code>chown -R HL /home/box</code></p>
+<br/>
+
+<br/>
+
+<h2 id="三-修改权限"><a href="#三-修改权限" class="headerlink" title="三    修改权限"></a>三    修改权限</h2><h3 id="rwx-权限结构（10位）"><a href="#rwx-权限结构（10位）" class="headerlink" title="rwx 权限结构（10位）"></a>rwx 权限结构（10位）</h3><p>0：确定文件类型</p>
+<ul>
+<li>l ：类型，相当于快捷方式</li>
+<li>d：目录，相当于文件夹</li>
+<li>c：<code>字符设备文件</code> ，鼠标和键盘</li>
+<li>b：块设备，比如硬盘</li>
+</ul>
+<p>1—3位：所有者对文件的权限【u】</p>
+<p>4—6位：所在组对文件的权限【g】</p>
+<p>7—9位：其他用户对文件的权限【o】</p>
+<br/>
+
+<h3 id="方法一：通过字母-、-、-修改权限"><a href="#方法一：通过字母-、-、-修改权限" class="headerlink" title="方法一：通过字母+、-、=修改权限"></a>方法一：通过字母+、-、=修改权限</h3><ul>
+<li><p>chmod 指令(  <code>+</code>  、<code>-</code> 、 <code>=</code>三种变更符号)</p>
+<ul>
+<li><p><code>chmod u=rwx,g=rx,o=x hello.txt</code>      ( <code>u用户</code>、<code>g用户组</code>、<code>o其他人</code>、<code>a所有人</code> )</p>
+</li>
+<li><p><code>chmod o+rw hello.txt</code></p>
+</li>
+<li><p><code>chmod a-x hello.txt</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>【例子】</strong></p>
+<p>[1] 给 test.txt 文件，所有者读写执行权限，所在组读执行权限，其他组读执行权限。</p>
+<p>·chmod u=rwx,g=rx,o=rx hello.txt</p>
+<p>[2] 给 test.txt 文件，所有者除去执行权限，所在组增加写权限</p>
+<p>chmod u-x,g+w test.txt</p>
+<p>[3] 给 test.txt 的所有用户添加读的权限</p>
+<p>chmod a+w test.txt</p>
+<br/>
+
+<h3 id="方法二：通过数字修改权限"><a href="#方法二：通过数字修改权限" class="headerlink" title="方法二：通过数字修改权限"></a>方法二：通过数字修改权限</h3><p><strong>r=4，w=2，x=1（rwx=4+2+1=7）</strong></p>
+<p>1 x</p>
+<p>2 w</p>
+<p>3 wx</p>
+<p>4 r</p>
+<p>5 rx</p>
+<p>6 rw</p>
+<p>7 rwx</p>
+<p><strong>【例子】</strong></p>
+<p>[1] 将 /test.txt 权限改为 rwxr-xr-x</p>
+<p>chmod 755 test.txt</p>
+<blockquote>
+<p><strong>现在你知道 chmod 777 文件 是个什么意思了吧？</strong></p>
+</blockquote>
+<br/>
+
+<br/>
+
+<h2 id="四-练习"><a href="#四-练习" class="headerlink" title="四    练习"></a>四    练习</h2><h3 id="游戏-1"><a href="#游戏-1" class="headerlink" title="游戏-1"></a>游戏-1</h3><p><strong>【任务要求】</strong></p>
+<p>1、Police 组：Tom、Jack；Killer 组：XY、Joker</p>
+<p>1、创建两个组</p>
+<p>2、创建四个用户角色</p>
+<p>3、警察Tom创建一个文件，自己可读写，本组警察可读，其他组无任何权限</p>
+<p>rw- r– — 640</p>
+<p>4、Tom 修改改文件，让其他组可读，本组人可写</p>
+<p>5、XY 投靠警察阵容，看看是否可读写</p>
+<p><strong>【整理】</strong></p>
+<p>A1：改变用户组叛变的 chgrp 和 usermod 区别？？</p>
+<p>A2:虽然同在一个组，但是彼此无法进入彼此的 Home 目录大门</p>
+<p>给了 Tom640 的权限，为何同组的 Jack 还是无法进入 Tom 的 home 目录？</p>
+<p>650 也不行，只能 770 吗？</p>
+<h3 id="游戏-2"><a href="#游戏-2" class="headerlink" title="游戏-2"></a>游戏-2</h3><p><strong>【任务要求】</strong></p>
+<p>1、建立两个组（Good组，Bad组）qgroupadd Good</p>
+<p>groupadd Bad</p>
+<p>2、建立四个用户（cat，dog）（pig，wolf）</p>
+<p>useradd cat </p>
+<p>useradd dog</p>
+<p>useradd pig </p>
+<p>useradd wolf </p>
+<p>3、设置用户的密码</p>
+<p>passwd cat :cat</p>
+<p>passwd dog :dog </p>
+<p>passwd pig :pig</p>
+<p>passwd wolf :wolf</p>
+<p>4、把猫狗放进 good 组，猪狼放进 bad 组</p>
+<blockquote>
+<p>chgrp ??</p>
+</blockquote>
+<p>usermod -g good cat</p>
+<p>usermod -g good dog </p>
+<p>usermod -g bad pig </p>
+<p>usermod -g bad wolf</p>
+<p>5、用 dog 建立一个文件 who.txt ，并 echo 输出</p>
+<p>su dog </p>
+<p>vim who.txt</p>
+<p>6、文件给 cat 读写权限</p>
+<p>chmod g+w who.txt</p>
+<p>7、cat 修改一句话</p>
+<p>vim who.txt</p>
+<p>“I am a good cat！”</p>
+<p>8、狼和猪没有权限</p>
+<p>Wolf:cd /home/dog</p>
+<p>Pig:cd /home/dog</p>
+<p>9、把 pig 放入 good 组，修改文件并表明身份</p>
+<p>vim who.txt</p>
+<p>“I am a good pig!”</p>
+<p>10、复盘和总结！</p>
+<p><strong>【复盘总结】</strong></p>
+<p>Q1: 错错错！！！！！, <strong><u><em>Chgrp good pig</em></u></strong> 是错误的！</p>
+<p>A：<code>chgrp</code> 是移动文件所在组 ，<code>usermod -g new old </code>才是移动分组！</p>
+<p>Q2: 解决：“userdel: user xxxx is currently used by process xxx” 的问题</p>
+<p>A：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44653106/article/details/126442493">https://blog.csdn.net/qq_44653106/article/details/126442493</a></p>
 <hr>
 <center><b>Keep going，and keep trying...</b></center>
 
@@ -380,14 +445,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/3eb73af5.html" rel="prev" title="「思科NA培训」CCNA-8 冗余技术基础">
-                  <i class="fa fa-chevron-left"></i> 「思科NA培训」CCNA-8 冗余技术基础
+                <a href="/posts/8b431164.html" rel="prev" title="「Linux系列」4-查询和解压缩">
+                  <i class="fa fa-chevron-left"></i> 「Linux系列」4-查询和解压缩
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/c9007e35.html" rel="next" title="「Linux系列」2-实用指令篇-用户/组管理">
-                  「Linux系列」2-实用指令篇-用户/组管理 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
