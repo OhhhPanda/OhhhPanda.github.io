@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：学习资料学习——《网络是怎样连接的》 摘要：通过思科手册和资料的方式学习网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「NetWork」前辈分享整理-2">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/6563b71d.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：学习资料学习——《网络是怎样连接的》 摘要：通过思科手册和资料的方式学习网络">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufrs30rj30os0zan09.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufz6s8rj31ok0u0dl7.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1428545-ea2b954f64ac9eef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1076">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9luftownxj31280oiq6u.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190115141640984.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190115141652927.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NTU2NDQ0,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufv8qzjj30mw05x74k.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufx6gf3j30hs0a0mxh.jpg">
+<meta property="article:published_time" content="2022-12-28T10:14:00.000Z">
+<meta property="article:modified_time" content="2022-12-30T06:58:06.685Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufrs30rj30os0zan09.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/6563b71d.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;6563b71d.html&quot;,&quot;path&quot;:&quot;posts&#x2F;6563b71d.html&quot;,&quot;title&quot;:&quot;「NetWork」前辈分享整理-2&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「NetWork」前辈分享整理-2 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8A%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%8B"><span class="nav-number">1.</span> <span class="nav-text">《网络是怎样连接的》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.0.1.</span> <span class="nav-text">摘要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E7%AC%AC%E4%B8%80%E7%AB%A0%E3%80%91"><span class="nav-number">1.1.</span> <span class="nav-text">【第一章】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">HTTP 状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.1.3.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">域名解析过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%91"><span class="nav-number">1.2.</span> <span class="nav-text">【第三章】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT%E6%8A%80%E6%9C%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">NAT技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%91"><span class="nav-number">1.3.</span> <span class="nav-text">【第四章】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADSL%E2%80%94%E2%80%94%E4%BC%A0%E7%BB%9F%E4%B8%BB%E6%B5%81"><span class="nav-number">1.3.1.</span> <span class="nav-text">ADSL——传统主流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E7%BA%A4%E5%88%B0%E6%88%B7FTTH"><span class="nav-number">1.3.2.</span> <span class="nav-text">光纤到户FTTH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%89%E7%BA%A4%E5%88%B0%E6%88%B7%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.3.</span> <span class="nav-text">光纤到户实现方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-FTTH-%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">1.3.4.</span> <span class="nav-text">使用 FTTH 的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FTTH%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-number">1.3.5.</span> <span class="nav-text">FTTH的演进</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%91"><span class="nav-number">1.4.</span> <span class="nav-text">【第五章】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%9F%BA%E7%A1%80"><span class="nav-number">1.4.1.</span> <span class="nav-text">防火墙基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.2.</span> <span class="nav-text">防火墙分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/6563b71d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「NetWork」前辈分享整理-2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-28 18:14:00" itemprop="dateCreated datePublished" datetime="2022-12-28T18:14:00+08:00">2022-12-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-12-30 14:58:06" itemprop="dateModified" datetime="2022-12-30T14:58:06+08:00">2022-12-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>关键字：学习资料学习——《网络是怎样连接的》</p>
+<p>摘要：通过思科手册和资料的方式学习网络</p>
+<img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufrs30rj30os0zan09.jpg" alt="image-20221230121022722" style="zoom:67%;" />
+
+<span id="more"></span>
+
+<hr>
+<h1 id="《网络是怎样连接的》"><a href="#《网络是怎样连接的》" class="headerlink" title="《网络是怎样连接的》"></a>《网络是怎样连接的》</h1><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>通过学习我们了解到，本书将从六个章节逐一介绍从Web的发送，网卡实现的TCP/IP发包，到路由网络的传递，最后到第五章防火墙和缓存服务器的过滤，最后传输成功，探索了网络连接和通信的全过程。接下来我们总结本书学习中遇到的一些知识模块。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufz6s8rj31ok0u0dl7.jpg" alt="image-20221230114942219"></p>
+<h2 id="【第一章】"><a href="#【第一章】" class="headerlink" title="【第一章】"></a>【第一章】</h2><h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><p>HTTP 协议是 Hyper Text Transfer Protocol（超文本传输协议）的缩写，是用于从万维网（ WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。</p>
+<p>HTTP 是一个基于 TCP/IP 通信协议来传递数据（HTML 文件、图片文件、查询结果等）。</p>
+<p>HTTPS 协议是 HyperText Transfer Protocol Secure（超文本传输安全协议）的缩写，是一种通过计算机网络进行安全通信的传输协议。</p>
+<p>HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包，HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换资料的隐私与完整性。</p>
+<p>HTTP 的 URL 是由 <strong>http://</strong> 起始与默认使用端口 <strong>80</strong>，而 HTTPS 的 URL 则是由 <strong>https://</strong> 起始与默认使用端口<strong>443</strong>。</p>
+<br/>
+
+<h3 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h3><p>当浏览者访问一个网页时，浏览者的浏览器会向网页所在服务器发出请求。当浏览器接收并显示网页前，此网页所在的服务器会返回一个包含 HTTP 状态码的信息头（server header）用以响应浏览器的请求。</p>
+<p>HTTP 状态码的英文为 <strong>HTTP Status Code</strong>。。</p>
+<p>下面是常见的 HTTP 状态码：</p>
+<ul>
+<li>200 - 请求成功</li>
+<li>301 - 资源（网页等）被永久转移到其它URL</li>
+<li>404 - 请求的资源（网页等）不存在</li>
+<li>500 - 内部服务器错误</li>
+</ul>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>在之前我们了解了DNS用于域名解析，但通过阅读本书后了解了更多关于根DNS、顶级域DNS等相关的内容，这里进行整理和总结。</p>
+<p>DNS即域名系统（Domain Name System）是用来将域名与IP地址建议映射的协议。</p>
+<p>DNS服务器是高可用、高并发和分布式的树桩层次结构</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1428545-ea2b954f64ac9eef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1076" alt="img"></p>
+<ul>
+<li>根DNS服务器：返回顶级域DNS的服务器IP地址</li>
+<li>顶级域DNS服务器：返回权威DNS服务器IP地址</li>
+<li>权威DNS服务器：返回相应主机的IP地址</li>
+<li>本地域名服务器：如果设计通过DHCP配置，本地DNS由你的网络服务商（ISP），如电信移动等自动分配，它通常就在你的网络服务商的某个机房。</li>
+</ul>
+<h3 id="域名解析过程"><a href="#域名解析过程" class="headerlink" title="域名解析过程"></a>域名解析过程</h3><p>域名的解析总体可以分为两大步骤。<br>1.本级向本地域名服务器（本地DNS）发送DNS请求报文，报文里携带需要查询的域名如<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://www.163.com">www.163.com</a>。<br>2.本地DNS收到来自客户端的请求。如果能找到<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://www.163.com">www.163.com</a>，它就直接返回IP地址。如果没有，本地DNS去问它的根域名服务器。<br>3.根域名服务器收到来自本地DNS的请求，发现后缀是.com，然后发送顶级域名服务器的地址<br>4.本地DNS向顶级DNS请求，顶级域名服务器返回<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://www.163.com">www.163.com</a>区域的权威DNS服务器的地址。<br>5.本地DNS转向问权威DNS服务器，权限DNS服务器查询后将对应IP地址告诉本地DNS。<br>6.本地DNS将IP地址返给客户端，客户端和目标建立连接。</p>
+<h2 id="【第三章】"><a href="#【第三章】" class="headerlink" title="【第三章】"></a>【第三章】</h2><h3 id="NAT技术"><a href="#NAT技术" class="headerlink" title="NAT技术"></a>NAT技术</h3><p>我们知道ipv4地址是有限的，随着互联网的发展，现在的入网设备早就超过了2^32次方个了。那为什么我们现在的主机IP还够用呢？同时在我们学习Linux配置网卡的时候也出现了NAT模式，所以本章节我们着重阅读了NAT技术实现的功能，基本原理和演进过程。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9luftownxj31280oiq6u.jpg" alt="image-20221230120816730"></p>
+<p>   我们发现静态NAT在一个主机占用路由器的WAN口IP地址后，其它主机都需要等待主机通信完，效率很低。而动态NAT，需要有足够的IP地址。</p>
+<ul>
+<li>静态NAT(Static NAT)（一对一）<br>将内部网络的私有IP地址转换为公有IP地址，IP地址对是一对一的，是一直不变的。<br><img src="https://img-blog.csdnimg.cn/20190115141640984.png" alt="在这里插入图片描述"></li>
+<li>动态地址NAT(Pooled NAT)（多对多）<br>将内部网络的私有IP地址转换为公用IP地址时，IP地址是不确定，随机的。所有被授权访问Internet的私有IP地址可随机转换为任何指定合法的IP地址。也就是说，只要指定哪些内部地址可以进行转换，以及用哪些合法地址作为外部地址时，就可以进行动态NAT转换。动态NAT是在路由器上配置一个外网IP地址池，当内部有计算机需要和外部通信时，就从地址池里动态的取出一个外网IP，并将他们的对应关系绑定到NAT表中，通信结束后，这个外网IP才被释放，可供其他内部IP地址转换使用，这个DHCP租约IP有相似之处。当ISP提供的合法IP地址略少于网络内部的计算机数量时。可以采用动态转换的方式。<br><img src="https://img-blog.csdnimg.cn/20190115141652927.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3NTU2NDQ0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>网络地址端口转换NAPT（Network Address Port Translation）（Port-Level NAT）（多对一）<br>改变外出数据包的源端口并进行端口转换，采用端口多路复用方式。内部网络的所有主机均可共享一个合法外部IP地址实现对Internet的访问，可以最大限度地节约IP地址资源。同时，也可以隐藏网络内部的所有主机，有效避免来自Internet的攻击。因此，目前网络中应用最多的就是PAT规则。这是最常用的NAT技术，也是IPv4能够维持到今天的最重要的原因之一，它提供了一种多对一的方式，对多个内网IP地址，边界路由可以给他们分配一个外网IP，利用这个外网IP的不同端口和外部进行通信。NAPT 与 动态NAT 不同，它将内部连接映射到外部网络中的一个单独的IP地址上，同时在该地址上加上一个由NAT设备选定的端口号。<br><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufv8qzjj30mw05x74k.jpg" alt="在这里插入图片描述"><br>NAPT是使用最普遍的一种转换方式，在HomeGW中也主要使用该方式。它又包含两种转换方式：SNAT和DNAT。</li>
+</ul>
+<h2 id="【第四章】"><a href="#【第四章】" class="headerlink" title="【第四章】"></a>【第四章】</h2><p>由于我们过去学习的主要是设备层面的网络知识，通过本书我们了解到了更多宏观的网络连接过程，尤其本章节的ADSL、PPP接入等内容需要多加学习和了解，故而本章节将会花费更多笔墨进行总结和归纳：</p>
+<h3 id="ADSL——传统主流"><a href="#ADSL——传统主流" class="headerlink" title="ADSL——传统主流"></a>ADSL——传统主流</h3><p>光纤互联网在我们的生活中已经存在了很长时间。但是，我们大多数人在家中仍然有<strong>ADSL 连接</strong>。</p>
+<p>ADSL，或非对称数字用户线，与 1990 年代及更早时期使用的拨号线路相比，这种通信技术提供了更快的互联网连接，长期以来一直为世界许多地方提供互联网电力。</p>
+<p>为了使 ADSL 连接能够提供流畅的连接，必须有多个系统<strong>同时工作</strong>。电话基础设施中的铜线与连接到本地电话交换机的调制解调器一起工作，并且从它出来的信号被发送到DSLAM，即<em>数字用户线路接入复用器</em>，我们可以简单地描述为中央互联网系统。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lufx6gf3j30hs0a0mxh.jpg" alt="img"></p>
+<h3 id="光纤到户FTTH"><a href="#光纤到户FTTH" class="headerlink" title="光纤到户FTTH"></a>光纤到户FTTH</h3><p>光纤到户 (FTTH)是从中心点直接安装和使用光纤到住宅、公寓楼和企业等各个建筑物，以提供高速互联网接入。与大多数地方现在使用的技术相比，FTTH 显着提高了计算机用户可用的连接速度。</p>
+<p>FTTH 可以达到每秒 100 兆比特 ( Mbps ) 的连接速度，这速度是典型电缆调制解调器或 DSL（数字用户线路）连接的 20 到 100 倍。大规模实施 FTTH 成本高昂，因为它需要在从现有光纤电缆到个人用户的“最后一公里”上安装新的电缆组。一些社区目前有光纤到路边 (FTTC) 服务，FTTC 是指在家庭或企业附近的路边安装和使用光缆，“铜”介质在路边和最终用户之间传输信号。</p>
+<h3 id="光纤到户实现方法"><a href="#光纤到户实现方法" class="headerlink" title="光纤到户实现方法"></a>光纤到户实现方法</h3><p>FTTH的定义特征是它将光纤直接连接到住宅，在大多数或所有最后一公里电信中使用光纤，光纤使用光信号传输数据来实现更高的性能。</p>
+<p>FTTH 接入网络的基本结构是这样的：光缆从中心局开始，通过光纤分配集线器 (FDH)，然后通过网络接入点 (NAP)，最后通过用作连接点的终端进入家庭盒子。</p>
+<p>下面的照片显示了一个铺设橙色管道的土沟。一旦管道基础设施被埋入到位，光纤（类似于绳子）将从网络接入点穿过橙色管道。</p>
+<h3 id="使用-FTTH-的好处"><a href="#使用-FTTH-的好处" class="headerlink" title="使用 FTTH 的好处"></a>使用 FTTH 的好处</h3><p>FTTH 的主要好处是提高了网络性能，特别是长距离上的更高速度，这是使用同轴电缆、双绞线导体和 DSL 的旧方法无法达到的。</p>
+<p>由于其显着更高的带宽，FTTH 被专家认为是未来几十年处理消费者网络需求的最佳技术。随之而来的一些好处包括：</p>
+<p>改进了流式传输高清视频的性能。<br>无需更换光纤即可进行多次升级，因此有些人将 FTTH 称为“面向未来”，可以更新光纤周围的基础设施，而无需更新光纤本身。<br>比以前的技术在更长的距离上更高的速度。<br>比其他光纤配置更好，因为光纤直接连接到住宅，并且可以使用以太网或同轴电缆完成剩余的网段。</p>
+<h3 id="FTTH的演进"><a href="#FTTH的演进" class="headerlink" title="FTTH的演进"></a>FTTH的演进</h3><p>自 1980 年代以来，FTTH 不断发展，以适应现代世界不断增长的网络需求，许多在 1980 年代实施的光缆今天仍在使用，这证明了它们随着时间的推移具有灵活性。自 1980 年代以来，光纤技术变得比以前更容易安装和更便宜，今天，FTTH 和光纤的使用持续增加。</p>
+<h2 id="【第五章】"><a href="#【第五章】" class="headerlink" title="【第五章】"></a>【第五章】</h2><p>第五章主要介绍了防火墙和缓存服务器的一些基本知识，这些由于也相对陌生，所以在学习和整理的过程中也需要花费更多时间。</p>
+<h3 id="防火墙基础"><a href="#防火墙基础" class="headerlink" title="防火墙基础"></a>防火墙基础</h3><p>1.防火墙的概念：</p>
+<p> 防火墙是位于两个或多个网络之间，执行访问控制策略的一个或一组系统，是一类防范措施的总称。防火墙的目的是挡住来自外部网络的攻击和入侵，保障着内部网络的安全</p>
+<p>2.防火墙的作用</p>
+<p>（1）可以限制未授权用户进入内部网络，过滤掉不安全服务和非法用户；</p>
+<p>（2）防止入侵者接近内部网络的防御设施，对网络攻击进行检测和告警；</p>
+<p>（3）限制内部用户访问特殊站点；</p>
+<p>（4）记录通过防火墙的信息内容和活动，为监视Internet安全提供方便。</p>
+<p>3.防火墙的优点</p>
+<p>（1）防火墙可以强化网络安全策略。</p>
+<p>（2）防火墙能有效记录Internet上的活动。</p>
+<p>（3）防火墙是一个安全策略的检查站。</p>
+<p>4.防火墙的局限性</p>
+<p>（1）目前防火墙对于来自网络内部的攻击还无能为力。</p>
+<p>（2）防火墙不能防范不经过防火墙的攻击，如内部网用户通过SLIP 或PPP 直接进入Internet。</p>
+<p>（3）防火墙也不能完全防止受病毒感染的文件或软件的传输，由于病毒的种类繁多，如果要在防火墙完成对所有病毒代码的检查，防火墙的效率就会降到不能忍受的程度。</p>
+<p>（4）作为一种被动的防护手段，防火墙不能防范因特网上不断出现的新的威胁和攻击。</p>
+<p>5.防火墙安全策略</p>
+<p> 一种是“一切未被允许的就是禁止的”，一种是“一切未被禁止的都是允许的”。</p>
+<p> 第一种的特点是安全性好，但是用户所能使用的服务范围受到严格限制。</p>
+<p> 第二种的特点是可以为用户提供更多的服务，但是在日益增多的网络服务面前，很难为用户提供可靠的安全防护。</p>
+<p>6.其他概念<br>包过滤：<br>也被称为数据包过滤，是在网络层中对数据包实施有选择的通过，依据系统事先设定好的过滤规则，检查数据流中的每个数据包，根据数据包的源地址、目标地址以及端口等信息来确定是否允许数据包通过。<br>代理服务器：<br>是指代表内部网络用户向外部网络中的服务器进行连接请求的程序</p>
+<h3 id="防火墙分类"><a href="#防火墙分类" class="headerlink" title="防火墙分类"></a>防火墙分类</h3><ul>
+<li>包过滤</li>
+<li>代理服务器</li>
+</ul>
+<p><strong>包过滤技术</strong></p>
+<p>包过滤（Packet Filtering）技术在网络层中对数据包实施有选择的通过，依据系统事先设定好的过滤规则，检查数据流中的每个包，根据包头信息来确定是否允许数据包通过，拒绝发送可疑的包。</p>
+<p>使用包过滤技术的防火墙叫做包过滤防火墙（Packet filter），因为它工作在网络层，又叫网络层防火墙（Network level firewall）。</p>
+<p><strong>1.包过滤防火墙</strong></p>
+<p>通常用一台具有IP过滤功能的路由器来实现</p>
+<p><strong>基本的思想</strong></p>
+<p>对所接收的每个数据包进行检查，根据过滤规则，然后决定转发或者丢弃该包– 往往配置成双向的</p>
+<p><strong>如何过滤</strong></p>
+<p>过滤规则基于包头中的信息。IP源地址、目的地址、TCP/UDP端口、ICMP消息类型、TCP头中的ACK位。过滤器往往建立一组规则，根据是否匹配规则中指定的条件来作出决定。如果有匹配按规则执行，没有匹配，则按缺省策略。</p>
+<p><strong>2.包过滤防火墙的优点</strong></p>
+<p>（1）一个屏蔽路由器能保护整个网络一个恰当配置的屏蔽路由器连接内部网络与外部网络，进行数据包过滤，就可以取得较好的网络安全效果。</p>
+<p>（2）包过滤对用户透明不像在后面描述的代理（Proxy），包过滤不要求任何客户机配置。当屏蔽路由器决定让数据包通过时，它与普通路由器没什么区别，用户感觉不到它的存在。较强的透明度是包过滤的一大优势。</p>
+<p>（3）屏蔽路由器速度快、效率高屏蔽路由器只检查包头信息，一般不查看数据部分，而且某些核心部分是由专用硬件实现的，故其转发速度快、效率较高，通常作为网络安全的第一道防线。</p>
+<ol start="3">
+<li><strong>包过滤防火墙的缺点</strong></li>
+</ol>
+<p>（1）屏蔽路由器的缺点也是很明显的，通常它没有用户的使用记录，这样就不能从访问记录中发现黑客的攻击记录。</p>
+<p>（2）配置繁琐也是包过滤防火墙的一个缺点。没有一定的经验，是不可能将过滤规则配置得完美。有的时候，因为配置错误，防火墙根本就不起作用。</p>
+<p>（3）包过滤另一个关键的弱点就是不能在用户级别上进行过滤，只能认为内部用户是可信任的、外部用户是可疑的。</p>
+<p>（4）此外，单纯由屏蔽路由器构成的防火墙并不十分安全，危险地带包括路由器本身及路由器允许访问的主机，一旦屏蔽路由器被攻陷就会对整个网络产生威胁。</p>
+<p><strong>4.包过滤防火墙的发展阶段</strong></p>
+<p>（1）第一代：静态包过滤防火墙</p>
+<p>（2）第二代：动态包过滤（Dynamic Packet Filter）防火墙</p>
+<p>（3）第三代：全状态检测（Stateful Inspection）防火墙</p>
+<p>（4）第四代：深度包检测（Deep Packet Inspection）防火墙</p>
+<p><strong>2.2 代理服务器</strong></p>
+<p><strong>1.代理服务器的优点</strong></p>
+<p>易于配置，界面友好<br>能生成各项记录<br>能灵活完全的控制进出信息<br>能过滤数据内容</p>
+<p><strong>2.代理服务器的缺点</strong></p>
+<p>代理速度比包过滤慢<br>代理对用户不透明，给用户的使用带来不便<br>代理需要针对每种协议设置一个不同的代理服务器<br>代理服务要求对客户或过程进行限制<br>代理服务不能改进底层协议的安全性</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>​    费曼学习法提到一种思想，便是如果我们能够将所学的知识通过通俗易懂的语言和文字传授给另一个人，那么就说明我们理解深刻了。而如果我们看似学会但到描述和表达却总是卡住的话，说明我们只是记住了知识而没有真正转化为自己所掌握的技能。在归纳和总结本次阅读的过程中，也不断的反馈了对各个部分的掌握程度。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/fc6ae6a7.html" rel="prev" title="「NetWork」前辈分享整理-1">
+                  <i class="fa fa-chevron-left"></i> 「NetWork」前辈分享整理-1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/8c4fe5ef.html" rel="next" title="「NetWork」前辈分享整理-3-思科产品系列学习">
+                  「NetWork」前辈分享整理-3-思科产品系列学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>

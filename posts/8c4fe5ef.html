@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <link rel="mask-icon" href="https://img-blog.csdnimg.cn/20210509115542298.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Alegreya:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="关键字：学习资料学习——《思科设备手册》 摘要：通过思科手册系统性的了解网络产品全貌，学到了很多！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「NetWork」前辈分享整理-3-思科产品系列学习">
+<meta property="og:url" content="http://ohxiaoyao.life/posts/8c4fe5ef.html">
+<meta property="og:site_name" content="ohxiaoyao.life">
+<meta property="og:description" content="关键字：学习资料学习——《思科设备手册》 摘要：通过思科手册系统性的了解网络产品全貌，学到了很多！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4f13mhj30s0124jwv.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4cln2xj30km09ewfn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu41hbrpj30ua0fdq4c.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu46w3k4j30px0bd3zk.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu6cu0v3j30tt0fuq4n.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu48tznnj316e0o60xp.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4aku14j30x20jawhn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu6kds21j311r0ln44g.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4369owj313b0biq4h.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu453pdxj30kq09sta6.jpg">
+<meta property="article:published_time" content="2022-12-28T12:14:00.000Z">
+<meta property="article:modified_time" content="2022-12-30T06:50:38.827Z">
+<meta property="article:author" content="Xiao Yao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4f13mhj30s0124jwv.jpg">
+
+
+<link rel="canonical" href="http://ohxiaoyao.life/posts/8c4fe5ef.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;8c4fe5ef.html&quot;,&quot;path&quot;:&quot;posts&#x2F;8c4fe5ef.html&quot;,&quot;title&quot;:&quot;「NetWork」前辈分享整理-3-思科产品系列学习&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>「NetWork」前辈分享整理-3-思科产品系列学习 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  
+  <a href="https://github.com/OhhhPanda" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+  </a>
+  
+  
+  
+  
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ohxiaoyao.life</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8A%E6%80%9D%E7%A7%91%E8%AE%BE%E5%A4%87%E6%89%8B%E5%86%8C%E3%80%8B"><span class="nav-number">1.</span> <span class="nav-text">《思科设备手册》</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.0.1.</span> <span class="nav-text">摘要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E5%9F%BA%E7%A1%80%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E8%AE%BE%E5%A4%87%E3%80%91"><span class="nav-number">1.1.</span> <span class="nav-text">【基础路由交换设备】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Catalyst%E7%B3%BB%E5%88%97"><span class="nav-number">1.1.1.</span> <span class="nav-text">Catalyst系列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E7%A7%91Cisco-%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%9E%8B%E5%8F%B7%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">思科Cisco 交换机型号概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.3.</span> <span class="nav-text">可扩展性分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E6%80%A7%E8%83%BD%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.4.</span> <span class="nav-text">按性能分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%90%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E3%80%91"><span class="nav-number">1.2.</span> <span class="nav-text">【安全设备】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Yao"
+      src="https://img-blog.csdnimg.cn/20210509115542298.png">
+  <p class="site-author-name" itemprop="name">Xiao Yao</p>
+  <div class="site-description" itemprop="description">春秋读书，冬夏猎射</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/OhhhPanda" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;OhhhPanda" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:969527367@qq.com" title="E-Mail → mailto:969527367@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xytodo.3vkj.net/" title="Todo → http:&#x2F;&#x2F;xytodo.3vkj.net" rel="noopener" target="_blank"><i class="fa fa-bullseye fa-fw"></i>Todo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://xyhome.3vkj.net/" title="Resume → http:&#x2F;&#x2F;xyhome.3vkj.net" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>Resume</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+	  
+	  
+	  
+
+	 <!-- 网易云音乐插件 
+	  <div id="music163player">
+	    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=1843648162&auto=1&height=66">
+	    </iframe>
+
+    -->
+    </div>
+	
+	
+	
+	
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+    
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ohxiaoyao.life/posts/8c4fe5ef.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://img-blog.csdnimg.cn/20210509115542298.png">
+      <meta itemprop="name" content="Xiao Yao">
+      <meta itemprop="description" content="春秋读书，冬夏猎射">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ohxiaoyao.life">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「NetWork」前辈分享整理-3-思科产品系列学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-28 20:14:00" itemprop="dateCreated datePublished" datetime="2022-12-28T20:14:00+08:00">2022-12-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-12-30 14:50:38" itemprop="dateModified" datetime="2022-12-30T14:50:38+08:00">2022-12-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <meta name="referrer" content="no-referrer" />
+
+<p>关键字：学习资料学习——《思科设备手册》</p>
+<p>摘要：通过思科手册系统性的了解网络产品全貌，学到了很多！</p>
+<img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4f13mhj30s0124jwv.jpg" alt="image-20221230134202387" style="zoom:67%;" />
+
+<span id="more"></span>
+
+<hr>
+<h1 id="《思科设备手册》"><a href="#《思科设备手册》" class="headerlink" title="《思科设备手册》"></a>《思科设备手册》</h1><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>通过阅读本书我们发现了很多过去觉得陌生的设备型号和设备名称，对于路由器交换机可能有一定了解，但对于N9K的演进，ASA，UCS方面的内容算是初步认识和学习。本次学习我们还是先从目录开始，从最开始的路由交换机基础设备，然后学习思科新推出的数据中心N9K系列产品以及服务器等产品线，最后初步了解和认识防火墙ASA等安全产品，</p>
+<p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4cln2xj30km09ewfn.jpg" alt="image-20221230134641597"></p>
+<h2 id="【基础路由交换设备】"><a href="#【基础路由交换设备】" class="headerlink" title="【基础路由交换设备】"></a>【基础路由交换设备】</h2><h3 id="Catalyst系列"><a href="#Catalyst系列" class="headerlink" title="Catalyst系列"></a>Catalyst系列</h3><p>相信每一个了解思科交换机设备的人都知道Catalyst系列，但是Catalyst到底是什么意思呢？</p>
+<p>其实，最早思科是只做路由器不做交换机，当时做交换机的厂商已经很多了，所以思科想进军交换机界就走了一条收购的道路，被收购的生产交换机厂商叫catalyst，而且还保留他们自己的IOS，所以现在还是分Cisco IOS和Cisco catOS2种。</p>
+<p>cisco catalyst系列一定是交换机：</p>
+<p>Cisco Catalyst 4500 Series Switches<br>Cisco Catalyst 3850 Series Switches<br>Cisco Catalyst 3750 Series Switches<br>Cisco Catalyst 3750-E Series Switches<br>Cisco Catalyst 3750-X Series Switches<br>Cisco Catalyst 3650 Series Switches<br>Cisco Catalyst 3560 Series Switches<br>Cisco Catalyst 3560-E Series Switches<br>Cisco Catalyst 3560-X Series Switches<br>Cisco Catalyst 2960 Series Switches<br>Cisco Catalyst 2960-Plus Series Switches<br>Cisco Catalyst 2960-S Series Switches<br>Cisco Catalyst 2960-SF Series Switches<br>Cisco Catalyst 2960-X Series Switches<br>Cisco Catalyst 3560-C Series Switches<br>Cisco Catalyst 2960-C Series Switches<br>Cisco Catalyst 6800 Series Switches<br>Cisco Catalyst 6500 Series Switches<br>Cisco Catalyst 6500 Virtual Switching System 1440<br>Cisco Catalyst 4900 Series Switches<br>Cisco Catalyst 4500 Series Switches<br>Cisco Catalyst 4500-X Series Switches</p>
+<h3 id="思科Cisco-交换机型号概述"><a href="#思科Cisco-交换机型号概述" class="headerlink" title="思科Cisco 交换机型号概述"></a><strong>思科Cisco 交换机型号概述</strong></h3><p>思科Cisco 交换机的命名一般是 WS开头这个是固定的，再下一个字母有两种一个是C一个是X， C代表固化交换机或者机箱，X代表的是模块。比如看到WS-C3750-24TS-S这个型号的时候我们应该知道他是CISCO交换机.固化交换机3750系列，24个以太网口， TS表示是以太口+SFP口后面的S表示是标准版的，相应的型号就是E的，属于增强型或者叫企业版。再如WS-X6748-SFP，WS还是代表交换设备，x表示模块，6表示6000系列，7表示7代产品，48表示48口，SFP表示端口类型。</p>
+<p>Cisco交换机有以下多个系列：<br>1900系列：1924<br>2900系列：2924、2924M<br>2950系列：2950-24、2950G-24/48、2950C-24、2950T-24、2950SX-24/48<br>2960系列：2960-24/48TT-L、296024/48TC-L<br>3500系列：3508G、3524、3548<br>3550系列：3550-24-SMI/EMI、3550-48-SMI/EMI、3550-12G/T<br>3560系列：3560-24/48也有带G的<br>3750系列：3750-24/48-TS-S、3750-24/48-TS-E 3750G-24/48-TS-S、3750G-24/48-TS-E 、3750G-12S<br>4000系列：4003、4006<br>4500系列：4503、4506、4507R<br>6000系列：6006、6009<br>6500系列：6506、6509、6513<br>7600系列：7609、7613</p>
+<h3 id="可扩展性分类"><a href="#可扩展性分类" class="headerlink" title="可扩展性分类"></a><strong>可扩展性分类</strong></h3><p>Cisco的交换机产品以“Catalyst”为商标，包含1900、2800、2900、3500、4000、5000、5500、6000、8500等十多个系列。总的来说，这些交换机可以分为两类：</p>
+<p>一类是固定配置交换机，包括3500及以下的大部分型号，比如1924是24口10M以太交换机，带两个100M上行端口。除了有限的软件升级之外，这些交换机不能扩展；</p>
+<p>另一类是模块化交换机，主要指4000及以上的机型，网络设计者可以根据网络需求，选择不同数目和型号的接口板、电源模块及相应的软件。</p>
+<p>选择设备时，许多人对长长的产品型号十分头疼。其实，Cisco对产品的命名有一定之规。就Catalyst交换机来说，产品命名的格式如下：</p>
+<p>Catalyst NNXX [-C] [-M] [-A/-EN]</p>
+<p>其中，NN是交换机的系列号，XX对于固定配置的交换机来说是端口数，对于模块化交换机来说是 <strong>插槽数</strong>，有-C标志表明带光纤接口，-M表示模块化，-A和-EN分别是指交换机软件是标准板或企业版。</p>
+<p>主要参数：</p>
+<p>T——表明其主要端口是电口（也就是所谓的Twirst Pair的端口）<br>P——表明其主要端口是电口，同时支持PoE以太网供电<br>S——表明其带的扩展的接口为SFP类型的接口<br>D—– 1个10 Gigabit Ethernet XENPAK port<br>W—– Integrated Wireless LAN Controller  (50 support for up to 50 access points)<br>TT—–表明普通口和UPLink口都是 BaseT的<br>LC—–表明普通口是BaseT的,并且部分支持PoE (4个) UpLink口是 BaseT/SFP<br>PC—–表明普通口是BaseT的,并且全部支持PoE (24个) UpLink口是 BaseT/SFP<br>TC—- 表明普通口是BaseT的, UpLink口是 BaseT/SFP<br>TS—- 表明TC代表普通口是BaseT的, UpLink口是 SFP的.<br>PS—- 表明TC代表普通口是BaseT的并且全部支持PoE, UpLink口是 SFP的.<br>FS—- 表明普通口是100BaseFX的, UpLink口是 SFP的.<br>T—– 表明TC代表普通口是BaseT的,没有Uplink口.<br>-L LAN Base Image<br>-S Standard Image<br>-E Enhanced Image</p>
+<h3 id="按性能分类"><a href="#按性能分类" class="headerlink" title="按性能分类"></a><strong>按性能分类</strong></h3><p><strong>1、低端产品</strong></p>
+<p>先说一下低端的产品，1900和2900是低端产品的典型。其实在低端交换机市场上，Cisco并不占特别的优势，因为3Com、Dlink等公司的产品具有更好的性能价格比。</p>
+<p>1900交换机适用于网络末端的 <a target="_blank" rel="noopener" href="http://www.hackhome.com/SoftView/SoftView_23410.html">桌面</a>计算机接入，是一款典型的低端产品。它提供12或24个10M端口及2个100M端口，其中100M端口支持全双工通讯，可提供高达200Mbps的端口带宽。机器的背板带宽是320Mbps。</p>
+<p>带企业版软件的1900还支持VLAN和ISL Trunking，最多4个VLAN，但一般情况下，低端的产品对这项功能的要求不多。</p>
+<p><strong>某些型号的1900带100BaseFX光纤接口</strong>。如C1912C、C1924C带一个百兆Tx口和一个百兆Fx口，C1924F带两个100BaseFX接口。1900系列的主要型号如下：<br>C1912：12口10BaseTx，2口100BaseTx，1个AUI口<br>C1912C：12口10BaseTx，1口100BaseTx，1个AUI口，1个100BaseFx口<br>C1924：24口10BaseTx，2口100BaseTx，1个AUI口<br>C1924C：24口10BaseTx，1口100BaseTx，1个AUI口，1个100BaseFx口<br>C1924F：24口10BaseTx，1个AUI口，1个100BaseFx口<br>(19XX已经被列为思科淘汰类产品中)</p>
+<p>如果在你的网络中，有些桌面计算机是100M的，那么2900系列可能更加适合。与1900相比，2900最大的特点是速度添加，它的背板速度最高达3.2G，最多24个10/100M自适应端口，所有端口均支持全双工通讯，使桌面接入的速度大大提高。除了端口的速率之外，2900的其他许多性能也比1900系列有了显着的提高。比如，2900的MAC地址表容量是16K，可以划分1024个VLAN，支持ISL Trunking协议等等。</p>
+<p>2900系列的产品线很长。其中，有些是普通10/100BaseTx交换机，如C2912、C2924等；有些是带光纤接口的，如C2924C带两个100BaseFx口；有些是模块化的，如C2924M 带两个扩展槽。扩展槽的插卡可以放置100BaseTx模块、100baseFx模块，甚至可以插ATM模块和千兆以太接口卡(GBIC)。细致情况如下：<br>C2912-XL：12口10/100BaseTx自适应<br>C2912MF-XL：2个扩展槽，12口100BaseFX<br>C2924-XL：24口10/100BaseTX自适应<br>C2924C-XL：22口10/100BaseTX自适应，2口100BaseFX<br>C2924M-XL：2个扩展槽，24口10/100BaseTx自适应</p>
+<p>在2900系列中，有两款产品比较独特，一是C2948G，二是C2948G-L3。2948G的性能价格比还不错，它运用的软件和Catalyst 5000/5500一样，有48个10/100Mbps自适应以太网端口和2个千兆以太网端口，24G背板带宽，带可热插拔的冗余电源，有一系列容错特征和网管特征。C2948G-L3在C2948G的基础上添加了三层交换的能力，最大三层数据包吞吐量可达10M <a target="_blank" rel="noopener" href="http://www.hackhome.com/SoftView/SoftView_3185.html">PPS</a>。不过，总的来说，2900系列交换机一般用在网络的低端，千兆和路由的能力并不是很主要，所以两款2948在实际项目中运用得不多。</p>
+<p><strong>2、中端产品</strong> </p>
+<p>再来看中端产品，中端产品中3500系列运用广泛，很有代表性。</p>
+<p>C3500系列交换机的基本特征包括 <strong>背板带宽高达10Gbps，转发速率7.5Mpps，</strong>它支持250个VLAN，支持IEEE 802.1Q和ISL Trunking,支持CGMP网/千兆以太网交换机,可选冗余电源等等。不过C3500的最大特征在于管理和千兆。</p>
+<p>管理特征方面，C3500实现了Cisco的交换集群技能，可以将16个C3500，C2900，C1900系列的交换机互联，并通过一个IP地址执行 管理。运用 C3500内的Cisco Visual Switch Manager（CVSM）软件还可以方便地通过阅读器对交换机执行 配置和管理。</p>
+<p>千兆特征方面，C3500彻底支持千兆接口卡（GBIC）。目前GBIC有三种1000BaseSx，适用于多模光纤，最长距离550m；1000BaseLX/LH，多模/单模光纤都适用，最长距离10km；1000BaseZX适用于单模光纤，最长距离100km。</p>
+<p>C3500主要有4种型号：<br>Catalyst 3508G XL：8口GBIC插槽<br>Catalyst 3512 XL：12口10/100M自适应，2口GBIC插槽<br>Catalyst 3524 XL：24口10/100M自适应，2口GBIC插槽<br>Catalyst 3548 XL：48口10/100M自适应，2口GBIC插槽</p>
+<p><strong>3、高端产品</strong></p>
+<p>最后，介绍一下高端的产品。对于企业数据网来说，C6000系列替代了原有的C5000系列，是最常用的产品。</p>
+<p>Catalyst 6000系列交换机为园区网提供了高性能、<strong>交换的处理方案，专门为须要千兆扩展、可用性高、</strong>交换的运用 环境设计，主要面向园区骨干连接等场合。</p>
+<p>Catalyst 6000系列是由Catalyst 6000 和Catalyst 6500 两种型号的交换机构成，都包含6个或9个插槽型号，分别为6006、6009、6506和6509，其中，尤以6509运用最为广泛。所有型号支持相同的超级引擎、相同的接口模块，保卫了用户的投资。这一系列的特征主要包括：</p>
+<p><strong>端口密度大。</strong>：支持多达384个10/100BaseTx自适应以太网口，192个100BaseFX 光纤高速以太网口，以及130个千兆以太网端口（GBIC插槽）。</p>
+<p>速度快。C6500的交换背板可扩展到256 Gbps，<strong>交换速度可扩展到150 Mpps。C6000的交换背板带宽32 Gbps ，</strong>交换速率30 Mpps。支持多达8个高速 /千兆以太网口运用 以太网通道技能（Fast EtherChannel，FEC或Gigabit EtherChannel，GEC）连接, 在逻辑上实现了16 Gbps的端口速率，还可以跨模块执行 端口聚合实现。</p>
+<p><strong>交换：</strong>C6000系列的交换模块可以执行 线速的IP，IPX和 and IP-multicast 路由。</p>
+<p><strong>容错性能好</strong>：C6000系列带有冗余超级引擎，冗余负载均衡电源，冗余风扇，冗余系统时钟，冗余上连，冗余的交换背板（仅对C6500系列），实现了系统的高可用性。</p>
+<p><strong>丰富的软件特征：</strong> C6000软件支持丰富的协议，包括NetFlow、VTP(VLAN Trunking Protocol)、VQP(VLAN Query Protocol)、ISL Trunking、HSRP(Hot Standby Router Protocol)、Port Security、TACACS、CGMP(Cisco Group Management Protocol)、IGMP等等。</p>
+<p><br/><br/> </p>
+<p>【N9K系列产品】</p>
+<p>数据中心产品首先是底层的nexus交换机，有n7k，n3k，n5k。现在主打的是n9k。</p>
+<p><strong>传统的思科数据中心网络架构也包括如下层级结构：</strong><br>   • 核心层（一般是Nexus 7K来充当）<br>   • 汇聚层（一般也是Nexus 7K充当，可能存在2台，或4台的设备）<br>   • 接入层（一般会是N5K，N6K充当，当然可能有FEX存在）<br>   • 接入服务器（一般有Cisco UCS，Cisco C200或者其他厂商的服务器群）</p>
+<p><strong>N7K</strong><br><strong>Nexus7000&amp;Nexus7700</strong><br>为下一代Unified Fabric数据中心创建网络基础。 模块化思科Nexus 7000和7700交换机为软件定义网络（SDN）部署提供全面的思科NX-OS功能集和开源可编程工具。 他们提供具有应用感知和性能分析功能的高密度10,40和100吉比特以太网</p>
+<p><strong>Nexus7000主流型号：Nexus7004,7009,7010,7018</strong><br><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu41hbrpj30ua0fdq4c.jpg" alt="img" style="zoom:50%;" /></p>
+<p>Nexus7700主要型号：Nexus7706,7710，7718<br><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu46w3k4j30px0bd3zk.jpg" alt="img" style="zoom:50%;" /></p>
+<p>M卡和F卡：<br><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu6cu0v3j30tt0fuq4n.jpg" alt="img" style="zoom:50%;" /></p>
+<p>关于Nexus7000和Nexus7700的产品规则，不同型号使用的线卡等其他信息，参考Datasheet：<br><a target="_blank" rel="noopener" href="https://www.cisco.com/c/en/us/products/collateral/switches/nexus-7000-series-switches/Data_Sheet_C78-437762.html">https://www.cisco.com/c/en/us/products/collateral/switches/nexus-7000-series-switches/Data_Sheet_C78-437762.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cisco.com/c/en/us/products/collateral/switches/nexus-7000-series-switches/data_sheet_c78-728187.html">https://www.cisco.com/c/en/us/products/collateral/switches/nexus-7000-series-switches/data_sheet_c78-728187.html</a></p>
+<p><strong>N5K</strong><br>Nexus5K较老的型号，目前已经停止销售，这几款是:<strong>Nexus5548P,Nexus5020,Nexus5010</strong></p>
+<p>Nexus5K其他的型号：</p>
+<p><strong>Nexus 56128P，5696Q,5672UP，5672UP-16G，5648Q，5624Q，5596T，5596UP，5548UP。</strong></p>
+<img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu48tznnj316e0o60xp.jpg" alt="img" style="zoom:50%;" />
+
+<p>Nexus5K datasheet：<br><a target="_blank" rel="noopener" href="https://www.cisco.com/c/en/us/products/switches/nexus-5000-series-switches/datasheet-listing.html">https://www.cisco.com/c/en/us/products/switches/nexus-5000-series-switches/datasheet-listing.html</a></p>
+<p><strong>N3K</strong><br><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4aku14j30x20jawhn.jpg" alt="img" style="zoom:50%;" /></p>
+<img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu6kds21j311r0ln44g.jpg" alt="img" style="zoom:50%;" />
+
+<p><strong>N2K</strong></p>
+<p>Models<br>Cisco Nexus 2348TQ 10GE Fabric Extender<br>Cisco Nexus 2348TQ-E 10GE Fabric Extender<br>Cisco Nexus 2348UPQ 10GE Fabric Extender<br>Cisco Nexus 2332TQ 10GE Fabric Extender<br>Cisco Nexus 2248TP-E Fabric Extender<br>Cisco Nexus 2232PP 10GE Fabric Extender<br>Cisco Nexus 2232TM-E 10GE Fabric Extender<br>Cisco Nexus B22 Blade Fabric Extender<br>End-of-Sale Models<br>Cisco Nexus 2248PQ 10GE Fabric Extender<br>Cisco Nexus 2248TP GE Fabric Extender<br>Cisco Nexus 2232TM 10GE Fabric Extender<br>Cisco Nexus 2224TP GE Fabric Extender<br>Cisco Nexus 2148T Fabric Extender</p>
+<img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu4369owj313b0biq4h.jpg" alt="img" style="zoom:50%;" />
+
+
+
+
+
+<p><br/><br/> </p>
+<h2 id="【安全设备】"><a href="#【安全设备】" class="headerlink" title="【安全设备】"></a>【安全设备】</h2><p><img src="https://tva1.sinaimg.cn/large/008vxvgGgy1h9lu453pdxj30kq09sta6.jpg" alt="image-20221230140957264"></p>
+<p>Fire Wall 防火墙，防火墙也分<strong>软件防火墙与硬件防火墙</strong>。硬件防火墙又分为：<strong>基于PC架构与基于ASIC芯片</strong>。</p>
+<p>。。。。。</p>
+<p>这个部分主要总结思科的硬件防火墙 Cisco ASA系列产品。<strong>ASA等安全产品系列由于接触的较少，留待后续学习后持续更新！</strong></p>
+<p><br/><br/></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在过去我们学习了思科交换机和路由设备的常见性功能配置，本次通过思科产品手册系统性的了解到了思科产品线的全貌，虽然在ASA安全、存储服务器等部分还较为陌生，不过对于产品体系有了一个非常清晰的认识。在后续的学习中，计划先深入探索Catalyst系列部分交换机的特定型号进行学习，从而由浅入深的认识不同型号间的细微区别和意义所在。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/6563b71d.html" rel="prev" title="「NetWork」前辈分享整理-2">
+                  <i class="fa fa-chevron-left"></i> 「NetWork」前辈分享整理-2
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_site_uv">总访客<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: '32px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
