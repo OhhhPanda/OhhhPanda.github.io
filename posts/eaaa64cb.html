@@ -20,17 +20,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;ohxiaoyao.life&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:&quot;motion&quot;,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
-<meta name="description" content="关键字：思科OS升级、灾难恢复 摘要：思科设备OS升级及降级方法。">
+<meta name="description" content="![e6c9d24ely1h4kfch9yp8j21hc0goq5i](&#x2F;Users&#x2F;xiaoyao&#x2F;Desktop&#x2F;🍺Blog🍺&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;「NetWork」交换技术部分&#x2F;CCNA-3 Vlan基础原理.assets&#x2F;e6c9d24ely1h4kfch9yp8j21hc0goq5i.jpg)摘要：学习Vlan相关的操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「思科NA培训」CCNA-5 VLAN基础原理">
+<meta property="og:title" content="「思科NA培训」CCNA-3 VLAN基础原理">
 <meta property="og:url" content="http://ohxiaoyao.life/posts/eaaa64cb.html">
 <meta property="og:site_name" content="ohxiaoyao.life">
-<meta property="og:description" content="关键字：思科OS升级、灾难恢复 摘要：思科设备OS升级及降级方法。">
+<meta property="og:description" content="![e6c9d24ely1h4kfch9yp8j21hc0goq5i](&#x2F;Users&#x2F;xiaoyao&#x2F;Desktop&#x2F;🍺Blog🍺&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;「NetWork」交换技术部分&#x2F;CCNA-3 Vlan基础原理.assets&#x2F;e6c9d24ely1h4kfch9yp8j21hc0goq5i.jpg)摘要：学习Vlan相关的操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9snv78j20z10hs3zv.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2ieymwj21bm0ppmzn.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2jwgbqj21680b4gm7.jpg">
+<meta property="og:image" content="https://xiaoyaoblog.oss-cn-chengdu.aliyuncs.com/blogimage/8d8250e1-b92f-4c05-b748-6cc5fcff8f65.png">
+<meta property="og:image" content="http://ohxiaoyao.life/Users/xiaoyao/Desktop/🍺Blog🍺/blog/source/_posts/「NetWork」交换技术部分/CCNA-3%20Vlan基础原理.assets/1501658991646_.pic.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2jgg5nj21jp0thmz3.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2orj54j21lz0tx422.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2s4yzqj21gc0u0wie.jpg">
@@ -60,20 +58,20 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9u8j6lj212q0o2dgl.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9ut4y5j21fc0u0799.jpg">
 <meta property="article:published_time" content="2022-07-27T08:49:00.000Z">
-<meta property="article:modified_time" content="2022-07-31T08:06:29.069Z">
+<meta property="article:modified_time" content="2022-12-30T10:58:12.269Z">
 <meta property="article:author" content="Xiao Yao">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg">
+<meta name="twitter:image" content="https://xiaoyaoblog.oss-cn-chengdu.aliyuncs.com/blogimage/8d8250e1-b92f-4c05-b748-6cc5fcff8f65.png">
 
 
 <link rel="canonical" href="http://ohxiaoyao.life/posts/eaaa64cb.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;eaaa64cb.html&quot;,&quot;path&quot;:&quot;posts&#x2F;eaaa64cb.html&quot;,&quot;title&quot;:&quot;「思科NA培训」CCNA-5 VLAN基础原理&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;ohxiaoyao.life&#x2F;posts&#x2F;eaaa64cb.html&quot;,&quot;path&quot;:&quot;posts&#x2F;eaaa64cb.html&quot;,&quot;title&quot;:&quot;「思科NA培训」CCNA-3 VLAN基础原理&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>「思科NA培训」CCNA-5 VLAN基础原理 | ohxiaoyao.life</title><script src="/js/config.js"></script>
+<title>「思科NA培训」CCNA-3 VLAN基础原理 | ohxiaoyao.life</title><script src="/js/config.js"></script>
   
 
 
@@ -178,7 +176,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -266,7 +264,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          「思科NA培训」CCNA-5 VLAN基础原理
+          「思科NA培训」CCNA-3 VLAN基础原理
         </h1>
 
         <div class="post-meta-container">
@@ -284,7 +282,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-07-31 16:06:29" itemprop="dateModified" datetime="2022-07-31T16:06:29+08:00">2022-07-31</time>
+        <time title="修改时间：2022-12-30 18:58:12" itemprop="dateModified" datetime="2022-12-30T18:58:12+08:00">2022-12-30</time>
       </span>
 
   
@@ -297,33 +295,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2pjhoij21hc0gojtx.jpg" alt="banner1" style="zoom: 67%;" />
-关键字：思科OS升级、灾难恢复
-摘要：思科设备OS升级及降级方法。
+        <p>![e6c9d24ely1h4kfch9yp8j21hc0goq5i](/Users/xiaoyao/Desktop/🍺Blog🍺/blog/source/_posts/「NetWork」交换技术部分/CCNA-3 Vlan基础原理.assets/e6c9d24ely1h4kfch9yp8j21hc0goq5i.jpg)<br><strong>摘要：学习Vlan相关的操作</strong></p>
 <span id="more"></span>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1090113&auto=1&height=66"></iframe>
->   **为什么需要Vlan？**
->
->   在没有vlan的年代，所有PC都是一个域。
->
->   当一台PC进行广播时，所有的PC都听到了广播，好似一场广播风暴！
->
->   当一个黑客攻破了一台设备，便可对所有PC发动ARP攻击！
 
-<h2 id="一-Vlan基础"><a href="#一-Vlan基础" class="headerlink" title="一 Vlan基础"></a>一 Vlan基础</h2><hr/>
-
-<h3 id="1、Vlan划分"><a href="#1、Vlan划分" class="headerlink" title="1、Vlan划分"></a>1、Vlan划分</h3><p>一个Vlan中所有设备处于同一个广播域内，不同的VLan为不同的广播域。</p>
-<p>一个VLan一般是一个IP网段，不同的Vlan规划到不同的IP网段。</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4nt9snv78j20z10hs3zv.jpg" alt="8d8250e1-b92f-4c05-b748-6cc5fcff8f65" style="zoom: 50%;" />
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 src="//music.163.com/outchain/player?type=2&id=1090113&auto=0&height=66"></iframe>
 
 <blockquote>
-<p>​        <strong>如何避免广播风暴等问题？</strong></p>
-<p>​        不同的Vlan之间二层隔离，因此不同Vlan之间的设备无法进行二层通信，需通过<strong>三层设备</strong>实现互通！        Vlan工作域OSI模型的第二层（数据链路层），是二层交换机的一个非常根本和重要的机制。</p>
+<p>  <strong>为什么需要Vlan？</strong></p>
+<p>  在没有vlan的年代，所有PC都是一个域。</p>
+<p>  当一台PC进行广播时，所有的PC都听到了广播，好似一场广播风暴！</p>
+<p>  当一个黑客攻破了一台设备，便可对所有PC发动ARP攻击！</p>
 </blockquote>
+<hr/>
+
+<h2 id="一-Vlan基础"><a href="#一-Vlan基础" class="headerlink" title="一 Vlan基础"></a>一 Vlan基础</h2><h3 id="1、Vlan划分"><a href="#1、Vlan划分" class="headerlink" title="1、Vlan划分"></a>1、Vlan划分</h3><p>一个Vlan中所有设备处于同一个广播域内，不同的VLan为不同的广播域。</p>
+<p>一个Vlan一般是一个IP网段，不同的Vlan规划到不同的IP网段。</p>
+<img src="https://xiaoyaoblog.oss-cn-chengdu.aliyuncs.com/blogimage/8d8250e1-b92f-4c05-b748-6cc5fcff8f65.png" alt="8d8250e1-b92f-4c05-b748-6cc5fcff8f65" style="zoom: 33%;" />
+
+<blockquote>
+<p><strong>如何避免广播风暴等问题？</strong></p>
+<p>不同的Vlan之间二层隔离，因此不同Vlan之间的设备无法进行二层通信，需通过<strong>三层设备</strong>实现互通！        </p>
+<p>Vlan工作域OSI模型的第二层（数据链路层），是二层交换机的一个非常根本和重要的机制。</p>
+</blockquote>
+<br/>
+
 <h3 id="2、静态Vlan和动态Vlan"><a href="#2、静态Vlan和动态Vlan" class="headerlink" title="2、静态Vlan和动态Vlan"></a>2、静态Vlan和动态Vlan</h3><p><strong>百分之九十九都是用静态Vlan进行配置！</strong></p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2ieymwj21bm0ppmzn.jpg" alt="93a4d6e7-1b6f-4b62-bb8c-1ed516986fc4" style="zoom: 50%;" />
+<img src="/Users/xiaoyao/Desktop/🍺Blog🍺/blog/source/_posts/「NetWork」交换技术部分/CCNA-3 Vlan基础原理.assets/1501658991646_.pic.jpg" alt="1501658991646_.pic" style="zoom:33%;" />
 
-
+<br/>
 
 
 
@@ -331,11 +330,8 @@
 
 <p>广播域：指网络中所有能接收到同样广播消息的设备的集合</p>
 <p>冲突域：指同一时间只有一台设备发送信息的范围，网络层，符合CSMA/CD</p>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h4md2jwgbqj21680b4gm7.jpg" alt="截屏2022-07-27 14.39.49" style="zoom:50%;" />
-
 <blockquote>
 <p> <strong>广播域和冲突域的区别？</strong></p>
-</blockquote>
 <ul>
 <li><p>概念不同：广播域指的是所有接收广播信息的节点，冲突域指的是同一物理段中的节点。</p>
 </li>
@@ -344,10 +340,11 @@
 <li><p>网段不同：广播域可以跨网段，冲突域发生在同一个网段中。</p>
 </li>
 </ul>
+</blockquote>
 <blockquote>
 <p><strong>如何尽最大可能避免冲突域呢？</strong></p>
-</blockquote>
 <p>为了有效避免冲突，局域网中使用交换机（Switch）来分割冲突域。对网络进行分割的原因是为了分离流量并创建更小的冲突域来使用户获得更高的带宽，否则同一时刻数据太多容易导致网络拥挤形成阻塞。</p>
+</blockquote>
 <p><strong>良言道：交换机分割冲突域，路由器分割广播域</strong></p>
 <h2 id="三-广播风暴"><a href="#三-广播风暴" class="headerlink" title="三 广播风暴"></a>三 广播风暴</h2><hr>
 <p>起源：上古时代，人们学会了通过冗余来提高容错，但建立起的二层环路也带来了问题——广播风暴</p>
@@ -581,8 +578,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/3f913a85.html" rel="prev" title="「思科NA培训」CCNA-4 思科OS升降级及灾难恢复">
-                  <i class="fa fa-chevron-left"></i> 「思科NA培训」CCNA-4 思科OS升降级及灾难恢复
+                <a href="/posts/3f913a85.html" rel="prev" title="「思科NA培训」CCNA-2 思科OS镜像烧录和MD5校验">
+                  <i class="fa fa-chevron-left"></i> 「思科NA培训」CCNA-2 思科OS镜像烧录和MD5校验
                 </a>
             </div>
             <div class="post-nav-item">
@@ -609,7 +606,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
